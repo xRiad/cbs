@@ -1,0 +1,21 @@
+.services {
+    display: flex;
+}
+.services {
+    justify-content: space-between;
+    padding: 0 50px;
+    padding-top: 50px;
+}
+.services-head {
+    font-family: Gotham;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.085px;
+    color: var(--black);
+}
+.services-text-btn {
+    width: 400px;
+    color: var(--gray);
+}

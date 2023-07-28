@@ -2,7 +2,7 @@
 } */
 /* DARK MODE SWITCH */
 .header-top,.dark-mode-switch, header-contacts,.phone-mail, .phone-container, .mail-container, .header-bottom,
-.nav, .nav-elem {
+.socials,.social-icon,.nav, .nav-elem {
   display: flex;
 }
 .header-top, .header-bottom {
@@ -112,6 +112,16 @@ input:checked + .slider:before {
 }
 .phone-icon, .mail-icon {
   margin-right: 10px;
+}
+.social-icon {
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 20px;
+  color: #fff;
+  margin-right: 10px;
+  border: 1px solid #fff;
+  border-radius: 20px;
 }
 /* HEADER BOTTOM */
 .nav {
