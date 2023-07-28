@@ -1,0 +1,143 @@
+/* .header {
+} */
+/* DARK MODE SWITCH */
+.header-top,.dark-mode-switch, header-contacts,.phone-mail, .phone-container, .mail-container, .header-bottom,
+.nav, .nav-elem {
+  display: flex;
+}
+.header-top, .header-bottom {
+  padding: 0 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-top {
+  height: 50px;
+  background: var(--black);
+}
+.header-bottom {
+  height: 100px;
+  background: var(--white); 
+}
+.header-bottom {
+  background: var(--white);
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 15px;
+  border:3px solid #fff;
+  border-radius: 50px
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 9px;
+  width: 9px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(12px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.dark-mode-switch > div:first-child {
+  margin-right: 10px;
+  color: #FFF;
+
+  font-family: Gotham;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; 
+  letter-spacing: 0.038px;
+}
+.dark-mode-switch {
+  align-items: center;
+}
+.phone-container {
+  margin-right: 30px;
+}
+.phone-mail {
+  margin-right:  10px;
+  align-items: center;
+}
+.phone {
+  font-family: Open Sans;
+  line-height: 18px; 
+}
+.mail {
+  font-family: Gotham;
+  line-height: normal;
+}
+.phone,.mail {
+  color: var(--white);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.06px;
+}
+.phone-icon, .mail-icon {
+  margin-right: 10px;
+}
+/* HEADER BOTTOM */
+.nav {
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-elem {
+  align-items: center;
+  margin-right: 10px;
+  font-family: Gotham;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 350;
+  line-height: normal;
+  letter-spacing: 0.17px;
+  text-transform: capitalize;
+  cursor: pointer;
+  color: var(--black);
+}
+.nav-elem:hover {
+  color: var(--secondary);
+}
+.services > svg {
+  transition: transform 0.3s ease;
+}
+
+.services:hover > svg {
+  transform: rotate(180deg);
+}
