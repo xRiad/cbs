@@ -2,6 +2,8 @@
 
 @section('links')
   <link rel="stylesheet" href="assets/front/css/about-us.css">
+  <link rel="stylesheet" href="{{ 'assets/front/css/components/team.css' }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 @endsection
 
 @section('content')
@@ -29,3 +31,34 @@
   </div>
   <x-front.team></x-front.team>
 @endsection
+
+@push('scripts')
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: ".next-member",
+                prevEl: ".prev-member"
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 50,
+                },
+            },
+        });
+    </script>
+@endpush
+    

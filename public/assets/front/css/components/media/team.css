@@ -1,0 +1,16 @@
+
+@media only screen and (max-width: 850px) {
+  .team-slider {
+    display: none !important;
+  }
+  .member-card {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .member-name-mob {
+    color: var(--black);
+  }
+  .member-position-mob {
+    color: var(--secondary);
+  }
+}

@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/about-us', function () {
   return view('front.about-us');
 });
+Route::get('/blog', function () {
+  return view('front.blog');
+});

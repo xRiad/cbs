@@ -32,7 +32,7 @@ footer {
 .social-icon-wrapper2 > i {
     color: var(--blue-gray);
 }
-.info > * {
+.footer-info-container > * {
     margin-bottom: 30px;
 }
 .footer-block:not(:last-child) {

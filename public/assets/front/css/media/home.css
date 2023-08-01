@@ -30,17 +30,4 @@
     display: flex;
     flex-direction: column;
   }
-  .team-slider {
-    display: none !important;
-  }
-  .member-card {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  .member-name-mob {
-    color: var(--black);
-  }
-  .member-position-mob {
-    color: var(--secondary);
-  }
 }

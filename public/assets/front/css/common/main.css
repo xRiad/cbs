@@ -149,3 +149,50 @@ h6 {
 .dynamic-header > *:first-child {
   margin-bottom: 20px;
 }
+/* SWIPER SLIDER */
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.part-head > * {
+   margin-bottom: 20px; 
+}
+.pagination-container {
+    display: flex;
+    align-items: center;
+}
+.pagination-container > svg:first-child {
+    margin-right: 20px;
+}   
+.pagination-container > svg:last-child {
+    margin-left: 20px;
+}   
+.pages {
+    display: flex;
+}
+.pages > *:not(:last-child) {
+    margin-right: 20px;
+}
+.page:not(:last-child) {
+    margin-right: 20px;
+}
+.active-page {
+    color: var(--secondary);
+}

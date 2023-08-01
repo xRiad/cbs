@@ -9,6 +9,9 @@
 .info {
   padding: 50px;
 }
+.info > * {
+  margin-bottom: 20px;
+}
 .info-txt1 {
   color: var(--secondary);
 }

@@ -1,0 +1,34 @@
+@import url('/assets/front/css/components/media/team.css');
+.team-slider {
+    display: flex;
+}
+.team-container {
+    padding: 0 50px;
+}
+.team-container {
+    margin-bottom: 50px;
+}
+.team-card > *{
+    margin-bottom: 10px;
+}
+member-name {
+    color: var(--black);
+}
+.member-position {
+    color: var(--secondary);
+}
+.next-member, .prev-member {
+    align-items: center;
+}
+.next-member,.prev-member {
+    display: flex;
+}
+.next-member {
+    margin-left: 20px;
+}
+.prev-member {
+    margin-right: 20px;
+}
+.team-mob {
+  display: none !important;
+}

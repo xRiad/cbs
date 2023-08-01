@@ -3,6 +3,7 @@
 @section('links')
   <link rel="stylesheet" href="{{ 'assets/front/css/home.css' }}">
   <link rel="stylesheet" href="{{ 'assets/front/css/media/home.css' }}">
+  <link rel="stylesheet" href="{{ 'assets/front/css/components/team.css' }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 @endsection
 
@@ -673,29 +674,4 @@
             },
         });
     </script>
-@endpush
-
-@push('styles')
-    <style>
-        .swiper {
-            width: 100%;
-            height: 100%;
-        }
-
-        .swiper-slide {
-            text-align: center;
-            font-size: 18px;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .swiper-slide img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
 @endpush
