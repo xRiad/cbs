@@ -1,0 +1,23 @@
+@media only screen and (max-width: 850px) {
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .info .socials {
+    justify-content: center;
+  }
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-copyright {
+    display: none;
+  }
+  footer .info,.footer-block {
+    margin-bottom: 30px;
+  }
+  .footer-copyright-mob {
+    margin-bottom: 20px;
+  }
+}

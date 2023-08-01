@@ -1,0 +1,102 @@
+@media only screen and (max-width: 850px) {
+  .phone-mail {
+    display: none !important;
+  }
+  .header-bottom > .nav {
+    display: none !important;
+  }
+  .header-bottom > .btn1 {
+    display: none !important;
+  }
+  .header-bottom-menu-icon {
+    display: flex !important;
+    cursor: pointer;
+  }
+  .header-bottom-menu {
+    display: none;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    background: var(--blue-gray);
+    padding: 30px;
+    box-sizing: border-box;
+  }
+  .logo-cross {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .cross {
+    cursor: pointer;
+    width: 22.389px;
+    height: 46.057px; 
+    color: #fff;
+    font-size: 38.381px;
+    font-style: normal;
+    font-weight: 350;
+  }
+  .header-bottom-menu-nav-elem {
+    color: #fff;
+  }
+  .header-bottom-menu-line {
+    height: 2px;
+    width: 100%;
+    background: var(--gray);
+  }
+  .header-bottom-menu-line, .header-bottom-menu-nav-elem {
+    margin-bottom: 20px;
+  }
+  .header-bottom-meet-us {
+    width: 100% !important;
+    margin-bottom: 50px;
+  }
+  .header-bottom-adresses {
+    margin-bottom: 30px;
+  }
+  .header-bottom-adress-elem {
+    display: flex;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .header-bottom-adress-elem > svg {
+    margin-right: 10px;
+  }
+  .header-bottom-menu-socials {
+    display: flex;
+  }
+  .header-bottom-menu-social-icon {
+    display: flex;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+    margin-right: 15px;
+    border-radius: 50px;
+  }
+  .header-bottom-menu-service {
+    margin-bottom: 20px;
+  }
+  .header-bottom-menu-list {
+    cursor: pointer;
+    transition: all 0.3s ease; 
+  }
+  .header-bottom-menu-list summary {
+    display: flex;
+    align-items: center;
+  }
+  .header-bottom-menu-list summary > svg {
+    transition: all 0.3s ease;
+  }
+  .header-bottom-menu-list[open] summary {
+    margin-bottom: 20px;
+  }
+  .header-bottom-menu-list[open] summary > svg {
+    transform: rotate(180deg);
+  }
+}

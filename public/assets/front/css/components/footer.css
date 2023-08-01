@@ -1,0 +1,51 @@
+@import url('/assets/front/css/components/media/footer.css');
+footer,.social-icon-wrapper2,.footer-nav-icon {
+    display: flex;
+}
+footer {
+    padding: 50px 50px 0 50px;
+    justify-content: space-between;
+}
+.footer-line {
+    height: 2px;
+    width: 100%;
+    background: var(--gray);
+    margin: 100px 0 50px 0;
+}
+.social-icon-wrapper2 {
+    display: flex;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--blue-gray);
+    color:     var(--blue-gray);
+    cursor: pointer;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 20px;
+}
+.social-icon-wrapper2:not(:last-child) {
+    margin-right: 10px;
+}
+
+.social-icon-wrapper2 > i {
+    color: var(--blue-gray);
+}
+.info > * {
+    margin-bottom: 30px;
+}
+.footer-block:not(:last-child) {
+    margin-right: 15px;
+}
+.footer-block > h6,.footer-nav-elem {
+    margin-bottom: 16px;
+}
+.footer-nav-icon > svg {
+    margin-right: 5px;
+}
+.footer-nav-elem {
+    cursor: pointer;
+}
+
+

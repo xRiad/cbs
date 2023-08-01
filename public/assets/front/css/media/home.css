@@ -1,0 +1,46 @@
+@media only screen and (max-width: 850px) {
+  .header-slider-buttons {
+    display: none;
+  }
+  .header-slider-buttons-mob {
+    display: flex !important;
+  }
+  .header-slider-content {
+    position: static !important;
+    width: 100% !important;
+    padding: 50px 0px !important;
+    text-align: center;
+    background: var(--blue-gray);
+  }
+  .header-slider-buttons-mob {
+    display: flex;
+    background: var(--black);
+    height: 140px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+  }
+  .part-head {
+    flex-direction: column;
+  }
+  .part-head > *:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  .info-letter {
+    display: flex;
+    flex-direction: column;
+  }
+  .team-slider {
+    display: none !important;
+  }
+  .member-card {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .member-name-mob {
+    color: var(--black);
+  }
+  .member-position-mob {
+    color: var(--secondary);
+  }
+}

@@ -1,0 +1,17 @@
+.video-info {
+  display: flex;
+}
+.video-container {
+}
+.video-container > video {
+  width: 100%;
+}
+.info {
+  padding: 50px;
+}
+.info-txt1 {
+  color: var(--secondary);
+}
+.info-txt2 {
+  color: var(--black);
+}
