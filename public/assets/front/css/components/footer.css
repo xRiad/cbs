@@ -36,7 +36,7 @@ footer {
     margin-bottom: 30px;
 }
 .footer-block:not(:last-child) {
-    margin-right: 15px;
+    margin-right: 45px;
 }
 .footer-block > h6,.footer-nav-elem {
     margin-bottom: 16px;
@@ -47,5 +47,15 @@ footer {
 .footer-nav-elem {
     cursor: pointer;
 }
-
-
+.footer-info,.footer-copyright,.footer-copyright-mob,.footer-nav-elem {
+  color: var(--blue-gray);
+}
+.footer-block > h6 {
+  color: var(--black);
+}
+.footer-wrapper {
+  display: flex;
+}
+.footer-copyright-mob {
+  display: none;
+}

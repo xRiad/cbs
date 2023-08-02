@@ -1,0 +1,43 @@
+.portfolio-cards {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.portfolio-categories {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+.portfolio-category {
+    color: var(--black, #2F353D);
+    font-family: Gotham;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.188px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.portfolio-card-category {
+    color: var(--secondary);
+}
+.portfolio-title {
+    color: var(--black, #2F353D);
+    font-family: Gotham;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+    letter-spacing: 0.03px;
+}
+.portfolio-card {
+    margin-bottom: 30px;
+}
+.portfolio-card > div:not(:last-child) {
+    margin-bottom: 10px;
+}
+.portfolio-container {
+  margin-top: 50px;
+  padding: 0 50px;
+}

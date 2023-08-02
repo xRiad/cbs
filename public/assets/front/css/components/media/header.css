@@ -90,13 +90,7 @@
     display: flex;
     align-items: center;
   }
-  .header-bottom-menu-list summary > svg {
-    transition: all 0.3s ease;
-  }
   .header-bottom-menu-list[open] summary {
     margin-bottom: 20px;
-  }
-  .header-bottom-menu-list[open] summary > svg {
-    transform: rotate(180deg);
   }
 }

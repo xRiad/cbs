@@ -1,0 +1,54 @@
+.dynamic-header {
+  margin-bottom: 30px;
+}
+.service-name,.title {
+  margin-bottom: 20px;
+}
+.content {
+  margin-bottom: 50px;
+}
+.service-name {
+  color: var(--secondary);
+}
+.title {
+  color: var(--black);
+}
+.service-container {
+  padding: 0 50px;
+}
+.accordions-letter {
+  display: flex;
+  justify-content: space-between;
+}
+.accordion > summary {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.accordion {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.accordion > p {
+  width: 450px;
+}
+.accordion-content {
+  color: var(--blue-gray);
+}
+.letter-title {
+  color: var(--black);
+  margin-bottom: 20px;
+}
+.dynamic-header > div:first-child {
+  display: flex;
+}
+.dynamic-header > div:first-child > *:not(:last-child) {
+  margin-right: 15px;
+}
+.accordions {
+  display: flex;
+}
+.accordions > .accordions-container:first-child {
+  flex-basis: 30%;
+  margin-right: 100px;
+}

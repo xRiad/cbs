@@ -2,6 +2,7 @@
 
 @section('links')
   <link rel="stylesheet" href="{{ 'assets/front/css/home.css' }}">
+  <link rel="stylesheet" href="{{ asset('assets/front/css/components/portfolio.css') }}">
   <link rel="stylesheet" href="{{ 'assets/front/css/media/home.css' }}">
   <link rel="stylesheet" href="{{ 'assets/front/css/components/team.css' }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -182,73 +183,7 @@
            <h4 class="h4-bold">Portfoliomuz</h4>
            <div class="txt1">CBS olaraq strateji həllər və yaradıcı fikirlərin bir arada olduğu rəqəmsal xitmətlərimizi təqdim edirik.</div>
        </div>
-       <ul class="portfolio-categories">
-           <li class="portfolio-category secondary-color-hover">HAMISI</li>
-           <li class="portfolio-category secondary-color-hover">bİznes həllərİ</li>
-           <li class="portfolio-category secondary-color-hover">rəqəmsal marketİnq</li>
-           <li class="portfolio-category secondary-color-hover">veb layİhələr</li>
-           <li class="portfolio-category secondary-color-hover">qablaşdırma</li>
-           <li class="portfolio-category secondary-color-hover">VİDEO</li>
-           <li class="portfolio-category secondary-color-hover">DİZAYN</li>
-       </ul>
-       <div class="portfolio-cards">
-           <div class="portfolio-card">
-               <div class="portfolio-image">
-                   <img src="{{ asset('assets/images/portfolio-card.png')  }}" alt="">
-               </div>
-               <div class="portfolio-card-category">Dizayn</div>
-               <div class="portfolio-title">Mercury ERP Brendbook</div>
-           </div>
-           <div class="portfolio-card">
-               <div class="portfolio-image">
-                   <img src="{{ asset('assets/images/portfolio-card.png')  }}" alt="">
-               </div>
-               <div class="portfolio-card-category">Dizayn</div>
-               <div class="portfolio-title">Mercury ERP Brendbook</div>
-           </div>
-           <div class="portfolio-card">
-               <div class="portfolio-image">
-                   <img src="{{ asset('assets/images/portfolio-card.png')  }}" alt="">
-               </div>
-               <div class="portfolio-card-category">Dizayn</div>
-               <div class="portfolio-title">Mercury ERP Brendbook</div>
-           </div>
-           <div class="portfolio-card">
-               <div class="portfolio-image">
-                   <img src="{{ asset('assets/images/portfolio-card.png')  }}" alt="">
-               </div>
-               <div class="portfolio-card-category">Dizayn</div>
-               <div class="portfolio-title">Mercury ERP Brendbook</div>
-           </div>
-           <div class="portfolio-card">
-               <div class="portfolio-image">
-                   <img src="{{ asset('assets/images/portfolio-card.png')  }}" alt="">
-               </div>
-               <div class="portfolio-card-category">Dizayn</div>
-               <div class="portfolio-title">Mercury ERP Brendbook</div>
-           </div>
-           <div class="portfolio-card">
-               <div class="portfolio-image">
-                   <img src="{{ asset('assets/images/portfolio-card.png')  }}" alt="">
-               </div>
-               <div class="portfolio-card-category">Dizayn</div>
-               <div class="portfolio-title">Mercury ERP Brendbook</div>
-           </div>
-           <div class="portfolio-card">
-               <div class="portfolio-image">
-                   <img src="{{ asset('assets/images/portfolio-card.png')  }}" alt="">
-               </div>
-               <div class="portfolio-card-category">Dizayn</div>
-               <div class="portfolio-title">Mercury ERP Brendbook</div>
-           </div>
-           <div class="portfolio-card">
-               <div class="portfolio-image">
-                   <img src="{{ asset('assets/images/portfolio-card.png')  }}" alt="">
-               </div>
-               <div class="portfolio-card-category">Dizayn</div>
-               <div class="portfolio-title">Mercury ERP Brendbook</div>
-           </div>
-       </div>
+       <x-front.portfolio></x-front.portfolio>
        <div class="see-all-portfolio">
            <div class="btn1">HAMISINA BAX</div>
        </div>

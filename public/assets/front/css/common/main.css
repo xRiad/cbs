@@ -196,3 +196,31 @@ h6 {
 .active-page {
     color: var(--secondary);
 }
+.letter {
+    width: 50%;
+}
+.letter-element {
+    margin-bottom: 25px;
+}
+.letter-element > input, textarea {
+    height: 30px;
+    width: 100%;
+    border: 1px solid #C4C4C4;
+    border-radius: 3px;
+    padding-left: 20px;
+    outline: none;
+}
+.letter-element > textarea {
+    height: 120px;
+    padding-top: 10px;
+    resize: none;
+}
+.letter-input-name {
+    margin-bottom: 3px;
+}
+details svg{
+    transition: all 0.3s ease;
+}
+details[open] svg {
+    transform: rotate(180deg);
+}

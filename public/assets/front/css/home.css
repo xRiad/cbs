@@ -6,7 +6,7 @@
 .header-slider-content,.pagination,.header-slider-buttons,.swiper-slide{
     display: flex;
 }
-.services-cards,.portfolio-cards,.companies {
+.services-cards,.companies {
     display: grid;
 }
 .header-slider {
@@ -98,7 +98,7 @@
 .services-cards {
     width: 100%;
 }
-.services-cards,.portfolio-cards,.companies {
+.services-cards,.companies {
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
@@ -135,39 +135,6 @@
     background: var(--bg-2);
     margin-bottom: 50px;
     padding: 60px 50px;
-}
-.portfolio-categories {
-    justify-content: space-between;
-    margin-bottom: 60px;
-}
-.portfolio-category {
-    color: var(--black, #2F353D);
-    font-family: Gotham;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.188px;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-.portfolio-card-category {
-    color: var(--secondary);
-}
-.portfolio-title {
-    color: var(--black, #2F353D);
-    font-family: Gotham;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 350;
-    line-height: normal;
-    letter-spacing: 0.03px;
-}
-.portfolio-card {
-    margin-bottom: 30px;
-}
-.portfolio-card > div:not(:last-child) {
-    margin-bottom: 10px;
 }
 .see-all-portfolio {
     justify-content: center;
@@ -321,26 +288,4 @@
 .socials-wrapper > div:first-child {
     margin-bottom: 10px;
     font-weight: 600;
-}
-.letter {
-    width: 50%;
-}
-.letter-element {
-    margin-bottom: 25px;
-}
-.letter-element > input, textarea {
-    height: 30px;
-    width: 100%;
-    border: 1px solid #C4C4C4;
-    border-radius: 3px;
-    padding-left: 20px;
-    outline: none;
-}
-.letter-element > textarea {
-    height: 120px;
-    padding-top: 10px;
-    resize: none;
-}
-.letter-input-name {
-    margin-bottom: 3px;
 }

@@ -22,3 +22,21 @@ Route::get('/about-us', function () {
 Route::get('/blog', function () {
   return view('front.blog');
 });
+Route::get('/portfolio', function () {
+  return view('front.portfolio.index');
+});
+Route::get('/portfolio/detail', function () {
+  return view('front.portfolio.detail');
+});
+Route::get('/services/seo', function () {
+  return view('front.services.seo');
+});
+Route::get('/services/smm', function () {
+  return view('front.services.smm');
+});
+Route::get('/services/google-ads', function () {
+  return view('front.services.google-ads');
+});
+Route::get('/services/web', function () {
+  return view('front.services.web');
+});
