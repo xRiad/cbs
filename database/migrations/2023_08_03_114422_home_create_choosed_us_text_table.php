@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('home_choosed_us_text', function (Blueprint $table) {
             $table->id();
-            $table->string('adress');
-            $table->string('number');
-            $table->string('mail');
-            $table->string('whatsapp');
-            $table->string('instagram');
-            $table->string('facebook');
-            $table->string('linkedin');
-            $table->string('twitter');
-
+            $table->string('title');
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -31,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('choosed_us');
     }
 };
