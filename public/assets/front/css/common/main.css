@@ -146,6 +146,12 @@ h6 {
   padding: 80px 50px;
   color: #fff;
 }
+.dynamic-header > div:first-child {
+  display: flex;
+}
+.dynamic-header > div:first-child > *:not(:last-child) {
+  margin-right: 15px;
+}
 .dynamic-header > *:first-child {
   margin-bottom: 20px;
 }

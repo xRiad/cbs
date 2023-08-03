@@ -13,4 +13,8 @@
   .member-position-mob {
     color: var(--secondary);
   }
+  .team-mob {
+    display: flex !important;
+    flex-direction: column;
+  }
 }

@@ -1,0 +1,57 @@
+.portfolio-container {
+  padding: 0 50px;
+}
+.main-info {
+  margin-top: 50px;
+}
+.other-projects-container {
+  padding: 0 50px;
+}
+.project-name-text {
+  color: var(--secondary);
+  font-family: Gotham;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.024px;
+}
+.project-name {
+  color: var(--black);
+}
+.project-name-text,.project-name {
+  margin-bottom: 30px;
+}
+.min-img {
+  margin-bottom: 60px;
+}
+.about-roles {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+.about-text,.role-text {
+  color: var(--secondary);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 350;
+  line-height: normal;
+  letter-spacing: 0.024px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+.min-img > img,.full-img > img {
+  width: 100%;
+}
+.full-img {
+  margin-bottom: 150px;
+}  
+.other-projects {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.other-projects-text {
+  color: var(--black);
+  margin-bottom: 50px;
+}

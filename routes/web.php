@@ -20,7 +20,10 @@ Route::get('/about-us', function () {
   return view('front.about-us');
 });
 Route::get('/blog', function () {
-  return view('front.blog');
+  return view('front.blog.index');
+});
+Route::get('/blog/detail', function () {
+  return view('front.blog.detail');
 });
 Route::get('/portfolio', function () {
   return view('front.portfolio.index');

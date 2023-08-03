@@ -1,0 +1,36 @@
+.date-socials {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 10px 0;
+}
+.social-icon-wrapper {
+  display: flex;
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  background: var(--black);
+}
+.social-icon-wrapper:not(:last-child) {
+  margin-right: 20px;
+}
+.social-icon-wrapper > i {
+  color: #fff;
+}
+.img-container,.img-container > img {
+  width: 100%;
+}
+.title {
+  color: var(--black);
+  margin-bottom: 40px;
+}
+.content {
+  margin-bottom: 150px;
+}
+.recent-post-text {
+  margin-bottom: 50px;
+  color: var(--black);
+}

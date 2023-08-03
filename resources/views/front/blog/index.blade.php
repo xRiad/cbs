@@ -2,7 +2,7 @@
 @extends('front.layouts.app')
 
 @section('links')
-   <link rel="stylesheet" href="assets/front/css/blog.css"> 
+  <link rel="stylesheet" href="{{ asset('assets/front/css/blog/index.css') }} "> 
 @endsection
 
 @section('content')

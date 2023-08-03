@@ -2,6 +2,7 @@
 
 @section('links')
   <link rel="stylesheet" href="{{ asset('assets/front/css/services/common.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/front/css/services/media/common.css') }}">
 @endsection
 
 @section('content')
