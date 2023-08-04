@@ -2,6 +2,7 @@
     <div class="header-top">
         <div class="dark-mode-switch">
             <div>Dark Mode</div>
+            {{ $contacts }}
             <label class="switch">
                 <input type="checkbox">
                 <span class="slider round"></span>
@@ -23,7 +24,7 @@
                                 </defs>
                             </svg>
                         </div>
-                        <div class="phone secondary-color-hover">+994 12 5655723</div>
+                        <div class="phone secondary-color-hover">{{ $contacts->phone }}</div>
                     </div>
                 <div class="mail-container">
                     <div class="mail-icon">
@@ -38,21 +39,29 @@
                             </defs>
                         </svg>
                     </div>
-                    <div class="mail secondary-color-hover">info@crazyinnovations.az</div>
+                    <div class="mail secondary-color-hover">{{ $contacts->mail }}</div>
                 </div>
             </div>
             <ul class="socials socials-header">
                 <li class="social-icon">
-                    <i class="fab fa-whatsapp fa-xs"></i>
+                    <a href="https://api.whatsapp.com/send?phone={{ $contacts->phone }}&amp;text=">
+                      <i class="fab fa-whatsapp fa-xs"></i>
+                    </a>
                 </li>
                 <li class="social-icon">
+                  <a href="https://www.instagram.com/{{ $contacts->instagram }}/?hl=tr">
                     <i class="fab fa-instagram fa-xs"></i>
+                  </a>
                 </li>
                 <li class="social-icon">
+                  <a href="https://www.facebook.com/{{ $contacts->facebook }}">
                     <i class="fab fa-facebook-f fa-xs"></i>
+                  </a>
                 </li>
                 <li class="social-icon">
+                  <a href="https://www.linkedin.com/company/{{ $contacts->linkedin }}/mycompany/">
                     <i class="fab fa-linkedin-in fa-xs"></i>
+                  </a>
                 </li>
             </ul>
         </div>

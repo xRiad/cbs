@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services_cards', function (Blueprint $table) {
+        Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->text('icon');
+            $table->string('card_type');
+            $table->string('icon');
             $table->string('title');
-            $table->text('content');
-            $table->timestamps();
+            $table->string('content');
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services_cards');
+        Schema::dropIfExists('cards');
     }
 };

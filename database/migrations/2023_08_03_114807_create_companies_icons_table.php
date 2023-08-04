@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('companies_icons', function (Blueprint $table) {
             $table->id();
             $table->text('icon');
-            $table->timestamps();
         });
     }
 

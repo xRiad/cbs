@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('home_portfolio_text', function (Blueprint $table) {
+        Schema::create('services_accordions', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('service_id');
+            $table->string('name');
             $table->string('content');
-            $table->timestamps();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('home_portfolio_text');
+        Schema::dropIfExists('services_accordions');
     }
 };

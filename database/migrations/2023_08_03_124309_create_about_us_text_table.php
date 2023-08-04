@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('about_us_text', function (Blueprint $table) {
             $table->id();
-            $table->string('first_phrase');
-            $table->string('second_phrase');
-            $table->string('content');
-            $table->timestamps();
+            $table->string('blue_text');
+            $table->string('black_header');
+            $table->string('main_content');
         });
     }
 

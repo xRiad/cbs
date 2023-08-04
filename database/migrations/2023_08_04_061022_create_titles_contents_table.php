@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('home_contact_us_text', function (Blueprint $table) {
+        Schema::create('titles_contents', function (Blueprint $table) {
             $table->id();
+            $table->string('section_id');
             $table->string('title');
-            $table->text('content');
-            $table->timestamps();
+            $table->string('content');
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('home_contact_us_text');
+        Schema::dropIfExists('titles_contents');
     }
 };

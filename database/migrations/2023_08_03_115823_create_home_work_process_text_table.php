@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('home_work_process_text', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->timestamps();
         });
     }
 

@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('home_services_text', function (Blueprint $table) {
+        Schema::create('services_content', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('content');
-            $table->timestamps();
+            $table->string('service_id');
+            $table->string('blue_text');
+            $table->string('black_header');
+            $table->string('main_content');
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services_text');
+        Schema::dropIfExists('services_content');
     }
 };

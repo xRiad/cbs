@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blog_header_text', function (Blueprint $table) {
+        Schema::create('services_letters', function (Blueprint $table) {
             $table->id();
-            $table->string('page_name');
-            $table->string('content');
+            $table->string('service_name');
+            $table->string('name');
+            $table->string('phone_or_email');
+            $table->string('website_url');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blog_header_text');
+        Schema::dropIfExists('services_letters');
     }
 };

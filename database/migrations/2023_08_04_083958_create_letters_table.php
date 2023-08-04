@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('about_us_header_text', function (Blueprint $table) {
+        Schema::create('letters', function (Blueprint $table) {
             $table->id();
-            $table->string('page_name');
-            $table->string('content');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('mail');
+            $table->string('message');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('about_us_header_text');
+        Schema::dropIfExists('letters');
     }
 };
