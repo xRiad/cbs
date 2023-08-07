@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
             $table->string('name');
             $table->string('image');
             $table->string('category_id');

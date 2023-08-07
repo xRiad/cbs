@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('service_id');
             $table->string('blue_text');
             $table->string('black_header');
-            $table->string('main_content');
+            $table->text('main_content');
+            $table->string('image');
         });
     }
 

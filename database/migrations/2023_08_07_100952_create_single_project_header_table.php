@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('home_work_process_text', function (Blueprint $table) {
+        Schema::create('single_project_header', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('page_name');
+            $table->string('phrase');
+            $table->timestamps();
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('home_work_process_text');
+        Schema::dropIfExists('single_project_header');
     }
 };

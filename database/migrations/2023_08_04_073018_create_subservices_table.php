@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('subservices', function (Blueprint $table) {
             $table->id();
-            $table->string('service_name');
-            $table->string('subservice_name');
+            $table->unsignedBigInteger('service_id');
+            $table->string('name');
         });
     }
 

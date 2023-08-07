@@ -196,10 +196,13 @@ h6 {
 .pages > *:not(:last-child) {
     margin-right: 20px;
 }
-.page:not(:last-child) {
+.pagination-container > li:not(:last-child) {
     margin-right: 20px;
 }
-.active-page {
+.page > a {
+  color: var(--black);
+}
+.active-page > span{
     color: var(--secondary);
 }
 .letter {
@@ -229,4 +232,8 @@ details svg{
 }
 details[open] svg {
     transform: rotate(180deg);
+}
+.text-danger {
+  margin: 3px 0 3px 0;
+  color: #ce4040;
 }

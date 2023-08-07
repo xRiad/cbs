@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('titles_contents', function (Blueprint $table) {
+        Schema::create('single_blog_header', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('section_id');
-            $table->string('title')->nullable();
-            $table->string('content')->nullable();
+          //  add
+            $table->timestamps();
         });
     }
 
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('titles_contents');
+        Schema::dropIfExists('single_blog_header');
     }
 };

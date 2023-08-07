@@ -182,7 +182,6 @@ input:checked + .slider:before {
   display: none;
 }
 .header-service-elem {
-  height: 35  0px;
   align-items: center;
   flex-direction: column;
   padding: 10px 20px;

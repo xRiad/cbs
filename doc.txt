@@ -1,0 +1,28 @@
+titles_contents:
+  section_id:
+    1 -> services
+    2 -> portfolio
+    3 -> choosed us
+    4 -> working process
+    5 -> let's talk
+    6 -> team
+    7 -> contact us
+    8 -> about us header
+    9 -> blog header
+    10 -> portfolio header
+
+-------------------
+
+cards: 
+  card_type:
+    1 -> services
+    2 -> portfolio
+
+--------------------
+
+services: 
+  service_id:
+    1 -> seo
+    2 -> smm
+    3 -> google-ads
+    4 -> web
