@@ -15,4 +15,11 @@ class BlogController extends Controller
    
    return view('front.blog.index', compact('blogTitleContent', 'blogs'));
   }
+
+  public function detail (string $slug) {
+    $blog = BlogModel::where('slug', $slug)->with('category')->firstOrFail();
+    $recentBlogs = BlogModel::orderByDesc('id')->with('category')->limit(3)->get();
+
+    return view('front.blog.detail', compact('blog', 'recentBlogs'));
+  }
 }

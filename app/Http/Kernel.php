@@ -3,9 +3,14 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\AdminAuth;
 
 class Kernel extends HttpKernel
 {
+    protected $routeMiddleware = [
+      'admin.auth' => \App\Http\Middleware\AdminAuth::class, 
+    ];
+
     /**
      * The application's global HTTP middleware stack.
      *

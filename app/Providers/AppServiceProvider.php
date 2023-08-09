@@ -10,6 +10,7 @@ use App\Models\TeamMemberModel;
 use App\Models\FooterTextModel; 
 use App\Models\TitleContentModel; 
 use App\Models\ProjectCategoryModel;
+use App\Services\FileManagerService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,7 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+      $this->app->singleton(FileManagerService::class, function ($app) {
+        return new FileManagerService();
+      });    
     }
 
     /**
