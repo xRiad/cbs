@@ -11,6 +11,8 @@ use App\Http\Controllers\Front\ServiceLetterController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\AboutSlideController;
+use App\Http\Controllers\Admin\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +51,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin.auth
   Route::get('/logout', [AuthController::class, 'logOut'])->name('logout');
   Route::resource('projects', AdminProjectController::class)->names('projects');
   Route::resource('blogs', AdminBlogController::class)->names('blogs');
+  Route::resource('about-slides', AboutSlideController::class)->names('about-slides');
+  Route::resource('cards', CardController::class)->names('cards');
 });

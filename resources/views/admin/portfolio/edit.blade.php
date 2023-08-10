@@ -25,8 +25,8 @@
                             @method('PUT')
                             <div class="form-group">
                               <label for="exampleinputemail1">Name</label>
-                              <input type="text" name="name" value="{{ old('name', $project->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="name">
-                              @error('name')
+                              <input type="text" name="name[en]" value="{{ old('name', $project->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="name">
+                              @error('name.*')
                               <div class="alert alert-danger">
                                  {{$message}}
                               </div>
@@ -43,8 +43,8 @@
                             </div>
                             <div class="form-group">
                               <label for="exampleinputemail1">Phrase</label>
-                              <input type="text" name="phrase" value="{{ old('phrase', $project->phrase) }}" class="form-control @error('phrase') is-invalid @enderror" placeholder="phrase">
-                              @error('phrase')
+                              <input type="text" name="phrase[en]" value="{{ old('phrase', $project->phrase) }}" class="form-control @error('phrase') is-invalid @enderror" placeholder="phrase">
+                              @error('phrase.*')
                               <div class="alert alert-danger">
                                  {{$message}}
                               </div>
@@ -52,8 +52,8 @@
                             </div>
                             <div class="form-group">
                               <label for="description">Description</label>
-                              <textarea name="description" id="summernote">{!! old('description', $project->description) !!}</textarea>
-                              @error('description')
+                              <textarea name="description[en]" id="summernote">{!! old('description', $project->description) !!}</textarea>
+                              @error('description.*')
                               <div class="alert alert-danger">
                                  {{$message}}
                               </div>

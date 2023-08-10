@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BlogRequest extends FormRequest
+class CardRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +22,12 @@ class BlogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|array',
-            'title.*' => 'required|string',
-            'slug' => 'required|string',
-            'category' => 'required|string',
-            'image' => 'sometimes|image|mimes:jpg,png,webp,svg,gif|max:2048',
-            'image_detail' => 'sometimes|image|mimes:jpg,png,webp,svg,gif|max:2048',
-            'content' => 'required|array',
-            'content.*' => 'required|string',
+          'title' => 'required|array',    
+          'title.*' => 'required|string',
+          'content' => 'required|array',    
+          'content.*' => 'required|string',
+          'icon' => 'required|string',
+          'card_type' => 'required|string'
         ];
     }
 }

@@ -26,7 +26,7 @@
                             @csrf
                             <div class="form-group">
                               <label for="exampleinputemail1">Project name</label>
-                              <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="name">
+                              <input type="text" name="name[en]" class="form-control @error('name') is-invalid @enderror" placeholder="name">
                               @error('name')
                               <div class="alert alert-danger">
                                  {{$message}}
@@ -44,8 +44,8 @@
                             </div>
                             <div class="form-group">
                               <label for="exampleinputemail1">Phrase</label>
-                              <input type="text" name="phrase" class="form-control @error('phrase') is-invalid @enderror" placeholder="phrase">
-                              @error('phrase')
+                              <input type="text" name="phrase[en]" class="form-control @error('phrase') is-invalid @enderror" placeholder="phrase">
+                              @error('phrase.*')
                               <div class="alert alert-danger">
                                  {{$message}}
                               </div>
@@ -53,8 +53,8 @@
                             </div>
                             <div class="form-group">
                               <label for="description">Description</label>
-                              <textarea name="description" id="summernote"></textarea>
-                              @error('description')
+                              <textarea name="description[en]" id="summernote"></textarea>
+                              @error('description.*')
                               <div class="alert alert-danger">
                                  {{$message}}
                               </div>

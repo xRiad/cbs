@@ -21,7 +21,7 @@
                 <div class="blog-category-date">
                     <div class="blog-category txt2">{{ $blog->category->name }}</div>
                     <div class="ellipse"></div> 
-                    <div class="blog-date txt2">11 iyul 2021</div>
+                    <div class="blog-date txt2">{{ $blog->custom_formatted_created_at }}</div>
                 </div>
                 <h6 class="blog-title">{{ $blog->title }}</h6>
             </div>

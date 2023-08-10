@@ -41,6 +41,7 @@ class ProjectController extends Controller
      */
     public function store(ProjectRequest $request)
     {
+      // dd($request);
       $project = new ProjectModel;
       $project->name = $request->input('name');
       $project->slug = $request->input('slug');
@@ -48,13 +49,19 @@ class ProjectController extends Controller
       $project->description = $request->input('description');
       $project->category_id = $request->input('category');
 
-      $image = $request->file('image');
-      $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
-      $project->image = $imagePath;
 
-      $imageDetail = $request->file('image_detail');
-      $imagePath = $this->fileManagerService->saveFile($image, 800, 290, 'images');
-      $project->image_detail = $imagePath;
+      if($request->file('image')) {
+        $image = $request->file('image');
+        $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
+        $project->image = $imagePath;
+      }
+
+
+      if($request->file('image_detail')) {
+        $imageDetail = $request->file('image_detail');
+        $imagePath = $this->fileManagerService->saveFile($image, 800, 290, 'images');
+        $project->image_detail = $imagePath;
+      }
 
       if($project->save()) {
         return redirect()->back()->with('success', 'Project has been succsessfully saved');

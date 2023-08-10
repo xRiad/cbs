@@ -8,6 +8,7 @@ use App\Services\FileManagerService;
 use App\Models\BlogModel;
 use App\Models\BlogCategoryModel;
 use App\Http\Requests\BlogRequest;
+use Carbon\Carbon;
 
 class BlogController extends Controller
 {
@@ -40,20 +41,28 @@ class BlogController extends Controller
      */
     public function store(BlogRequest $request)
     {
+      // dd($request);
       $blog = new BlogModel;
-      $blog->name = $request->input('name');
+      $blog->title = $request->input('title');
       $blog->slug = $request->input('slug');
       $blog->content = $request->input('content');
       $blog->category_id = $request->input('category');
+      $today = Carbon::now();  
+      $formattedDate = $today->format('d F Y');
+      $blog->created_at = $formattedDate;
 
-      $image = $request->file('image');
-      $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
-      $blog->image = $imagePath;
+      if($request->file('image')) {
+        $image = $request->file('image');
+        $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
+        $blog->image = $imagePath;
+      }
 
-      $imageDetail = $request->file('image_detail');
-      $imagePath = $this->fileManagerService->saveFile($image, 800, 290, 'images');
-      $blog->image_detail = $imagePath;
 
+      if($request->file('image_detail')) {
+        $imageDetail = $request->file('image_detail');
+        $imagePath = $this->fileManagerService->saveFile($image, 800, 290, 'images');
+        $blog->image_detail = $imagePath;
+      }
       if($blog->save()) {
         return redirect()->back()->with('success', 'Blog has been succsessfully saved');
       } else {

@@ -27,7 +27,22 @@
                         </p>
                     </a>
                 </li>
-                
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.about-slides.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Home header slides
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.cards.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Cards
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">projects</h3>
+                            <h3 class="card-title">Header slides</h3>
                         </div>
                         <div class="card-header">
                           @if(session('success'))
@@ -18,7 +18,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="row1 ">
-                          <form action="{{ route('admin.projects.create') }}" method="GET">
+                          <form action="{{ route('admin.cards.create') }}" method="GET">
                             @csrf
                             <button  class="btn btn-success ml-3 mt-2">Create</button>
                           </form>
@@ -29,32 +29,31 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Slug</th>
-                                    <th>Phrase</th>
-                                    <th>Category</th>
+                                    <th>Card type</th>
+                                    <th>Title</th>
+                                    <th>Svg icon</th>
                                     <th>Delete</th>
                                     <th>EDIT</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-
-                                @foreach($projects as $project)
+                                @foreach($cards as $card)
                                     <tr>
-                                        <td>{{$project->id}}</td>
-                                        <td>{{$project->name }}</td>
-                                        <td>{{$project->slug}}</td>
-                                        <td>{{$project->phrase}}</td>
-                                        <td>{{$project->category?->name}}</td>
+                                        <td>{{$card->id}}</td>
                                         <td>
-                                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+                                          {{ $card->card_type === 1 ? 'Services' : 'Process' }}
+                                        </td>
+                                        <td>{{$card->title}}</td>
+                                        <td>{!!$card->icon!!}</td>
+                                        <td>
+                                            <form action="{{ route('admin.cards.destroy', $card->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('admin.projects.edit', $project->id) }}" method="GET">
+                                            <form action="{{ route('admin.cards.edit', $card->id) }}" method="GET">
                                                 @csrf
                                                 <button type="submit" class="btn btn-primary">Edit</button>
                                             </form>

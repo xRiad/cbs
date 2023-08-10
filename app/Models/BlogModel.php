@@ -15,4 +15,9 @@ class BlogModel extends Model
     public function category () {
       return $this->belongsTo(BlogCategoryModel::class, 'category_id');
     }
+
+    public function getCustomFormattedCreatedAtAttribute()
+    {
+        return $this->created_at->format('d F Y');
+    }
 }

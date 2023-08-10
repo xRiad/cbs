@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('card_type');
             $table->text('icon');
-            $table->string('title');
-            $table->string('content');
+            $table->json('title');
+            $table->json('content');
         });
     }
 

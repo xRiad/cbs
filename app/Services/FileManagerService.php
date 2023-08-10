@@ -23,8 +23,10 @@ class FileManagerService
     
     public function deleteFile($filePath)
     {
-      if (Storage::disk('public')->exists($filePath)) {
-        Storage::disk('public')->delete($filePath);
+      if($filePath) {
+        if (Storage::disk('public')->exists($filePath)) {
+          Storage::disk('public')->delete($filePath);
+        }
       }
     }
 }

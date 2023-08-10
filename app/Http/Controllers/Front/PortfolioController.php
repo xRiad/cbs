@@ -31,7 +31,6 @@ class PortfolioController extends Controller
       } else {
         $projects = ProjectModel::where('category_id', $categoryId)->limit(4)->get();
       }
-      
       $view = View::make('front.partials.project_cards', ['projects' => $projects])->render();
       
       return response()->json([
