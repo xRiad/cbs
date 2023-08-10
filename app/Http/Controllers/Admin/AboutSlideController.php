@@ -20,9 +20,9 @@ class AboutSlideController extends Controller
      */
     public function index()
     {
-        $headerSlides = AboutSlideModel::all();
+        $aboutSlides = AboutSlideModel::all();
 
-        return view('admin.about-slides.index', compact('headerSlides'));
+        return view('admin.about-slides.index', compact('aboutSlides'));
     }
 
     /**

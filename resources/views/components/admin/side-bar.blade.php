@@ -20,10 +20,34 @@
                     </a>
                 </li>
                 <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.roles.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Project roles
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.project-categories.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Project categories
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
                     <a  href="{{ route('admin.blogs.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Blog
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.blog-categories.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Blog categories
                         </p>
                     </a>
                 </li>
@@ -40,6 +64,22 @@
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Cards
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.services.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Services
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.companies-icons.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Companies' icons
                         </p>
                     </a>
                 </li>

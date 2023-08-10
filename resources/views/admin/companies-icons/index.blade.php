@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Header slides</h3>
+                            <h3 class="card-title">Companies' icons</h3>
                         </div>
                         <div class="card-header">
                           @if(session('success'))
@@ -18,7 +18,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="row1 ">
-                          <form action="{{ route('admin.about-slides.create') }}" method="GET">
+                          <form action="{{ route('admin.companies-icons.create') }}" method="GET">
                             @csrf
                             <button  class="btn btn-success ml-3 mt-2">Create</button>
                           </form>
@@ -29,28 +29,24 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Title</th>
-                                    <th>Content</th>
-                                    <th>Delete</th>
-                                    <th>EDIT</th>
+                                    <th>Icon</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach(aboutSlides as aboutSlide)
+                                @foreach($companiesIcons as $companyIcon)
                                     <tr>
-                                        <td>{{aboutSlide->id}}</td>
-                                        <td>{{aboutSlide->title}}</td>
-                                        <td>{{aboutSlide->content}}</td>
+                                        <td>{{$companyIcon->id}}</td>
+                                        <td>{!! $companyIcon->icon !!}</td>
                                         <td>
-                                            <form action="{{ route('admin.about-slides.destroy', aboutSlide->id) }}" method="POST">
+                                            <form action="{{ route('admin.project-categories.destroy', $companyIcon->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('admin.about-slides.edit', aboutSlide->id) }}" method="GET">
+                                            <form action="{{ route('admin.companies-icons.edit', $companyIcon->id) }}" method="GET">
                                                 @csrf
                                                 <button type="submit" class="btn btn-primary">Edit</button>
                                             </form>

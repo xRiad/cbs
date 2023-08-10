@@ -13,6 +13,12 @@ use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AboutSlideController;
 use App\Http\Controllers\Admin\CardController;
+use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ProjectCategoryController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\CompanyIconController;
+use App\Http\Controllers\Admin\TeamMemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +59,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin.auth
   Route::resource('blogs', AdminBlogController::class)->names('blogs');
   Route::resource('about-slides', AboutSlideController::class)->names('about-slides');
   Route::resource('cards', CardController::class)->names('cards');
+  Route::resource('services', AdminServiceController::class)->names('services');
+  Route::resource('roles', RoleController::class)->names('roles');
+  Route::resource('project-categories', ProjectCategoryController::class)->names('project-categories');
+  Route::resource('blog-categories', BlogCategoryController::class)->names('blog-categories');
+  Route::resource('companies-icons', CompanyIconController::class)->names('companies-icons');
+  Route::resource('team-members', TeamMemberController::class)->names('team-members');
 });

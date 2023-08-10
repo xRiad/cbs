@@ -6,15 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CardModel;
 use App\Http\Requests\CardRequest;
-use App\Services\FileManagerService;
 
 class CardController extends Controller
 {
-    protected $fileManagerService;
-
-    public function __construct(FileManagerService $fileManagerService) {
-      $this->fileManagerService = $fileManagerService;
-    }
     /**
      * Display a listing of the resource.
      */
@@ -101,10 +95,6 @@ class CardController extends Controller
       $card = CardModel::findOrFail($id);
 
       if($card) {
-        if ($card->image) {
-          $this->fileManagerService->deleteFile($card->image);
-        } 
-
         if($card->delete()) {
           return redirect()->back()->with('success', 'Slide has been successfully deleted.');
         } else {
