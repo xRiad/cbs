@@ -28,14 +28,14 @@
         @csrf
         <div class="form-group">
           <div class="input-group mb-3">
-            <input type="email" name="email" class="@error('email') is-invalid @enderror form-control" placeholder="Email">
+            <input type="name" name="name" class="@error('name') is-invalid @enderror form-control" placeholder="Name">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
               </div>
             </div>
           </div>
-          @error('email')
+          @error('name')
           <div class="text-danger">{{ $message }}</div> 
           @enderror
         </div>

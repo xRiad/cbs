@@ -14,7 +14,7 @@ class AuthController extends Controller
 
   public  function loginCheck (AdminAuthRequest $request) {
     if(auth()->attempt([
-      'email' => $request->email,
+      'name' => $request->name,
       'password' => $request->password
     ], $request->remember )) {
       return redirect()->route('admin.index');

@@ -11,7 +11,7 @@ class TeamMemberModel extends Model
     use HasFactory;
     use HasTranslations;
 
-    public $translatable = ['name', 'position'];
+    public $translatable = ['position'];
 
     protected $table = 'team_members';
 }

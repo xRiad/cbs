@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group">
                               <label for="content">Content</label>
-                              <textarea name="content[]" id="summernote"></textarea>
+                              <textarea name="content[en]" id="summernote"></textarea>
                               @error('content.*')
                               <div class="alert alert-danger">
                                  {{$message}}

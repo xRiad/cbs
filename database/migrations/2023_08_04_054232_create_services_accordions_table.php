@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('services_accordions', function (Blueprint $table) {
             $table->id();
             $table->string('service_id');
-            $table->string('name');
-            $table->string('content');
+            $table->json('name');
+            $table->json('content');
         });
     }
 

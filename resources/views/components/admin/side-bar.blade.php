@@ -76,10 +76,66 @@
                     </a>
                 </li>
                 <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.services-accordions.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Services' accordions
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.services-letters.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                          Services' letters
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.subservices.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Subservices
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
                     <a  href="{{ route('admin.companies-icons.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Companies' icons
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.letters.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                          Letters
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.team-members.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                          Team members
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.contact.edit') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                          Contacts
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.admins.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                          Admins
                         </p>
                     </a>
                 </li>

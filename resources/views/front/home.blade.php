@@ -27,13 +27,13 @@
                         <h3 class="header-slider-main-text">{{ $slide->title }}</h3>
                         <div class="header-slider-secondary-text txt1">{{ $slide->content }}</div>
                         <div class="header-slider-buttons">
-                            <div class="btn2 slider-top-services">XİDMƏTLƏRİMİZ</div>
-                            <div class="btn1 slider-top-portfolio">Portfolİo</div>
+                            <div class="btn2 slider-top-services">{{__('about-slider-button.services')}}</div>
+                            <div class="btn1 slider-top-portfolio">{{__('about-slider-button.portfolio')}}</div>
                         </div>
                     </div>
                     <div class="header-slider-buttons-mob">
-                        <div class="btn2">Portfoliomuz</div>
-                        <div class="btn1 slider-top-portfolio">Portfolİo</div>
+                        <div class="btn2">{{__('about-slider-button.services')}}</div>
+                        <div class="btn1 slider-top-portfolio">{{__('about-slider-button.portfolio')}}</div>
                     </div>
                 </div>
             </div>
@@ -47,17 +47,13 @@
     @endif
 
    <div class="services-container">
-        @foreach($titlesContents as $titleContent)
-          @if($titleContent->section_id === 1)
-          <div class="part-head">
-            <h4 class="h4-bold">{{ $titleContent->title }}</h4>
-            <div class="services-text-btn">
-                <div class="txt1">{{ $titleContent->content }}</div>
-                <div class="btn1">Bİzİmlə əlaqə</div>
-            </div>
+        <div class="part-head">
+          <h4 class="h4-bold">{{ __('services.title') }}</h4>
+          <div class="services-text-btn">
+              <div class="txt1">{{ __('services.description') }}</div>
+              <div class="btn1">{{ __('services.contact-us') }}</div>
           </div>
-          @endif
-        @endforeach
+        </div>
         @if($cards)
         <div class="services-cards">
           @foreach($cards as $card)
@@ -75,28 +71,20 @@
         @endif
    </div>
    <div class="portfolio-container">
-       @foreach($titlesContents as $titleContent)
-        @if($titleContent->section_id === 2)
-          <div class="part-head">
-              <h4 class="h4-bold">{{ $titleContent->title }}</h4>
-              <div class="txt1">{{ $titleContent->content }}</div>
-          </div>
-        @endif
-       @endforeach
+      <div class="part-head">
+        <h4 class="h4-bold">{{ __('portfolio.title') }}</h4>
+        <div class="txt1">{{ __('portfolio.description') }}</div>
+      </div>
        @component('components.front.portfolio', ['projects' => $projects, 'pagination' => false]) @endcomponent
        <div class="see-all-portfolio">
-           <div class="btn1">HAMISINA BAX</div>
+           <div class="btn1">{{ __('portfolio-see-all.title') }}</div>
        </div>
    </div>
     <div class="choose-us-container">
-       @foreach($titlesContents as $titleContent)
-        @if($titleContent->section_id === 3)
-          <div class="part-head">
-              <h4 class="h4-bold">{{ $titleContent->title }}</h4>
-              <div class="txt1">{{ $titleContent->content }}</div>
-          </div>
-        @endif
-       @endforeach
+        <div class="part-head">
+          <h4 class="h4-bold">{{ __('choosed-us.title') }}</h4>
+          <div class="txt1">{{ __('choosed-us.description') }}</div>
+        </div>
         <div class="slider-companies">
             <div class="employe-slider">
                 <div class="quote-container">
@@ -171,30 +159,22 @@
         </div>
     </div>
     <div class="process-container">
-       @foreach($titlesContents as $titleContent)
-        @if($titleContent->section_id === 4)
-          <h4>{{ $titleContent->title }}</h4>
-        @endif
-       @endforeach
-       @php
-        $cards = $cards->toArray();
-        $secondHalfCards = array_slice($cards, count($cards) / 2 + 1);
-       @endphp
+        <h4>{{ __('working-process.title') }}</h4>
         @if($cards)
         <div class="process-cards">
-          @for($i = 0; $i < count($cards) / 2; $i++)
-            @if($cards[$i]['card_type'] === 2)
-              <div class="process-card">
-                  <div class="process-card-icon">
-                      <div class="process-icon">
-                        {!! $cards[$i]['icon'] !!}
-                      </div>
-                  </div>
-                  <div class="process-title subtitle1">{{ $cards[$i]['title'] }}</div>
-                  <div class="process-desc txt1">{{ $cards[$i]['content'] }}</div>
-              </div>
-            @endif
-          @endfor
+          @foreach($cards->take(ceil($cards->count() / 2) + 1) as $card)
+                @if($card->card_type === 2)
+                    <div class="process-card">
+                        <div class="process-card-icon">
+                            <div class="process-icon">
+                                {!! $card->icon !!}
+                            </div>
+                        </div>
+                        <div class="process-title subtitle1">{{ $card->title }}</div>
+                        <div class="process-desc txt1">{{ $card->content }}</div>
+                    </div>
+                @endif
+            @endforeach
         </div>
         @endif
         <div class="dot-line">
@@ -220,19 +200,19 @@
             </svg>
         </div>
         <div class="process-cards">
-          @for($i = 0; $i < count($secondHalfCards); $i++)
-            @if($secondHalfCards[$i]['card_type'] === 2)
+          @foreach($cards->skip(ceil($cards->count() / 2) + 1) as $card)
+          @if($card->card_type === 2)
               <div class="process-card">
                   <div class="process-card-icon">
                       <div class="process-icon">
-                        {!! $secondHalfCards[$i]['icon'] !!}
+                          {!! $card->icon !!}
                       </div>
                   </div>
-                  <div class="process-title subtitle1">{{ $secondHalfCards[$i]['title'] }}</div>
-                  <div class="process-desc txt1">{{ $secondHalfCards[$i]['content'] }}</div>
+                  <div class="process-title subtitle1">{{ $card->title }}</div>
+                  <div class="process-desc txt1">{{ $card->content }}</div>
               </div>
-            @endif
-          @endfor
+          @endif
+      @endforeach
         </div>
         <div class="dot-line">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -258,43 +238,37 @@
         </div>
     </div>
     <div class="talk-container">
-        @foreach($titlesContents as $titleContent)
-          @if($titleContent->section_id === 5)
-            <h4 class="talk-phrase">{{ $titleContent->title }}</h4>
-            <div class="talk-desc txt1">{{ $titleContent->content }}</div>
-            <div>
-                <a href="" class="talk-btn btn2">Let’s Talk</a>
-            </div>
-          @endif
-        @endforeach
+      <h4 class="talk-phrase">{{ __('') }}</h4>
+      <div class="talk-desc txt1">{{ $titleContent->content }}</div>
+      <div>
+          <a href="" class="talk-btn btn2">Let’s Talk</a>
+      </div>
     </div>
     <x-front.team></x-front.team>
     <div class="contact-us-container">
-        @foreach($titlesContents as $titleContent)
-          @if($titleContent->section_id === 7)
-        <h4 class="part-head">{{ $titleContent->title }}</h4>
+    
+        <h4 class="part-head">{{ __('contact-us.title') }}</h4>
         <div class="info-letter">
             <div class="info">
                 <div class="info-text txt1">
                   <div>
-                   {{ $titleContent->content }} 
+                   {{ __('contact-us.description') }} 
                   </div>
                 </div>
-          @endif
-        @endforeach
+   
                 <div class="adress-contacts">
                     <div class="adress">
                         <div class="subtitle1">ADDRESS:</div>
-                        <div class="txt2">Əhməd Rəcəbli küç, 56.</div>
+                        <div class="txt2">{{ $contacts->adress }}</div>
                     </div>
                     <div class="contacts">
                         <div class="subtitle1">ƏLAQƏ:</div>
-                        <div class="txt2">info@crazyinnovations@gmail.com</div>
-                        <div class="txt2">+994-70-777-77-77</div>
+                        <div class="txt2">{{ $contacts->mail }}</div>
+                        <div class="txt2">{{ $contacts->phone }}</div>
                     </div>
                 </div>
                 <div class="socials-wrapper">
-                    <div>SOSİAL:</div>
+                    <div>{{ __('social.title') }}:</div>
                     <ul class="socials">
                         <li class="social-icon-wrapper">
                             <i class="fab fa-instagram fa-xs"></i>
@@ -314,7 +288,7 @@
             <form class="letter" action="{{ route('letter.save') }}" method="POST">
               @csrf
                 <div class="letter-element">
-                    <div class="letter-input-name">Ad  / Şirkət</div>
+                    <div class="letter-input-name">{{ __('letter.name') }}*</div>
                     <input type="text" name="name">
                     <div class="text-danger">
                       @error('name')
@@ -323,7 +297,7 @@
                     </div>
                 </div>
                 <div class="letter-element">
-                    <div class="letter-input-name">Telefon nömrəsi </div>
+                    <div class="letter-input-name">{{ __('letter.phone') }}</div>
                     <input type="text" name="phone">
                     <div class="text-danger">
                       @error('phone')
@@ -332,7 +306,7 @@
                     </div>
                 </div>
                 <div class="letter-element">
-                    <div class="letter-input-name">E-mail</div>
+                    <div class="letter-input-name">{{ __('letter.mail') }}</div>
                     <input type="text" name="mail">
                     <div class="text-danger">
                       @error('mail')
@@ -341,7 +315,7 @@
                     </div>
                 </div>
                 <div class="letter-element">
-                    <div class="letter-input-name">Mesajınız</div>
+                    <div class="letter-input-name">{{ __('letter.message') }}</div>
                     <textarea name="message" id="" cols="30" rows="10"></textarea>
                     <div class="text-danger">
                       @error('message')
@@ -349,7 +323,7 @@
                       @enderror
                     </div>
                 </div>
-                <button onclick="" type="submit" id="send-letter" class="btn2">göndər</button>
+                <button onclick="" type="submit" id="send-letter" class="btn2">{{ __('letter.send') }}</button>
             </form>
         </div>
     </div>

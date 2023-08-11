@@ -90,10 +90,10 @@
         </div>
         
         <ul class="nav">
-            <li class="nav-elem secondary-color-hover">Əsas Səhifə</li>
-            <li class="nav-elem secondary-color-hover">Haqqımızda</li>
+            <li class="nav-elem secondary-color-hover">{{__('header-nav.home')}}</li>
+            <li class="nav-elem secondary-color-hover">{{__('header-nav.about')}}</li>
             <li class="nav-elem services secondary-color-hover">
-                Xidmətlərimiz
+                {{__('header-nav.services')}}
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <g clip-path="url(#clip0_586_9506)">
                       <path d="M7.41 8.59009L12 13.1701L16.59 8.59009L18 10.0001L12 16.0001L6 10.0001L7.41 8.59009Z" fill="#323232"/>
@@ -126,10 +126,10 @@
               @endforeach
               @endif
             </div>
-            <li class="nav-elem secondary-color-hover">Portfolio</li>
-            <li class="nav-elem secondary-color-hover">Blog</li>
+            <li class="nav-elem secondary-color-hover">{{__('header-nav.portfolio')}}</li>
+            <li class="nav-elem secondary-color-hover">{{__('header-nav.blog')}}</li>
         </ul>
-        <a href="" class="btn1">BİZDƏN GÖRÜŞ AL</a>
+        <a href="" class="btn1">{{__('header-nav.contact-us')}}</a>
     </div>
     <div class="header-bottom-menu">
       <div class="logo-cross">
@@ -146,17 +146,17 @@
       </div>
       <ul class="header-bottom-menu-nav">
         <li class="header-bottom-menu-nav-elem">
-          Əsas Səhifə
+          {{__('header-nav.home')}}
         </li>
         <div class="header-bottom-menu-line"></div>
         <li class="header-bottom-menu-nav-elem">
-          Haqqımızda
+          {{__('header-nav.about')}}
         </li>
         <div class="header-bottom-menu-line"></div>
         <li class="header-bottom-menu-nav-elem">
          <details class="header-bottom-menu-list"> 
           <summary>
-            Xidmətlərimiz
+          {{__('header-nav.services')}}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_790_60)">
               <path d="M7.41 8.58984L12 13.1698L16.59 8.58984L18 9.99984L12 15.9998L6 9.99984L7.41 8.58984Z" fill="white"/>
@@ -168,25 +168,26 @@
               </defs>
             </svg>
           </summary>
-          <ul class="header-bottom-menu-services navbar-text">
-            <li class="header-bottom-menu-service">SEO</li>
-            <li class="header-bottom-menu-service">SMM</li>
-            <li class="header-bottom-menu-service">Google Reklamları</li>
-            <li class="header-bottom-menu-service">Website</li>
-            <li class="header-bottom-menu-service">Digər</li>
-          </ul>
+          @if($services)
+            <ul class="header-bottom-menu-services navbar-text">
+              @foreach($services as $service)
+                <li class="header-bottom-menu-service">{{ $service->name }}</li>
+              @endforeach
+              <li class="header-bottom-menu-service">Digər</li>
+            </ul>
+          @endif
         </details>
         </li>
         <div class="header-bottom-menu-line"></div>
         <li class="header-bottom-menu-nav-elem">
-          Portfolio
+          {{__('header-nav.portfolio')}}
         </li>
         <div class="header-bottom-menu-line"></div>
         <li class="header-bottom-menu-nav-elem">
-          Bloq
+          {{__('header-nav.blog')}}
         </li>
       </ul>
-      <div class="header-bottom-meet-us btn2">BİZDƏN GÖRÜŞ AL</div>
+      <div class="header-bottom-meet-us btn2">{{__('header-nav.contact-us')}}</div>
       <ul class="header-bottom-adresses">
         <li class="header-bottom-adress-elem">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -199,7 +200,7 @@
             </clipPath>
             </defs>
           </svg>
-          <div>Əhməd Rəcəbli küç, 56.</div>
+          <div>{{ $contacts->adress }}</div>
         </li>
         <li class="header-bottom-adress-elem">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -212,7 +213,7 @@
             </clipPath>
             </defs>
           </svg>       
-          <div>+994 12 5655723</div>
+          <div>{{ $contacts->phone }}</div>
         </li>
         <li class="header-bottom-adress-elem">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -225,7 +226,7 @@
             </clipPath>
             </defs>
           </svg>
-          <div>info@crazyinnovations.az</div>
+          <div>{{ $contacts->mail }}</div>
         </li>
       </ul>
       <ul class="header-bottom-menu-socials">

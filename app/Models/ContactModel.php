@@ -9,6 +9,7 @@ class ContactModel extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $guarded = [];
     protected $table = 'contacts';
 }

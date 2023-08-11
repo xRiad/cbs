@@ -33,7 +33,7 @@
                                     <th>Title</th>
                                     <th>Svg icon</th>
                                     <th>Delete</th>
-                                    <th>EDIT</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody>

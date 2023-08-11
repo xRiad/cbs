@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Project categories</h3>
+                            <h3 class="card-title">Team members</h3>
                         </div>
                         <div class="card-header">
                           @if(session('success'))
@@ -32,14 +32,19 @@
                                     <th>Name</th>
                                     <th>Position</th>
                                     <th>Image</th>
+                                    <th>Delete</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-
                                 @foreach($teamMembers as $teamMember)
                                     <tr>
                                         <td>{{$teamMember->id}}</td>
                                         <td>{{$teamMember->name }}</td>
+                                        <td>{{$teamMember->position }}</td>
+                                        <td>
+                                          <img src="{{ $teamMember->image }}" alt="">
+                                        </td>
                                         <td>
                                             <form action="{{ route('admin.team-members.destroy', $teamMember->id) }}" method="POST">
                                                 @csrf

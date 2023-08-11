@@ -22,7 +22,7 @@ class AdminAuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-          'email' => 'string|required|email',
+          'name' => 'string|required',
           'password' => 'string|required'
         ];
     }

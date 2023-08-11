@@ -19,6 +19,12 @@ use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\CompanyIconController;
 use App\Http\Controllers\Admin\TeamMemberController;
+use App\Http\Controllers\Admin\ServiceAccordionController;
+use App\Http\Controllers\Admin\SubserviceController;
+use App\Http\Controllers\Admin\LetterController as AdminLetterController;
+use App\Http\Controllers\Admin\ServiceLetterController as AdminServiceLetterController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,9 +66,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin.auth
   Route::resource('about-slides', AboutSlideController::class)->names('about-slides');
   Route::resource('cards', CardController::class)->names('cards');
   Route::resource('services', AdminServiceController::class)->names('services');
+  Route::resource('subservices', SubserviceController::class)->names('subservices');
   Route::resource('roles', RoleController::class)->names('roles');
   Route::resource('project-categories', ProjectCategoryController::class)->names('project-categories');
   Route::resource('blog-categories', BlogCategoryController::class)->names('blog-categories');
   Route::resource('companies-icons', CompanyIconController::class)->names('companies-icons');
   Route::resource('team-members', TeamMemberController::class)->names('team-members');
+  Route::resource('services-accordions', ServiceAccordionController::class)->names('services-accordions');
+  Route::resource('letters', AdminLetterController::class)->names('letters');
+  Route::resource('services-letters', AdminServiceLetterController::class)->names('services-letters');
+  Route::resource('admins', AdminController::class)->names('admins');
+  Route::get('contact/edit', [ContactController::class, 'edit'])->name('contact.edit');
+  Route::put('contact/update', [ContactController::class, 'update'])->name('contact.update');
 });

@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+      app()->setLocale('az');
       View::composer('components.front.header', function ($view) {
         $contacts = ContactModel::firstOrFail(); 
         $services = ServiceModel::with('subservices')->get();

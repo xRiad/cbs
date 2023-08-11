@@ -1,7 +1,7 @@
 <div class="team-container">
     <div class="part-head">
-        <h4 class="h4-bold">{{ $teamContent->title }}</h4>
-        <div class="txt1">{{ $teamContent->content }}</div>
+        <h4 class="h4-bold">{{ __('team.title') }}</h4>
+        <div class="txt1">{{ __('team.description') }}</div>
     </div>
   @if($teamMembers)
   <div class="team-slider">
