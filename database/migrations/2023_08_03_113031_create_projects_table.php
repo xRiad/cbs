@@ -18,7 +18,7 @@ return new class extends Migration
             $table->json('phrase');
             $table->string('image')->nullable();
             $table->string('image_detail')->nullable();
-            $table->string('category_id');
+            $table->string('category_id')->nullable();
             $table->json('description');
             $table->timestamps();
         });

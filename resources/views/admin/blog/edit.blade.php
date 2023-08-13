@@ -25,7 +25,7 @@
                             @method('PUT')
                             <div class="form-group">
                               <label for="exampleinputemail1">Title</label>
-                              <input type="text" name="title[en]" value="{{ old('blog', $blog->title) }}" class="form-control @error('blog') is-invalid @enderror" placeholder="blog">
+                              <input type="text" name="title[az]" value="{{ old('title[az]', $blog->title) }}" class="form-control @error('blog') is-invalid @enderror" placeholder="blog">
                               @error('title.*')
                               <div class="alert alert-danger">
                                  {{$message}}
@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group">
                               <label for="content">Content</label>
-                              <textarea name="content[en]" id="summernote">{!! old('content', $blog->content) !!}</textarea>
+                              <textarea name="content[az]" id="summernote">{!! old('content[az]', $blog->content) !!}</textarea>
                               @error('content.*')
                               <div class="alert alert-danger">
                                  {{$message}}

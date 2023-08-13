@@ -8,6 +8,7 @@ use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\PortfolioController;
 use App\Http\Controllers\Front\ServiceController;
 use App\Http\Controllers\Front\ServiceLetterController;
+use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\AuthController;
@@ -24,7 +25,7 @@ use App\Http\Controllers\Admin\SubserviceController;
 use App\Http\Controllers\Admin\LetterController as AdminLetterController;
 use App\Http\Controllers\Admin\ServiceLetterController as AdminServiceLetterController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,11 +48,11 @@ Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio
 Route::get('/portfolio/by-category', [PortfolioController::class, 'byCategory'])->name('portfolio.by-category');
 Route::get('/portfolio/detail/{slug}', [PortfolioController::class, 'detail'])->name('portfolio.detail');
 
-Route::get('/services/seo', [ServiceController::class, 'seo'])->name('services.seo');
-Route::get('/services/smm', [ServiceController::class, 'smm'])->name('services.smm');
-Route::get('/services/google-ads', [ServiceController::class, 'googleAds'])->name('services.google-ads');
-Route::get('/services/web', [ServiceController::class, 'web'])->name('services.web');
+Route::get('/service/{slug}', [ServiceController::class, 'index'])->name('service');
+
 Route::post('services/letter/save', [ServiceLetterController::class, 'saveLetter'])->name('services.letter.save');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
   Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -76,6 +77,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin.auth
   Route::resource('letters', AdminLetterController::class)->names('letters');
   Route::resource('services-letters', AdminServiceLetterController::class)->names('services-letters');
   Route::resource('admins', AdminController::class)->names('admins');
-  Route::get('contact/edit', [ContactController::class, 'edit'])->name('contact.edit');
-  Route::put('contact/update', [ContactController::class, 'update'])->name('contact.update');
+  Route::get('contact/edit', [AdminContactController::class, 'edit'])->name('contact.edit');
+  Route::put('contact/update', [AdminContactController::class, 'update'])->name('contact.update');
 });

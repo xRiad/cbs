@@ -45,6 +45,8 @@ class ServiceController extends Controller
         $service->content = $request->input('content');
         $service->question = $request->input('question');
         $service->icon = $request->input('icon');
+        $service->has_letters = (bool) $request->has('has_letters');
+        $service->is_main = (bool) $request->has('is_main');
 
 
         if($request->file('image')) {
@@ -83,12 +85,15 @@ class ServiceController extends Controller
     public function update(ServiceRequest $request, int $id)
     {
        $service = ServiceModel::findOrFail($id);
+      // dd($request);
        if ($service) {
             $service->name = $request->input('name');
             $service->title = $request->input('title');
             $service->content = $request->input('content');
             $service->question = $request->input('question');
             $service->icon = $request->input('icon');
+            $service->has_letters = (bool) $request->has('has_letters');
+            $service->is_main = (bool) $request->has('is_main');
 
           if($request->file('image')) {
             $this->fileManagerService->deleteFile($service->image);

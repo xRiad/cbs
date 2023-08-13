@@ -22,8 +22,7 @@ class TeamMemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|array',
-            'name.*' => 'required|string',
+            'name' => 'required|string',
             'position' => 'required|array',
             'position.*' => 'required|string',
             'image' => 'sometimes|image|mimes:jpg,png,webp,svg,gif|max:2048',

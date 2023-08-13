@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('service_id');
             $table->json('name');
             $table->text('icon');
             $table->json('title');
-            $table->json('quetion');
+            $table->json('question');
             $table->json('content');
+            $table->boolean('has_letters')->default(0);
             $table->string('image')->nullable();
+            $table->boolean('is_main');
         });
     }
 

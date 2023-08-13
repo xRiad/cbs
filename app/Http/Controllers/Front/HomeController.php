@@ -15,12 +15,11 @@ class HomeController extends Controller
 {
     public function index () {
       $slides = AboutSlideModel::all();
-      $titlesContents = TitleContentModel::all();
       $cards = CardModel::all();
       $companiesIcons = CompanyIconModel::all();
       $contacts = ContactModel::firstOrFail(); 
       $projects = ProjectModel::orderByDesc('id')->limit(10)->get();
 
-      return view('front.home', compact('slides', 'titlesContents', 'cards', 'companiesIcons', 'contacts', 'projects'));
+      return view('front.home', compact('slides', 'cards', 'companiesIcons', 'contacts', 'projects'));
     }
 }

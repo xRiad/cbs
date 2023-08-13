@@ -26,12 +26,14 @@ class ServiceRequest extends FormRequest
             'name.*' => 'required|string',
             'title' => 'required|array',
             'title.*' => 'required|string',
-
+            'slug' => 'required|string',
             'question' => 'required|array',
             'question.*' => 'required|string',
             'content' => 'required|array',
             'content.*' => 'required|string',
-            'service_icon' => 'required|string',
+            'icon' => 'required|string',
+            'has_letters' => 'integer',
+            'is_main' => 'integer',
             'image' => 'sometimes|image|mimes:jpg,png,webp,svg,gif|max:2048',
         ];
     }

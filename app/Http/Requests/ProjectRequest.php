@@ -27,7 +27,7 @@ class ProjectRequest extends FormRequest
             'slug' => 'required|string',
             'phrase' => 'required|array',
             'phrase.*' => 'required|string',
-            'category' => 'required|string',
+            'category' => 'nullable|string',
             'image' => 'sometimes|image|mimes:jpg,png,webp,svg,gif|max:2048',
             'image_detail' => 'sometimes|image|mimes:jpg,png,webp,svg,gif|max:2048',
             'description' => 'required|array',

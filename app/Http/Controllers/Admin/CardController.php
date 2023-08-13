@@ -40,7 +40,7 @@ class CardController extends Controller
         $card->card_type = $request->input('card_type');
         
         if($card->save()) {
-          return redirect()->back()->with('success', 'Slide has been succsessfully saved');
+          return redirect()->back()->with('success', 'Card has been succsessfully saved');
         } else {
           return redirect()->back()->with('failure', 'Something went wrong');
         }
@@ -78,12 +78,12 @@ class CardController extends Controller
           
 
           if ($card->update()) {
-            return redirect()->back()->with('success', 'Slide has been successfully updated.');
+            return redirect()->back()->with('success', 'Card has been successfully updated.');
           } else {
-            return redirect()->back()->with('failure', 'Failed to update slide.');
+            return redirect()->back()->with('failure', 'Failed to update card.');
           }
        } else {
-          return redirect()->back()->with('failure', 'Slide not found.');
+          return redirect()->back()->with('failure', 'Card not found.');
        }
     }
 
@@ -96,14 +96,14 @@ class CardController extends Controller
 
       if($card) {
         if($card->delete()) {
-          return redirect()->back()->with('success', 'Slide has been successfully deleted.');
+          return redirect()->back()->with('success', 'Card has been successfully deleted.');
         } else {
 
-          return redirect()->back()->with('success', 'Slide deletion failed.');
+          return redirect()->back()->with('success', 'Card deletion failed.');
         }
 
       } else {
-        return redirect()->back()->with('failure', 'Slide does not exist.');
+        return redirect()->back()->with('failure', 'Card does not exist.');
       }
     }
 }

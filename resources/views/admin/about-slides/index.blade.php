@@ -37,20 +37,20 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach(aboutSlides as aboutSlide)
+                                @foreach($aboutSlides as $aboutSlide)
                                     <tr>
-                                        <td>{{aboutSlide->id}}</td>
-                                        <td>{{aboutSlide->title}}</td>
-                                        <td>{{aboutSlide->content}}</td>
+                                        <td>{{$aboutSlide->id}}</td>
+                                        <td>{{$aboutSlide->title}}</td>
+                                        <td>{{$aboutSlide->content}}</td>
                                         <td>
-                                            <form action="{{ route('admin.about-slides.destroy', aboutSlide->id) }}" method="POST">
+                                            <form action="{{ route('admin.about-slides.destroy', $aboutSlide->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('admin.about-slides.edit', aboutSlide->id) }}" method="GET">
+                                            <form action="{{ route('admin.about-slides.edit', $aboutSlide->id) }}" method="GET">
                                                 @csrf
                                                 <button type="submit" class="btn btn-primary">Edit</button>
                                             </form>

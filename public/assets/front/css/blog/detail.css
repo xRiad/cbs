@@ -17,8 +17,12 @@
 .social-icon-wrapper:not(:last-child) {
   margin-right: 20px;
 }
-.social-icon-wrapper > i {
-  color: #fff;
+.social-icon-wrapper > a > i {
+  color: var(--white);
+  transition: all 0.3s ease;
+}
+.social-icon-wrapper:hover > a > i {
+  color: var(--secondary);
 }
 .img-container,.img-container > img {
   width: 100%;
@@ -29,6 +33,7 @@
 }
 .content {
   margin-bottom: 150px;
+  color: var(--blue-gray-text);
 }
 .recent-post-text {
   margin-bottom: 50px;

@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\View;
 use App\Models\ContactModel; 
 use App\Models\ServiceModel; 
 use App\Models\TeamMemberModel; 
-use App\Models\FooterTextModel; 
-use App\Models\TitleContentModel; 
 use App\Models\ProjectCategoryModel;
 use App\Services\FileManagerService;
 
@@ -37,16 +35,20 @@ class AppServiceProvider extends ServiceProvider
       });
       View::composer('components.front.team', function ($view) {
         $teamMembers = TeamMemberModel::all(); 
-        $teamContent = TitleContentModel::where('section_id', 6)->firstOrFail();
-        $view->with(compact('teamMembers', 'teamContent'));
+        $view->with(compact('teamMembers'));
       });
       View::composer('components.front.footer', function ($view) {
-        $footerText = FooterTextModel::firstOrFail();
-        $view->with(compact('footerText'));
+        $contacts = ContactModel::firstOrFail(); 
+        $services = ServiceModel::all();
+        $view->with(compact('contacts', 'services'));
       });
       View::composer('components.front.portfolio', function ($view) {
         $projectCategories = ProjectCategoryModel::all();
         $view->with(compact('projectCategories'));
+      });
+      View::composer('components.front.contact', function ($view) {
+        $contacts = ContactModel::firstOrFail();
+        $view->with(compact('contacts'));
       });
     }
 }

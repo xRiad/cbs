@@ -25,7 +25,7 @@
                             @method('PUT')
                             <div class="form-group">
                               <label for="exampleinputemail1">Name</label>
-                              <input type="text" name="name[en]" value="{{ old('name', $teamMember->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="name">
+                              <input type="text" name="name[az]" value="{{ old('name[az]', $teamMember->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="name">
                               @error('name.*')
                               <div class="alert alert-danger">
                                  {{$message}}
@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group">
                               <label for="exampleinputemail1">Position</label>
-                              <input type="text" name="position[en]" value="{{ old('position', $teamMember->position) }}" class="form-control @error('position') is-invalid @enderror" placeholder="position">
+                              <input type="text" name="position[az]" value="{{ old('position[az]', $teamMember->position) }}" class="form-control @error('position') is-invalid @enderror" placeholder="position">
                               @error('position.*')
                               <div class="alert alert-danger">
                                  {{$message}}

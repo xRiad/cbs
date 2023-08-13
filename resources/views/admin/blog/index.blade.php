@@ -43,7 +43,7 @@
                                         <td>{{$blog->id}}</td>
                                         <td>{{$blog->title}}</td>
                                         <td>{{$blog->slug}}</td>
-                                        <td>{{$blog->category->name}}</td>
+                                        <td>{{$blog->category?->name}}</td>
                                         <td>
                                             <form action="{{ route('admin.blogs.destroy', $blog->id) }}" method="POST">
                                                 @csrf

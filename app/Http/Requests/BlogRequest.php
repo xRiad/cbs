@@ -25,7 +25,7 @@ class BlogRequest extends FormRequest
             'title' => 'required|array',
             'title.*' => 'required|string',
             'slug' => 'required|string',
-            'category' => 'required|string',
+            'category' => 'string|nullable',
             'image' => 'sometimes|image|mimes:jpg,png,webp,svg,gif|max:2048',
             'image_detail' => 'sometimes|image|mimes:jpg,png,webp,svg,gif|max:2048',
             'content' => 'required|array',

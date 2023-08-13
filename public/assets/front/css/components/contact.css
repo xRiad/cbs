@@ -1,0 +1,66 @@
+@import url('/assets/front/css/components/media/contact.css');
+.dynamic-header {
+  margin-bottom: 50px;
+}
+.contact-us-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+}
+.adress-contacts {
+  display: flex;
+  margin-bottom: 20px;
+}
+.info-letter {
+  display: flex;
+}
+.info-text {
+    color: var(--pure-black);
+    margin-bottom: 20px;
+}
+.info-text > div:first-child {
+    margin-bottom: 20px;
+}
+.adress {
+    margin-right: 50px;
+}
+.adress > div:first-child, .contacts > div:first-child {
+    color: var(--pure-black);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.social-icon-wrapper {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--black);
+    border-radius: 50px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.social-icon-wrapper:not(:last-child) {
+    margin-right: 20px;
+}
+.social-icon-wrapper > a > i {
+  color: var(--white);
+  transition: all 0.3s ease;
+}
+.social-icon-wrapper:hover > a > i {
+  color: var(--secondary);
+}
+.socials-wrapper {
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.socials-wrapper > div:first-child {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+.contact-title {
+  margin-bottom: 30px;
+}
+.location {
+  padding-top: 80px;
+}

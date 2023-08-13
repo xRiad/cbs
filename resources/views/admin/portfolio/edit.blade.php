@@ -25,7 +25,7 @@
                             @method('PUT')
                             <div class="form-group">
                               <label for="exampleinputemail1">Name</label>
-                              <input type="text" name="name[en]" value="{{ old('name', $project->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="name">
+                              <input type="text" name="name[az]" value="{{ old('name[az]', $project->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="name">
                               @error('name.*')
                               <div class="alert alert-danger">
                                  {{$message}}
@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group">
                               <label for="exampleinputemail1">Phrase</label>
-                              <input type="text" name="phrase[en]" value="{{ old('phrase', $project->phrase) }}" class="form-control @error('phrase') is-invalid @enderror" placeholder="phrase">
+                              <input type="text" name="phrase[az]" value="{{ old('phrase[az]', $project->phrase) }}" class="form-control @error('phrase') is-invalid @enderror" placeholder="phrase">
                               @error('phrase.*')
                               <div class="alert alert-danger">
                                  {{$message}}
@@ -52,7 +52,7 @@
                             </div>
                             <div class="form-group">
                               <label for="description">Description</label>
-                              <textarea name="description[en]" id="summernote">{!! old('description', $project->description) !!}</textarea>
+                              <textarea name="description[az]" id="summernote">{!! old('description[az]', $project->description) !!}</textarea>
                               @error('description.*')
                               <div class="alert alert-danger">
                                  {{$message}}

@@ -41,15 +41,11 @@ class BlogController extends Controller
      */
     public function store(BlogRequest $request)
     {
-      // dd($request);
       $blog = new BlogModel;
       $blog->title = $request->input('title');
       $blog->slug = $request->input('slug');
       $blog->content = $request->input('content');
       $blog->category_id = $request->input('category');
-      $today = Carbon::now();  
-      $formattedDate = $today->format('d F Y');
-      $blog->created_at = $formattedDate;
 
       if($request->file('image')) {
         $image = $request->file('image');
@@ -57,12 +53,12 @@ class BlogController extends Controller
         $blog->image = $imagePath;
       }
 
-
       if($request->file('image_detail')) {
         $imageDetail = $request->file('image_detail');
         $imagePath = $this->fileManagerService->saveFile($image, 800, 290, 'images');
         $blog->image_detail = $imagePath;
       }
+
       if($blog->save()) {
         return redirect()->back()->with('success', 'Blog has been succsessfully saved');
       } else {
@@ -93,6 +89,7 @@ class BlogController extends Controller
      */
     public function update(BlogRequest $request, int $id)
     {
+      dd($request->all());
        $blog = BlogModel::findOrFail($id);
        if ($blog) {
           $blog->title = $request->input('title');

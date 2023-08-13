@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div class="service">
                         <div class="service-header">
-                            <h3 class="service-title">Header slides</h3>
+                            <h3 class="service-title">Services</h3>
                         </div>
                         <div class="service-header">
                           @if(session('success'))

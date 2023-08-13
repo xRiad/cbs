@@ -1,24 +1,24 @@
 <div class="dynamic-header">
   <div>
-    <h6>{{ $header->page_name }}</h6>
+    <h6>{{ __('service-header.services') }}</h6>
     <div>></div>
-    <div>{{ $header->service_name }}</div>
+    <div>{{ $service->name }}</div>
   </div>
-  <h4>{{ $header->content }}</h4>
+  <h4>{{ $service->title }}</h4>
 </div>
 <div class="service-container">
-  <div class="service-name subtitle1">{{ $content->blue_text }}</div>
-  <h4 class="title">{{ $content->black_header }}</h4>
+  <div class="service-name subtitle1">{{ $service->question }}</div>
+  <h4 class="title">{{ $service->title }}</h4>
   <div class="content txt1">
     @php
-      $mainContent = $content->main_content; 
+      $mainContent = $service->content; 
       $mainContentLength = strlen($mainContent);
       $firstHalf = substr($mainContent, 0, $mainContentLength / 2);
       $secondHalf = substr($mainContent, $mainContentLength / 2, $mainContentLength);
     @endphp
-    {{ $firstHalf }} 
-    <img src="{{ asset('assets/'.$content->image) }}" alt="">
-    {{ $secondHalf }}
+    <div>{{ $firstHalf }}</div>
+    <img src="{{ asset('storage/'.$service->image) }}" alt="">
+    <div>{{ $secondHalf }}</div>
   </div>
   <div class="accordions-letter">
     <div class="accordions-container">
@@ -37,7 +37,7 @@
           </svg>            
           {{ $accordion->name }}
         </summary>
-        <p class="txt1" class="accordion-content">{{ $accordion->content }}</p>
+        <p class="txt1" class="accordion-content">{!! $accordion->content !!}</p>
       </details>
       @endforeach
     </div>

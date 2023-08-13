@@ -11,9 +11,8 @@ use App\Models\ProjectModel;
 class PortfolioController extends Controller
 {
     public function index () {
-      $portfolioPageHeader = TitleContentModel::where('section_id', 10)->firstOrFail();
       $projects = ProjectModel::with('category')->paginate(1);
-      return view('front.portfolio.index', compact('portfolioPageHeader', 'projects'));
+      return view('front.portfolio.index', compact('projects'));
     }
 
     public function detail (string $slug) {
@@ -27,7 +26,8 @@ class PortfolioController extends Controller
       $categoryId = request('categoryId');
     
       if($categoryId === 'all') {
-        $projects = ProjectModel::limit(4)->get(); 
+        $projects = ProjectModel::limit(4)->get();
+        // dd($projects);
       } else {
         $projects = ProjectModel::where('category_id', $categoryId)->limit(4)->get();
       }

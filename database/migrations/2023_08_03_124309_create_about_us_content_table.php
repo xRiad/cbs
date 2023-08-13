@@ -14,9 +14,6 @@ return new class extends Migration
         Schema::create('about_us_content', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->string('blue_text');
-            $table->string('black_header');
-            $table->string('main_content');
         });
     }
 

@@ -25,7 +25,7 @@
                             @method('PUT')
                             <div class="form-group">
                               <label for="exampleinputemail1">Name</label>
-                              <input type="text" name="name[en]" class="form-control @error('name') is-invalid @enderror" placeholder="name">
+                              <input type="text" name="name[az]" value="{{ old('name[az]', $serviceAccordion->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="name">
                               @error('name')
                               <div class="alert alert-danger">
                                  {{$message}}
@@ -34,7 +34,7 @@
                             </div>
                            <div class="form-group">
                               <label for="content">Content</label>
-                              <textarea name="content[en]" id="summernote"></textarea>
+                              <textarea name="content[az]" id="summernote">{!! old('content[az]', $serviceAccordion->content) !!}</textarea>
                               @error('content.*')
                               <div class="alert alert-danger">
                                  {{$message}}

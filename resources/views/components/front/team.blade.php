@@ -1,6 +1,6 @@
 <div class="team-container">
     <div class="part-head">
-        <h4 class="h4-bold">{{ __('team.title') }}</h4>
+        <h4 class="h4-bold section-title">{{ __('team.title') }}</h4>
         <div class="txt1">{{ __('team.description') }}</div>
     </div>
   @if($teamMembers)
@@ -23,7 +23,7 @@
               <div class="swiper-slide">
                   <div class="team-card">
                       <div class="member-avatar">
-                          <img src="{{ asset('assets/'.$teamMember->image)  }}" alt="">
+                          <img src="{{ asset('storage/'.$teamMember->image)  }}" alt="">
                       </div>
                       <div class="member-name">{{ $teamMember->name }}</div>
                       <div class="member-position txt2">{{ $teamMember->position }}</div>
@@ -49,7 +49,7 @@
     @foreach($teamMembers as $teamMember) 
     <div class="member-card">
       <div class="member-avatar-mob">
-        <img src="{{ asset('assets/'.$teamMember->image)  }}" alt="">
+        <img src="{{ asset('storage/'.$teamMember->image)  }}" alt="">
       </div>
       <div class="member-name-mob">
         <h6>{{ $teamMember->name }}</h6> 

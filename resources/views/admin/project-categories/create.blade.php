@@ -25,7 +25,7 @@
                             @csrf
                             <div class="form-group">
                               <label for="exampleinputemail1">Name</label>
-                              <input type="text" name="name[en]" class="form-control @error('name') is-invalid @enderror" placeholder="name">
+                              <input type="text" name="name[az]" class="form-control @error('name') is-invalid @enderror" placeholder="name">
                               @error('name')
                               <div class="alert alert-danger">
                                  {{$message}}

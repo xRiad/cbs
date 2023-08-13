@@ -10,9 +10,8 @@ use App\Models\AboutUsContentModel;
 class AboutUsController extends Controller
 {
     public function index () {
-      $blogTitleContent = TitleContentModel::where('section_id', '8')->firstOrFail();
       $aboutUsContent = AboutUsContentModel::firstOrFail();  
 
-      return view('front.about-us', compact('blogTitleContent', 'aboutUsContent'));
+      return view('front.about-us', compact('aboutUsContent'));
     }
 }

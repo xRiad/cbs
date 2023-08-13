@@ -28,7 +28,7 @@ class TeamMemberController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    { 
       return view('admin.team-members.create');
     }
 
@@ -38,7 +38,7 @@ class TeamMemberController extends Controller
     public function store(TeamMemberRequest $request)
     {
       $teamMember = new TeamMemberModel;
-      $teamMember->title = $request->input('title');
+      $teamMember->name = $request->input('name');
       $teamMember->position = $request->input('position');
 
       if($request->file('image')) {
@@ -79,8 +79,8 @@ class TeamMemberController extends Controller
     {
        $teamMember = TeamMemberModel::findOrFail($id);
        if ($teamMember) {
-          $teamMember->title = $request->input('title');
-          $teamMember->content = $request->input('content');
+          $teamMember->name = $request->input('name');
+          $teamMember->position = $request->input('position');
           if($request->file('image')) {
             $this->fileManagerService->deleteFile($teamMember->image);
             $image = $request->file('image');
@@ -108,9 +108,6 @@ class TeamMemberController extends Controller
         if ($teamMember->image) {
           $this->fileManagerService->deleteFile($teamMember->image);
         } 
-        if ($teamMember->image_detail) {
-          $this->fileManagerService->deleteFile($teamMember->image_detail);
-        }
 
         if($teamMember->delete()) {
           return redirect()->back()->with('success', 'Member has been successfully deleted.');

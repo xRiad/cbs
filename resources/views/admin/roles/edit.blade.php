@@ -25,7 +25,7 @@
                             @method('PUT')
                             <div class="form-group">
                               <label for="exampleinputemail1">Name</label>
-                              <input type="text" name="name[en]" value="{{ old('name', $role->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="name">
+                              <input type="text" name="name[az]" value="{{ old('name[az]', $role->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="name">
                               @error('name.*')
                               <div class="alert alert-danger">
                                  {{$message}}

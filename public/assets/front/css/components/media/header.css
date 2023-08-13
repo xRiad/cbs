@@ -40,6 +40,9 @@
   .header-bottom-menu-nav-elem {
     color: #fff;
   }
+  .header-bottom-menu-nav-elem > a {
+    color: #fff;
+  }
   .header-bottom-menu-line {
     height: 2px;
     width: 100%;

@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="{{ asset('assets/front/css/components/portfolio.css') }}">
   <link rel="stylesheet" href="{{ 'assets/front/css/media/home.css' }}">
   <link rel="stylesheet" href="{{ 'assets/front/css/components/team.css' }}">
+  <link rel="stylesheet" href="{{ 'assets/front/css/components/contact.css' }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> --}}
 @endsection
@@ -21,14 +22,14 @@
             <div class="swiper-slide">
                 <div class="header-slider-elem">
                     <div class="shadow">
-                      <img src="{{ asset('assets/' . $slide->image) }}" alt="">
+                      <img src="{{ asset('storage/' . $slide->image) }}" alt="">
                     </div>
                     <div class="header-slider-content">
                         <h3 class="header-slider-main-text">{{ $slide->title }}</h3>
-                        <div class="header-slider-secondary-text txt1">{{ $slide->content }}</div>
+                        <div class="header-slider-secondary-text txt1">{!! $slide->content !!}</div>
                         <div class="header-slider-buttons">
-                            <div class="btn2 slider-top-services">{{__('about-slider-button.services')}}</div>
-                            <div class="btn1 slider-top-portfolio">{{__('about-slider-button.portfolio')}}</div>
+                            <div id="to-services" class="btn2 slider-top-services">{{__('about-slider-button.services')}}</div>
+                            <a href="{{ route('portfolio') }}" class="btn1 slider-top-portfolio">{{__('about-slider-button.portfolio')}}</a>
                         </div>
                     </div>
                     <div class="header-slider-buttons-mob">
@@ -47,10 +48,10 @@
     @endif
 
    <div class="services-container">
-        <div class="part-head">
-          <h4 class="h4-bold">{{ __('services.title') }}</h4>
+        <div class="services-anchor part-head">
+          <h4 class="h4-bold section-title">{{ __('services.title') }}</h4>
           <div class="services-text-btn">
-              <div class="txt1">{{ __('services.description') }}</div>
+              <div class="txt1 section-phrase">{{ __('services.description') }}</div>
               <div class="btn1">{{ __('services.contact-us') }}</div>
           </div>
         </div>
@@ -63,7 +64,7 @@
                     {!! $card->icon !!}
                 </div>
                 <h5 class="service-title">{{ $card->title }}</h5>
-                <div class="service-desc txt2">{{ $card->content }}</div>
+                <div class="service-desc txt2">{!! $card->content !!}</div>
             </div>
             @endif
           @endforeach
@@ -72,18 +73,18 @@
    </div>
    <div class="portfolio-container">
       <div class="part-head">
-        <h4 class="h4-bold">{{ __('portfolio.title') }}</h4>
-        <div class="txt1">{{ __('portfolio.description') }}</div>
+        <h4 class="h4-bold section-title">{{ __('portfolio.title') }}</h4>
+        <div class="txt1 section-phrase">{{ __('portfolio.description') }}</div>
       </div>
        @component('components.front.portfolio', ['projects' => $projects, 'pagination' => false]) @endcomponent
        <div class="see-all-portfolio">
-           <div class="btn1">{{ __('portfolio-see-all.title') }}</div>
+           <a class="btn1" href="{{ route('portfolio') }}">{{ __('portfolio-see-all.title') }}</a>
        </div>
    </div>
     <div class="choose-us-container">
-        <div class="part-head">
+        <div class="part-head section-title">
           <h4 class="h4-bold">{{ __('choosed-us.title') }}</h4>
-          <div class="txt1">{{ __('choosed-us.description') }}</div>
+          <div class="txt1 section-phrase">{{ __('choosed-us.description') }}</div>
         </div>
         <div class="slider-companies">
             <div class="employe-slider">
@@ -159,7 +160,7 @@
         </div>
     </div>
     <div class="process-container">
-        <h4>{{ __('working-process.title') }}</h4>
+        <h4 class="section-title">{{ __('working-process.title') }}</h4>
         @if($cards)
         <div class="process-cards">
           @foreach($cards->take(ceil($cards->count() / 2) + 1) as $card)
@@ -171,7 +172,7 @@
                             </div>
                         </div>
                         <div class="process-title subtitle1">{{ $card->title }}</div>
-                        <div class="process-desc txt1">{{ $card->content }}</div>
+                        <div class="process-desc txt1">{!! $card->content !!}</div>
                     </div>
                 @endif
             @endforeach
@@ -209,7 +210,7 @@
                       </div>
                   </div>
                   <div class="process-title subtitle1">{{ $card->title }}</div>
-                  <div class="process-desc txt1">{{ $card->content }}</div>
+                  <div class="process-desc txt1">{!! $card->content !!}</div>
               </div>
           @endif
       @endforeach
@@ -238,95 +239,14 @@
         </div>
     </div>
     <div class="talk-container">
-      <h4 class="talk-phrase">{{ __('') }}</h4>
-      <div class="talk-desc txt1">{{ $titleContent->content }}</div>
+      <h4 class="talk-phrase">{{ __('find.title') }}</h4>
+      <div class="talk-desc txt1">{{ __('find.description') }}</div>
       <div>
-          <a href="" class="talk-btn btn2">Let’s Talk</a>
+          <a href="{{ route('contact') }}" class="talk-btn btn2">{{ __('find.talk') }}</a>
       </div>
     </div>
     <x-front.team></x-front.team>
-    <div class="contact-us-container">
-    
-        <h4 class="part-head">{{ __('contact-us.title') }}</h4>
-        <div class="info-letter">
-            <div class="info">
-                <div class="info-text txt1">
-                  <div>
-                   {{ __('contact-us.description') }} 
-                  </div>
-                </div>
-   
-                <div class="adress-contacts">
-                    <div class="adress">
-                        <div class="subtitle1">ADDRESS:</div>
-                        <div class="txt2">{{ $contacts->adress }}</div>
-                    </div>
-                    <div class="contacts">
-                        <div class="subtitle1">ƏLAQƏ:</div>
-                        <div class="txt2">{{ $contacts->mail }}</div>
-                        <div class="txt2">{{ $contacts->phone }}</div>
-                    </div>
-                </div>
-                <div class="socials-wrapper">
-                    <div>{{ __('social.title') }}:</div>
-                    <ul class="socials">
-                        <li class="social-icon-wrapper">
-                            <i class="fab fa-instagram fa-xs"></i>
-                        </li>
-                        <li class="social-icon-wrapper">
-                            <i class="fa-brands fa-twitter"></i>
-                        </li>
-                        <li class="social-icon-wrapper">
-                            <i class="fab fa-linkedin-in fa-xs"></i>
-                        </li>
-                        <li class="social-icon-wrapper">
-                            <i class="fab fa-facebook-f fa-xs"></i>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <form class="letter" action="{{ route('letter.save') }}" method="POST">
-              @csrf
-                <div class="letter-element">
-                    <div class="letter-input-name">{{ __('letter.name') }}*</div>
-                    <input type="text" name="name">
-                    <div class="text-danger">
-                      @error('name')
-                        {{ $message }}
-                      @enderror
-                    </div>
-                </div>
-                <div class="letter-element">
-                    <div class="letter-input-name">{{ __('letter.phone') }}</div>
-                    <input type="text" name="phone">
-                    <div class="text-danger">
-                      @error('phone')
-                        {{ $message }}
-                      @enderror
-                    </div>
-                </div>
-                <div class="letter-element">
-                    <div class="letter-input-name">{{ __('letter.mail') }}</div>
-                    <input type="text" name="mail">
-                    <div class="text-danger">
-                      @error('mail')
-                        {{ $message }}
-                      @enderror
-                    </div>
-                </div>
-                <div class="letter-element">
-                    <div class="letter-input-name">{{ __('letter.message') }}</div>
-                    <textarea name="message" id="" cols="30" rows="10"></textarea>
-                    <div class="text-danger">
-                      @error('message')
-                        {{ $message }}
-                      @enderror
-                    </div>
-                </div>
-                <button onclick="" type="submit" id="send-letter" class="btn2">{{ __('letter.send') }}</button>
-            </form>
-        </div>
-    </div>
+    <x-front.contact></x-front.contact>
 @endsection
 
 @push('scripts')
@@ -362,6 +282,22 @@
                 el: '.pagination', // Use '.pagination' as the selector for pagination
                 clickable: true,
             },
+        });
+        
+        $(document).ready(function() {
+            var btn1 = $("#to-services");
+            var element1 = $(".services-anchor");
+            
+            // Add click event handlers using jQuery
+            btn1.click(function() {
+                scrollToElement(element1);
+            });
+            
+            function scrollToElement(element) {
+                $("html, body").animate({
+                    scrollTop: element.offset().top - 200
+                }, 800); 
+            }
         });
 
         // $( "#send-letter" ).on( "click", function() {

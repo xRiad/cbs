@@ -25,15 +25,25 @@
                             @method('PUT')
                             <div class="form-group">
                               <label for="exampleinputemail1">Name</label>
-                              <input type="text" name="name[en]" value="{{ old('name', $service->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="headerSlide">
+                              <input type="text" name="name[az]" value="{{ old('name[az]', $service->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="Name">
                               @error('name.*')
                               <div class="alert alert-danger">
                                  {{$message}}
                               </div>
                               @enderror
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleinputemail1">Slug</label>
+                              <input type="text" name="slug" value="{{ old('slug', $service->slug) }}" class="form-control @error('slug') is-invalid @enderror" placeholder="Slug">
+                              @error('slug')
+                              <div class="alert alert-danger">
+                                 {{$message}}
+                              </div>
+                              @enderror
+                            </div>
                             <div class="form-group">
                               <label for="exampleinputemail1">Title</label>
-                              <input type="text" name="title[en]" value="{{ old('title', $service->title) }}" class="form-control @error('title') is-invalid @enderror" placeholder="headerSlide">
+                              <input type="text" name="title[az]" value="{{ old('title[az]', $service->title) }}" class="form-control @error('title') is-invalid @enderror" placeholder="Title">
                               @error('title.*')
                               <div class="alert alert-danger">
                                  {{$message}}
@@ -42,7 +52,7 @@
                             </div>
                             <div class="form-group">
                               <label for="exampleinputemail1">Question</label>
-                              <input type="text" name="question[en]" value="{{ old('question', $service->question) }}" class="form-control @error('question') is-invalid @enderror" placeholder="headerSlide">
+                              <input type="text" name="question[az]" value="{{ old('question[az]', $service->question) }}" class="form-control @error('question') is-invalid @enderror" placeholder="Question">
                               @error('question.*')
                               <div class="alert alert-danger">
                                  {{$message}}
@@ -51,14 +61,13 @@
                             </div>
                             <div class="form-group">
                               <label for="content">Content</label>
-                              <textarea name="content[en]" id="summernote">{!! old('content', $service->content) !!}</textarea>
+                              <textarea name="content[az]" id="summernote">{!! old('content[az]', $service->content) !!}</textarea>
                               @error('content.*')
                               <div class="alert alert-danger">
                                  {{$message}}
                               </div>
                               @enderror
                             </div>
-
                             <div class="form-group">
                               <label for="icon">Icon</label>
                               <textarea name="icon">{{ $service->icon }}</textarea>
@@ -83,6 +92,28 @@
                                 </div>
                               </div>
                               @error('image')
+                              <div class="alert alert-danger">
+                                {{$message}}
+                              </div>
+                              @enderror
+                            </div>
+                            <div class="form-group">
+                              <div class="custom-control custom-switch">
+                                <input type="checkbox" name="has_letters" value="1" class="custom-control-input" id="customswitch1" @if($service->has_letters) checked @endif>
+                                <label class="custom-control-label" for="customswitch1">Has letters</label>
+                              </div>
+                              @error('has_letters')
+                              <div class="alert alert-danger">
+                                {{$message}}
+                              </div>
+                              @enderror
+                            </div>
+                            <div class="form-group">
+                              <div class="custom-control custom-switch">
+                                <input type="checkbox" name="is_main" value="1" class="custom-control-input" id="customswitch2" @if($service->is_main) checked @endif>
+                                <label class="custom-control-label" for="customswitch2">Is main</label>
+                              </div>
+                              @error('is_main')
                               <div class="alert alert-danger">
                                 {{$message}}
                               </div>

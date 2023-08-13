@@ -24,7 +24,7 @@
                             @csrf
                             <div class="form-group">
                               <label for="exampleinputemail1">Title</label>
-                              <input type="text" name="title[en]" class="form-control @error('title') is-invalid @enderror" placeholder="title">
+                              <input type="text" name="title[az]" class="form-control @error('title') is-invalid @enderror" placeholder="title">
                               @error('title.*')
                               <div class="alert alert-danger">
                                  {{$message}}

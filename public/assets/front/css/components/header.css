@@ -1,4 +1,4 @@
-.header-service-title,.header-service-elem {
+.header-service-title > a,.header-service-elem {
   display: flex;
 }
 .space {
@@ -33,12 +33,18 @@ header {
 .header-bottom {
   background: var(--white);
 }
+.fa-phone-alt,.fa-envelope {
+  color: var(--white);
+}
+.services > div:first-child {
+  margin-right: 5px;
+}
 .switch {
   position: relative;
   display: inline-block;
   width: 28px;
   height: 15px;
-  border:3px solid #fff;
+  border:3px solid var(--white);
   border-radius: 50px
 }
 .switch input {
@@ -65,7 +71,7 @@ header {
   width: 9px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: var(--white);
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -86,7 +92,7 @@ input:checked + .slider:before {
 }
 .dark-mode-switch > div:first-child {
   margin-right: 10px;
-  color: #FFF;
+  color: var(--white);
 
   font-family: Gotham;
   font-size: 15px;
@@ -103,6 +109,14 @@ input:checked + .slider:before {
 }
 .phone-container {
   margin-right: 30px;
+}
+.phone-container:hover > .phone-icon > i,
+.phone-container:hover > .phone,.mail-container:hover > .mail-icon > i,
+.mail-container:hover > .mail {
+  color: var(--secondary);
+}
+.phone-icon > i,.mail-icon > i {
+  transition: all 0.3s ease;
 }
 .phone-mail {
   margin-right:  60px;
@@ -134,13 +148,15 @@ input:checked + .slider:before {
   justify-content: center;
   height: 20px;
   width: 20px;
-  color: #fff;
   margin-right: 10px;
-  border: 1px solid #fff;
+  border: 1px solid var(--white);
   border-radius: 20px;
     box-sizing: border-box;
     cursor: pointer;
     transition: all 0.5s ease;
+}
+.social-icon > a {
+  color: var(--white);
 }
 .social-icon:hover {
     background: var(--secondary);
@@ -164,10 +180,9 @@ input:checked + .slider:before {
   letter-spacing: 0.17px;
   text-transform: capitalize;
   cursor: pointer;
-  color: var(--black);
 }
-.services > svg {
-  transition: transform 0.3s ease;
+.nav-elem > a {
+  color: var(--black);
 }
 .services-header {
   display: none;
@@ -176,7 +191,7 @@ input:checked + .slider:before {
   left: 0px;
   top: 120px;
   justify-content: space-between;
-  background: var(--black);
+  background: var(--blue-gray);
 }
 .header-bottom-menu {
   display: none;
@@ -197,6 +212,10 @@ input:checked + .slider:before {
 .header-service-title,.header-service-line1 {
   margin-bottom: 10px;
 }
+.header-service-title > a > h6 {
+  color: var(--white);
+  margin-right: 5px;
+}
 .header-service-nav-elem {
   /* height: 250px; */
   text-align: center;
@@ -206,11 +225,14 @@ input:checked + .slider:before {
 }
 .header-service-line2 {
   width: 2px;
-  background: #fff;
+  background: var(--white);
 }
 .header-service-title > h6,.header-service-nav-elem {
-  color: #fff;
+  color: var(--white);
 }
 .header-bottom-menu-icon {
   display: none;
+}
+.active-link {
+  color: var(--secondary) !important;
 }

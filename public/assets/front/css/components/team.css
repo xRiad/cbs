@@ -8,8 +8,11 @@
 .team-container {
     margin-bottom: 50px;
 }
-.team-card > *{
+.team-card > *:not(:last-child){
     margin-bottom: 10px;
+}
+.team-card {
+  background: var(--pure-white);
 }
 member-name {
     color: var(--black);

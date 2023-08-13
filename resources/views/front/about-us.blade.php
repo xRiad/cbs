@@ -8,20 +8,25 @@
 
 @section('content')
   <div class="dynamic-header">
-    <h6>{{ $blogTitleContent->title }}</h6>
-    <h4>{{ $blogTitleContent->content }}</h4>
+    <h6>{{ __('about-header.about') }}</h6>
+    <h4>{{ __('about-header.know_us_close') }}</h4>
   </div>
   <div class="video-info">
     <div class="video-container">
       <video src="{{ asset('assets/'.$aboutUsContent->video) }}"></video>
     </div>
     <div class="info">
-      <div class="subtitle1 info-txt1">{{ $aboutUsContent->blue_text }}</div>
-      <h4 class="info-txt2">{{ $aboutUsContent->black_header }}</h4>
+      <div class="subtitle1 info-txt1">{{ __('about.know_us_close') }}</div>
+      <h4 class="info-txt2">{{ __('about.always_close') }}</h4>
       <div class="info-txt3">
-        {{ $aboutUsContent->main_content }} 
+        <p>
+        {{ __('about.development_partners1') }} 
+        </p>
+        <p>
+        {{ __('about.development_partners2') }} 
+        </p>
       </div>
-      <div class="btn1">BİZDƏN GÖRÜŞ AL</div>
+      <div class="btn1">{{ __('about.meet_us') }}</div>
     </div>
   </div>
   <x-front.team></x-front.team>
