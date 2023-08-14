@@ -14,33 +14,33 @@
                         <div class="phone-icon">
                             <i class="fas fa-phone-alt fa-rotate-90"></i>
                         </div>
-                        <div class="phone">{{ $contacts->phone }}</div>
+                        <div class="phone">{{ $contacts?->phone }}</div>
                     </div>
                 <div class="mail-container">
                     <div class="mail-icon">
                       <i class="fas fa-envelope"></i>
                     </div>
-                    <div class="mail secondary-color-hover">{{ $contacts->mail }}</div>
+                    <div class="mail secondary-color-hover">{{ $contacts?->mail }}</div>
                 </div>
             </div>
             <ul class="socials socials-header">
                 <li class="social-icon">
-                    <a href="https://api.whatsapp.com/send?phone={{ $contacts->phone }}&amp;text=">
+                    <a href="https://api.whatsapp.com/send?phone={{ $contacts?->phone }}&amp;text=">
                       <i class="fab fa-whatsapp fa-xs"></i>
                     </a>
                 </li>
                 <li class="social-icon">
-                  <a href="https://www.instagram.com/{{ $contacts->instagram }}/?hl=tr">
+                  <a href="https://www.instagram.com/{{ $contacts?->instagram }}/?hl=tr">
                     <i class="fab fa-instagram fa-xs"></i>
                   </a>
                 </li>
                 <li class="social-icon">
-                  <a href="https://www.facebook.com/{{ $contacts->facebook }}">
+                  <a href="https://www.facebook.com/{{ $contacts?->facebook }}">
                     <i class="fab fa-facebook-f fa-xs"></i>
                   </a>
                 </li>
                 <li class="social-icon">
-                  <a href="https://www.linkedin.com/company/{{ $contacts->linkedin }}/mycompany/">
+                  <a href="https://www.linkedin.com/company/{{ $contacts?->linkedin }}/mycompany/">
                     <i class="fab fa-linkedin-in fa-xs"></i>
                   </a>
                 </li>
@@ -202,7 +202,7 @@
             </clipPath>
             </defs>
           </svg>
-          <div>{{ $contacts->adress }}</div>
+          <div>{{ $contacts?->adress }}</div>
         </li>
         <li class="header-bottom-adress-elem">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -215,7 +215,7 @@
             </clipPath>
             </defs>
           </svg>       
-          <div>{{ $contacts->phone }}</div>
+          <div>{{ $contacts?->phone }}</div>
         </li>
         <li class="header-bottom-adress-elem">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -228,7 +228,7 @@
             </clipPath>
             </defs>
           </svg>
-          <div>{{ $contacts->mail }}</div>
+          <div>{{ $contacts?->mail }}</div>
         </li>
       </ul>
       <ul class="header-bottom-menu-socials">

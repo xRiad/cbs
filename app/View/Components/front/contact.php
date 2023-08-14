@@ -5,6 +5,7 @@ namespace App\View\Components\front;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\ContactModel;
 
 class contact extends Component
 {
@@ -21,6 +22,7 @@ class contact extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.front.contact');
+        $contacts = ContactModel::first();
+        return view('components.front.contact', compact('contacts'));
     }
 }

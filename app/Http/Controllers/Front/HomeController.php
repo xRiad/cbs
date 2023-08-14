@@ -13,13 +13,13 @@ use App\Models\ProjectModel;
 
 class HomeController extends Controller
 {
+  
     public function index () {
       $slides = AboutSlideModel::all();
       $cards = CardModel::all();
       $companiesIcons = CompanyIconModel::all();
-      $contacts = ContactModel::firstOrFail(); 
+      $contacts = ContactModel::first(); 
       $projects = ProjectModel::orderByDesc('id')->limit(10)->get();
-
       return view('front.home', compact('slides', 'cards', 'companiesIcons', 'contacts', 'projects'));
     }
 }

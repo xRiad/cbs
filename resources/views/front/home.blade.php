@@ -76,7 +76,7 @@
         <h4 class="h4-bold section-title">{{ __('portfolio.title') }}</h4>
         <div class="txt1 section-phrase">{{ __('portfolio.description') }}</div>
       </div>
-       @component('components.front.portfolio', ['projects' => $projects, 'pagination' => false]) @endcomponent
+       @include('front.partials._portfolio', ['projects' => $projects]) 
        <div class="see-all-portfolio">
            <a class="btn1" href="{{ route('portfolio') }}">{{ __('portfolio-see-all.title') }}</a>
        </div>

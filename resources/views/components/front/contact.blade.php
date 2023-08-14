@@ -13,34 +13,34 @@
           <div class="adress-contacts">
               <div class="adress">
                   <div class="subtitle1">{{ __('contact-us.adress') }}</div>
-                  <div class="txt2">{{ $contacts->adress }}</div>
+                  <div class="txt2">{{ $contacts?->adress }}</div>
               </div>
               <div class="contacts">
                   <div class="subtitle1">{{ __('contact-us.contact') }}</div>
-                  <div class="txt2">{{ $contacts->mail }}</div>
-                  <div class="txt2">{{ $contacts->phone }}</div>
+                  <div class="txt2">{{ $contacts?->mail }}</div>
+                  <div class="txt2">{{ $contacts?->phone }}</div>
               </div>
           </div>
           <div class="socials-wrapper">
               <div>{{ __('social.title') }}:</div>
               <ul class="socials">
                     <li class="social-icon-wrapper">
-                      <a href="https://api.whatsapp.com/send?phone={{ $contacts->phone }}&amp;text=">
+                      <a href="https://api.whatsapp.com/send?phone={{ $contacts?->phone }}&amp;text=">
                         <i class="fab fa-whatsapp fa-xs"></i>
                       </a>
                     </li>
                     <li class="social-icon-wrapper">
-                      <a href="https://www.instagram.com/{{ $contacts->instagram }}/?hl=tr">
+                      <a href="https://www.instagram.com/{{ $contacts?->instagram }}/?hl=tr">
                         <i class="fab fa-instagram fa-xs"></i>
                       </a>
                     </li>
                     <li class="social-icon-wrapper">
-                      <a href="https://www.facebook.com/{{ $contacts->facebook }}">
+                      <a href="https://www.facebook.com/{{ $contacts?->facebook }}">
                         <i class="fab fa-facebook-f fa-xs"></i>
                       </a>
                     </li>
                     <li class="social-icon-wrapper">
-                      <a href="https://www.linkedin.com/company/{{ $contacts->linkedin }}/mycompany/">
+                      <a href="https://www.linkedin.com/company/{{ $contacts?->linkedin }}/mycompany/">
                         <i class="fab fa-linkedin-in fa-xs"></i>
                       </a>
                     </li>

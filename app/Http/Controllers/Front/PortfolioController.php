@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\TitleContentModel;
 use App\Models\ProjectModel;
+use App\Models\ProjectCategoryModel;
+
 
 class PortfolioController extends Controller
 {
@@ -27,7 +29,6 @@ class PortfolioController extends Controller
     
       if($categoryId === 'all') {
         $projects = ProjectModel::limit(4)->get();
-        // dd($projects);
       } else {
         $projects = ProjectModel::where('category_id', $categoryId)->limit(4)->get();
       }

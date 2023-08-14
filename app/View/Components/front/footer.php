@@ -5,6 +5,9 @@ namespace App\View\Components\front;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\ContactModel;
+use App\Models\ServiceModel;
+
 
 class footer extends Component
 {
@@ -21,6 +24,8 @@ class footer extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.front.footer');
+        $contacts = ContactModel::first(); 
+        $services = ServiceModel::all();
+        return view('components.front.footer', compact('contacts', 'services'));
     }
 }

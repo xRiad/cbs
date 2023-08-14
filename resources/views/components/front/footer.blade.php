@@ -15,22 +15,22 @@
             <ul class="socials">
                
                 <li class="social-icon-wrapper2">
-                    <a href="https://api.whatsapp.com/send?phone={{ $contacts->phone }}&amp;text=">
+                    <a href="https://api.whatsapp.com/send?phone={{ $contacts?->phone }}&amp;text=">
                       <i class="fab fa-whatsapp fa-xs"></i>
                     </a>
                 </li>
                 <li class="social-icon-wrapper2">
-                  <a href="https://www.instagram.com/{{ $contacts->instagram }}/?hl=tr">
+                  <a href="https://www.instagram.com/{{ $contacts?->instagram }}/?hl=tr">
                     <i class="fab fa-instagram fa-xs"></i>
                   </a>
                 </li>
                 <li class="social-icon-wrapper2">
-                  <a href="https://www.facebook.com/{{ $contacts->facebook }}">
+                  <a href="https://www.facebook.com/{{ $contacts?->facebook }}">
                     <i class="fab fa-facebook-f fa-xs"></i>
                   </a>
                 </li>
                 <li class="social-icon-wrapper2">
-                  <a href="https://www.linkedin.com/company/{{ $contacts->linkedin }}/mycompany/">
+                  <a href="https://www.linkedin.com/company/{{ $contacts?->linkedin }}/mycompany/">
                     <i class="fab fa-linkedin-in fa-xs"></i>
                   </a>
                 </li>
@@ -91,15 +91,15 @@
         <ul class="footer-nav footer-contacts-container">
             <li class="secondary-color-hover footer-nav-icon">
                 <i class="fas fa-map-marker-alt"></i> 
-                <div class="footer-contacts-text">{{ $contacts->adress }}</div>
+                <div class="footer-contacts-text">{{ $contacts?->adress }}</div>
             </li>
             <li class="secondary-color-hover footer-nav-icon">
                 <i class="fas fa-phone-alt fa-rotate-90"></i>
-                <div class="footer-contacts-text">{{ $contacts->phone }}</div>
+                <div class="footer-contacts-text">{{ $contacts?->phone }}</div>
             </li>
             <li class="secondary-color-hover footer-nav-icon">
               <i class="fas fa-envelope"></i>
-              <div class="footer-contacts-text">{{ $contacts->mail }}</div> 
+              <div class="footer-contacts-text">{{ $contacts?->mail }}</div> 
             </li>
         </ul>
     </div>

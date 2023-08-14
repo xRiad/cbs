@@ -1,12 +1,7 @@
 @section('links')
   <link rel="stylesheet" href="{{ asset('assets/front/css/components/portfolio.css') }}">
 @endsection
-<ul class="portfolio-categories">
-    <li class="portfolio-category secondary-color-hover" data-id="all">HAMISI</li>
-    @foreach($projectCategories as $projectCategory)
-      <li class="portfolio-category secondary-color-hover" data-id="{{ $projectCategory->id }}">{{ $projectCategory->name }}</li>
-    @endforeach
-</ul>
+<x-front.project-category/>
 <div class="portfolio-cards">
   @foreach($projects as  $project)
     <a href="{{ route('portfolio.detail', $project->slug) }}">
@@ -20,9 +15,7 @@
     </a>
   @endforeach
 </div>
-@if($pagination)
-  {{ $projects->links('front.layouts.pagination') }}
-@endif
+
 
 @push('scripts')
   <script>

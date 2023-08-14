@@ -5,6 +5,9 @@ namespace App\View\Components\front;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\ContactModel;
+use App\Models\ServiceModel;
+
 
 class header extends Component
 {
@@ -21,6 +24,8 @@ class header extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.front.header');
+        $contacts = ContactModel::first(); 
+        $services = ServiceModel::with('subservices')->get();
+        return view('components.front.header', compact('contacts', 'services'));
     }
 }

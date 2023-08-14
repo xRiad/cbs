@@ -5,8 +5,9 @@ namespace App\View\Components\front;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\ProjectCategoryModel;
 
-class portfolio extends Component
+class ProjectCategory extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +22,7 @@ class portfolio extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.front.portfolio');
+        $projectCategories = ProjectCategoryModel::all();
+        return view('components.front.project-category', compact('projectCategories'));
     }
 }

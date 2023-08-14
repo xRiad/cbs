@@ -11,25 +11,24 @@ use App\Models\BlogModel;
 use App\Models\BlogCategoryModel;
 use App\Http\Requests\BlogRequest;
 use Carbon\Carbon;
-
+use App\Repositories\BlogRepository;
 class BlogController extends Controller
 {
-    
-    protected $fileManagerService;
-    protected $blogService;
-    protected $blogCategoryService;
 
-    public function __construct(FileManagerService $fileManagerService, BlogService $blogService, BlogCategoryService $blogCategoryService) {
-      $this->fileManagerService = $fileManagerService;
-      $this->blogService = $blogService;
-      $this->blogCategoryService = $blogCategoryService;
+
+    public function __construct(FileManagerService $fileManagerService, 
+    protected BlogService $blogService,
+    protected BlogCategoryService $blogCategoryService,
+     protected BlogRepository $blogRepository
+     ) {
+
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-      $blogs = $this->blogService->getAllBlogs();
+      $blogs = $this->blogRepository->all(['category']);
       return view('admin.blog.index', ['blogs' => $blogs]);
     }
 
@@ -47,23 +46,11 @@ class BlogController extends Controller
      */
     public function store(BlogRequest $request)
     {
-      $data = $request->all();
-      if($request->file('image')) {
-        $image = $request->file('image');
-        $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
-        $data['image'] = $imagePath;
-      }
-
-      if($request->file('image_detail')) {
-        $imageDetail = $request->file('image_detail');
-        $imagePath = $this->fileManagerService->saveFile($image, 800, 290, 'images');
-        $data['image_detail'] = $imagePath;
-      }
-
-      if($this->blogService->saveBlog($data, new BlogModel)) {
+      try{
+        $this->blogService->create($request, new BlogModel) ;
         return redirect()->back()->with('success', 'Blog has been succsessfully saved');
-      } else {
-        return redirect()->back()->with('failure', 'Something went wrong');
+      } catch(Exception $e) {
+        return redirect()->back()->with('failure', $e->getMessage());
       }
     }
 
@@ -81,8 +68,7 @@ class BlogController extends Controller
     public function edit(int $id)
     { 
       $categories = $this->blogCategoryService->getAllBlogCategories();
-
-      $blog = $this->blogService->getBlog($id);
+      $blog = $this->blogRepository->get($id);
       return view('admin.blog.edit', compact('blog', 'categories'));
     }
 
@@ -91,28 +77,11 @@ class BlogController extends Controller
      */
     public function update(BlogRequest $request, BlogModel $blog)
     {
-      $data = $request->all();
-
-      if($request->file('image')) {
-        $this->fileManagerService->deleteFile($blog->image);
-        $image = $request->file('image');
-        $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
-        $data['image'] = $imagePath;
-
-      }
-      if($request->file('image_detail')) {
-        $this->fileManagerService->deleteFile($blog->image_detail);
-        $imageDetail = $request->file('image_detail');
-        $imagePath = $this->fileManagerService->saveFile($imageDetail, 800, 290, 'images');
-        $data['image_detail'] = $imagePath;
-      }
-
-      if ($this->blogService->saveBlog($data, $blog)) {
+      if ($this->blogService->update($request, $blog)) {
         return redirect()->back()->with('success', 'Blog has been successfully updated.');
       } else {
           return redirect()->back()->with('failure', 'Failed to update blog.');
       }
-   
     }
 
     /**
