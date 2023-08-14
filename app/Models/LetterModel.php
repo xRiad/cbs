@@ -9,5 +9,6 @@ class LetterModel extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $table = 'letters';
 }

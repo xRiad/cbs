@@ -30,6 +30,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Icon</th>
+                                    <th>Delete</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -39,16 +41,16 @@
                                         <td>{{$companyIcon->id}}</td>
                                         <td>{!! $companyIcon->icon !!}</td>
                                         <td>
-                                            <form action="{{ route('admin.project-categories.destroy', $companyIcon->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                        <td>
                                             <form action="{{ route('admin.companies-icons.edit', $companyIcon->id) }}" method="GET">
                                                 @csrf
                                                 <button type="submit" class="btn btn-primary">Edit</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('admin.companies-icons.destroy', $companyIcon->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </td>
                                     </tr>

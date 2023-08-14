@@ -62,13 +62,13 @@
                             @if(count($categories) > 0)
                             <div class="form-group">
                               <label>categories</label>
-                              <select name="category" class="form-control select2" style="width: 100%;">
+                              <select name="category_id" class="form-control select2" style="width: 100%;">
                                 @foreach($categories as $category)
                                 <option @if($project->category?->id === $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                                 <option @if(!in_array($project->category?->id, $categories->pluck('id')->toArray(), true)) selected @endif value="0">No category</option>
                               </select>
-                              @error('category')
+                              @error('category_id')
                               <div class="alert alert-danger">
                                 {{$message}}
                               </div>

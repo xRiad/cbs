@@ -4,17 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\BlogCategoryService;
 use App\Models\BlogCategoryModel;
 use App\Http\Requests\BlogCategoryRequest;
 
 class BlogCategoryController extends Controller
 {
+    protected $blogCategoryService;
+
+    public function __construct(BlogCategoryService $blogCategoryService) {
+      $this->blogCategoryService = $blogCategoryService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $blogCategories = BlogCategoryModel::all();
+        $blogCategories = $this->blogCategoryService->getAllBlogCategories();
 
         return view('admin.blog-categories.index', compact('blogCategories'));
     }
@@ -32,11 +38,9 @@ class BlogCategoryController extends Controller
      */
     public function store(BlogCategoryRequest $request)
     {
-        $blogCategory = new BlogCategoryModel;
+        $data = $request->all();
 
-        $blogCategory->name = $request->input('name');
-        
-        if($blogCategory->save()) {
+        if($this->blogCategoryService->saveBlogCategory($data, new BlogCategoryModel)) {
           return redirect()->back()->with('success', 'Category has been succsessfully saved');
         } else {
           return redirect()->back()->with('failure', 'Something went wrong');
@@ -56,46 +60,33 @@ class BlogCategoryController extends Controller
      */
     public function edit(int $id)
     {
-      $blogCategory = BlogCategoryModel::findOrFail($id);
+      $blogCategory = $this->blogCategoryService->getBlogCategory($id);
       return view('admin.blog-categories.edit', compact('blogCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(BlogCategoryRequest $request, int $id)
+    public function update(BlogCategoryRequest $request, BlogCategoryModel $blogCategory)
     {
-       $blogCategory = BlogCategoryModel::findOrFail($id);
-       if ($blogCategory) {
-          $blogCategory->name = $request->input('name');
+      $data = $request->all();
 
-          if ($blogCategory->update()) {
-            return redirect()->back()->with('success', 'Category has been successfully updated.');
-          } else {
-            return redirect()->back()->with('failure', 'Failed to update category.');
-          }
-       } else {
-          return redirect()->back()->with('failure', 'Category not found.');
-       }
+      if ($this->blogCategoryService->saveBlogCategory($data, $blogCategory)) {
+        return redirect()->back()->with('success', 'Category has been successfully updated.');
+      } else {
+        return redirect()->back()->with('failure', 'Failed to update category.');
+      }     
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(BlogCategoryModel $blogCategory)
     {
-      $blogCategory = BlogCategoryModel::findOrFail($id);
-
-      if($blogCategory) {
-        if($blogCategory->delete()) {
+        if($this->blogCategoryService->deleteBlogCategory($blogCategory)) {
           return redirect()->back()->with('success', 'Category has been successfully deleted.');
         } else {
-
           return redirect()->back()->with('success', 'Category deletion failed.');
         }
-
-      } else {
-        return redirect()->back()->with('failure', 'Category does not exist.');
-      }
     }
 }

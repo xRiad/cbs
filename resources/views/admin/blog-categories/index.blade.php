@@ -18,7 +18,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="row1 ">
-                          <form action="{{ route('admin.project-categories.create') }}" method="GET">
+                          <form action="{{ route('admin.blog-categories.create') }}" method="GET">
                             @csrf
                             <button  class="btn btn-success ml-3 mt-2">Create</button>
                           </form>

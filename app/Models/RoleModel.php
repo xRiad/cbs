@@ -13,6 +13,7 @@ class RoleModel extends Model
     use HasTranslations;
 
     protected $table = 'roles';
+    protected $guarded = [];
     public $translatable = ['name'];
 
     public function projects () {

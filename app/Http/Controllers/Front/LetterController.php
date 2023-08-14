@@ -10,8 +10,7 @@ use App\Http\Requests\LetterRequest;
 class LetterController extends Controller
 {
     public function saveLetter (LetterRequest $request) {
-      dd($request->input('name'));
-      $newLetter = new LatterModel;
+      $newLetter = new LetterModel;
       $newLetter->name = $request->input('name');
       $newLetter->phone = $request->input('phone');
       $newLetter->mail = $request->input('mail');

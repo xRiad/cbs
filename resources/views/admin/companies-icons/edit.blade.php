@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="card-body">
-                          <form enctype="multipart/form-data" action="{{ route('admin.companies-icons.update', $companyIcon->id) }}" method="post">
+                          <form enctype="multipart/form-data" action="{{ route('admin.companies-icons.update', $companyIcon->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-group">

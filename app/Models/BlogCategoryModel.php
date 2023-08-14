@@ -12,6 +12,7 @@ class BlogCategoryModel extends Model
     use HasFactory;
     use HasTranslations;
 
+    protected $guarded = [];
     protected $table = 'blog_categories';
     public $translatable = ['name'];
     

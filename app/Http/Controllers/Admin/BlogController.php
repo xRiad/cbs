@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\FileManagerService;
+use App\Services\BlogService;
+use App\Services\BlogCategoryService;
 use App\Models\BlogModel;
 use App\Models\BlogCategoryModel;
 use App\Http\Requests\BlogRequest;
@@ -14,16 +16,20 @@ class BlogController extends Controller
 {
     
     protected $fileManagerService;
+    protected $blogService;
+    protected $blogCategoryService;
 
-    public function __construct(FileManagerService $fileManagerService) {
+    public function __construct(FileManagerService $fileManagerService, BlogService $blogService, BlogCategoryService $blogCategoryService) {
       $this->fileManagerService = $fileManagerService;
+      $this->blogService = $blogService;
+      $this->blogCategoryService = $blogCategoryService;
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-      $blogs = BlogModel::with('category')->get();
+      $blogs = $this->blogService->getAllBlogs();
       return view('admin.blog.index', ['blogs' => $blogs]);
     }
 
@@ -32,7 +38,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-      $categories = BlogCategoryModel::all();
+      $categories = $this->blogCategoryService->getAllBlogCategories();
       return view('admin.blog.create', compact('categories'));
     }
 
@@ -41,25 +47,20 @@ class BlogController extends Controller
      */
     public function store(BlogRequest $request)
     {
-      $blog = new BlogModel;
-      $blog->title = $request->input('title');
-      $blog->slug = $request->input('slug');
-      $blog->content = $request->input('content');
-      $blog->category_id = $request->input('category');
-
+      $data = $request->all();
       if($request->file('image')) {
         $image = $request->file('image');
         $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
-        $blog->image = $imagePath;
+        $data['image'] = $imagePath;
       }
 
       if($request->file('image_detail')) {
         $imageDetail = $request->file('image_detail');
         $imagePath = $this->fileManagerService->saveFile($image, 800, 290, 'images');
-        $blog->image_detail = $imagePath;
+        $data['image_detail'] = $imagePath;
       }
 
-      if($blog->save()) {
+      if($this->blogService->saveBlog($data, new BlogModel)) {
         return redirect()->back()->with('success', 'Blog has been succsessfully saved');
       } else {
         return redirect()->back()->with('failure', 'Something went wrong');
@@ -78,69 +79,59 @@ class BlogController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(int $id)
-    {
-      $categories = BlogCategoryModel::all();
-      $blog = BlogModel::findOrFail($id);
+    { 
+      $categories = $this->blogCategoryService->getAllBlogCategories();
+
+      $blog = $this->blogService->getBlog($id);
       return view('admin.blog.edit', compact('blog', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(BlogRequest $request, int $id)
+    public function update(BlogRequest $request, BlogModel $blog)
     {
-      dd($request->all());
-       $blog = BlogModel::findOrFail($id);
-       if ($blog) {
-          $blog->title = $request->input('title');
-          $blog->slug = $request->input('slug');
-          $blog->content = $request->input('content');
-          $blog->category_id = $request->input('category');
-          if($request->file('image')) {
-            $this->fileManagerService->deleteFile($blog->image);
-            $image = $request->file('image');
-            $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
-            $blog->image = $imagePath;
-          }
-          if($request->file('image_detail')) {
-            $this->fileManagerService->deleteFile($blog->image_detail);
-            $imageDetail = $request->file('image_detail');
-            $imagePath = $this->fileManagerService->saveFile($imageDetail, 800, 290, 'images');
-            $blog->image_detail = $imagePath;
-          }
-          if ($blog->update()) {
-            return redirect()->back()->with('success', 'Blog has been successfully updated.');
-          } else {
-              return redirect()->back()->with('failure', 'Failed to update blog.');
-          }
-       } else {
-          return redirect()->back()->with('failure', 'Blog not found.');
-       }
+      $data = $request->all();
+
+      if($request->file('image')) {
+        $this->fileManagerService->deleteFile($blog->image);
+        $image = $request->file('image');
+        $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
+        $data['image'] = $imagePath;
+
+      }
+      if($request->file('image_detail')) {
+        $this->fileManagerService->deleteFile($blog->image_detail);
+        $imageDetail = $request->file('image_detail');
+        $imagePath = $this->fileManagerService->saveFile($imageDetail, 800, 290, 'images');
+        $data['image_detail'] = $imagePath;
+      }
+
+      if ($this->blogService->saveBlog($data, $blog)) {
+        return redirect()->back()->with('success', 'Blog has been successfully updated.');
+      } else {
+          return redirect()->back()->with('failure', 'Failed to update blog.');
+      }
+   
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(BlogModel $blog)
     {
-      $blog = BlogModel::findOrFail($id);
-
-      if($blog) {
-        if ($blog->image) {
-          $this->fileManagerService->deleteFile($blog->image);
-        } 
-        if ($blog->image_detail) {
-          $this->fileManagerService->deleteFile($blog->image_detail);
-        }
-
-        if($blog->delete()) {
-          return redirect()->back()->with('success', 'Blog has been successfully deleted.');
-        } else {
-
-          return redirect()->back()->with('success', 'Blog deletion failed.');
-        }
-      } else {
-        return redirect()->back()->with('failure', 'Blog does not exist.');
+      if ($blog->image) {
+        $this->fileManagerService->deleteFile($blog->image);
+      } 
+      if ($blog->image_detail) {
+        $this->fileManagerService->deleteFile($blog->image_detail);
       }
+
+      if($this->blogService->deleteBlog($blog)) {
+        return redirect()->back()->with('success', 'Blog has been successfully deleted.');
+      } else {
+        return redirect()->back()->with('success', 'Blog deletion failed.');
+      }
+   
     }
 }

@@ -4,18 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\LetterService;
 use App\Models\LetterModel;
 
 class LetterController extends Controller
 {
+    protected $letterService;
+
+    public function __construct(LetterService $letterService) {
+      $this->letterService = $letterService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $letters = LetterModel::all();
+      $letters = $this->letterService->getAllLetters();
 
-        return view('admin.letters.index', compact('letters'));
+      return view('admin.letters.index', compact('letters'));
     }
 
     /**
@@ -61,18 +67,12 @@ class LetterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(LetterModel $letter)
     {
-      $letter = LetterModel::findOrFail($id);
-
-      if($letter) {
-        if($letter->delete()) {
-          return redirect()->back()->with('success', 'Letter has been successfully deleted.');
-        } else {
-          return redirect()->back()->with('success', 'Letter deletion failed.');
-        }
+      if($this->letterService->deleteLetter($letter)) {
+        return redirect()->back()->with('success', 'Letter has been successfully deleted.');
       } else {
-        return redirect()->back()->with('failure', 'Letter does not exist.');
+        return redirect()->back()->with('success', 'Letter deletion failed.');
       }
     }
 }

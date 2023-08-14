@@ -5,16 +5,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CardModel;
+use App\Services\CardService;
 use App\Http\Requests\CardRequest;
 
 class CardController extends Controller
 {
+    protected $cardService;
+
+    public function __construct(CardService $cardService) {
+      $this->cardService = $cardService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $cards = CardModel::all();
+        $cards = $this->cardService->getAllCards();
 
         return view('admin.cards.index', compact('cards'));
     }
@@ -32,14 +38,9 @@ class CardController extends Controller
      */
     public function store(CardRequest $request)
     {
-        $card = new CardModel;
+        $data = $request->all();
 
-        $card->title = $request->input('title');
-        $card->content = $request->input('content');
-        $card->icon = $request->input('icon');
-        $card->card_type = $request->input('card_type');
-        
-        if($card->save()) {
+        if($this->cardService->saveCard($data, new CardModel)) {
           return redirect()->back()->with('success', 'Card has been succsessfully saved');
         } else {
           return redirect()->back()->with('failure', 'Something went wrong');
@@ -59,51 +60,32 @@ class CardController extends Controller
      */
     public function edit(int $id)
     {
-      $card = CardModel::findOrFail($id);
+      $card = $this->cardService->getCard($id);
       return view('admin.cards.edit', compact('card'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CardRequest $request, int $id)
+    public function update(CardRequest $request, CardModel $card)
     {
-       $card = CardModel::findOrFail($id);
-       if ($card) {
-          $card->title = $request->input('title');
-          $card->content = $request->input('content');
-          $card->icon = $request->input('icon');
-          $card->card_type = $request->input('card_type');
-
-          
-
-          if ($card->update()) {
-            return redirect()->back()->with('success', 'Card has been successfully updated.');
-          } else {
-            return redirect()->back()->with('failure', 'Failed to update card.');
-          }
-       } else {
-          return redirect()->back()->with('failure', 'Card not found.');
-       }
+      $data = $request->all();
+      if ($this->cardService->saveCard($data, $card)) {
+        return redirect()->back()->with('success', 'Card has been successfully updated.');
+      } else {
+        return redirect()->back()->with('failure', 'Failed to update card.');
+      }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(CardModel $card)
     {
-      $card = CardModel::findOrFail($id);
-
-      if($card) {
-        if($card->delete()) {
-          return redirect()->back()->with('success', 'Card has been successfully deleted.');
-        } else {
-
-          return redirect()->back()->with('success', 'Card deletion failed.');
-        }
-
+      if($this->cardService->deleteCard($card)) {
+        return redirect()->back()->with('success', 'Card has been successfully deleted.');
       } else {
-        return redirect()->back()->with('failure', 'Card does not exist.');
+        return redirect()->back()->with('success', 'Card deletion failed.');
       }
     }
 }

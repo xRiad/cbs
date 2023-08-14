@@ -5,16 +5,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RoleModel;
+use App\Services\RoleService;
 use App\Http\Requests\RoleRequest;
 
 class RoleController extends Controller
 {
+    protected $roleService;
+
+    public function __construct(RoleService $roleService) {
+      $this->roleService = $roleService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $roles = RoleModel::all();
+        $roles = $this->roleService->getAllRoles();
 
         return view('admin.roles.index', compact('roles'));
     }
@@ -32,11 +38,9 @@ class RoleController extends Controller
      */
     public function store(RoleRequest $request)
     {
-        $role = new RoleModel;
-
-        $role->name = $request->input('name');
+        $data = $request->all();
         
-        if($role->save()) {
+        if($this->roleService->saveRole($data, new RoleModel)) {
           return redirect()->back()->with('success', 'Role has been succsessfully saved');
         } else {
           return redirect()->back()->with('failure', 'Something went wrong');
@@ -56,46 +60,33 @@ class RoleController extends Controller
      */
     public function edit(int $id)
     {
-      $role = RoleModel::findOrFail($id);
+      $role = $this->roleService->getRole($id);
       return view('admin.roles.edit', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(RoleRequest $request, int $id)
+    public function update(RoleRequest $request, RoleModel $role)
     {
-       $role = RoleModel::findOrFail($id);
-       if ($role) {
-          $role->name = $request->input('name');
-
-          if ($role->update()) {
-            return redirect()->back()->with('success', 'Role has been successfully updated.');
-          } else {
-            return redirect()->back()->with('failure', 'Failed to update role.');
-          }
-       } else {
-          return redirect()->back()->with('failure', 'Role not found.');
-       }
+      $data = $request->all();
+      if ($this->roleService->saveRole($data, $role)) {
+        return redirect()->back()->with('success', 'Role has been successfully updated.');
+      } else {
+        return redirect()->back()->with('failure', 'Failed to update role.');
+      }
+  
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(RoleModel $role)
     {
-      $role = RoleModel::findOrFail($id);
-
-      if($role) {
-        if($role->delete()) {
-          return redirect()->back()->with('success', 'Role has been successfully deleted.');
-        } else {
-
-          return redirect()->back()->with('success', 'Role deletion failed.');
-        }
-
+      if($this->roleService->deleteRole($role)) {
+        return redirect()->back()->with('success', 'Role has been successfully deleted.');
       } else {
-        return redirect()->back()->with('failure', 'Role does not exist.');
+        return redirect()->back()->with('success', 'Role deletion failed.');
       }
     }
 }

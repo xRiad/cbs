@@ -52,13 +52,13 @@
                             @if(count($categories) > 0)
                             <div class="form-group">
                               <label>Categories</label>
-                              <select name="category" class="form-control select2" style="width: 100%;">
+                              <select name="category_id" class="form-control select2" style="width: 100%;">
                                 @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                                 <option selected value="0">No category</option>
                               </select>
-                              @error('category')
+                              @error('category_id')
                               <div class="alert alert-danger">
                                 {{$message}}
                               </div>

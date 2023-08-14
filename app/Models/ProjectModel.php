@@ -14,12 +14,13 @@ class ProjectModel extends Model
     use HasTranslations;
 
     protected $table = 'projects';
-
+    protected $guarded = [];
     public $translatable = ['name', 'phrase', 'description'];
     
     public function category () {
       return $this->belongsTo(ProjectCategoryModel::class, 'category_id');
     }
+
     public function roles () {
       return $this->belongsToMany(RoleModel::class, 'projects_roles', 'project_id', 'role_id');
     }

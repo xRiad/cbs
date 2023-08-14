@@ -11,6 +11,7 @@ class CardModel extends Model
     use HasFactory;
     use HasTranslations;
 
+    protected $guarded = [];
     public $translatable = ['title', 'content'];
     public $timestamps = false;
     protected $table = 'cards';

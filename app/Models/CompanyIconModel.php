@@ -9,5 +9,7 @@ class CompanyIconModel extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+    protected $guarded = [];
     protected $table = 'companies_icons';
 }

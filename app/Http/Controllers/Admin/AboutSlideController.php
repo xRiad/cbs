@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\AboutSlideService;
 use App\Models\AboutSlideModel;
 use App\Http\Requests\AboutSlideRequest;
 use App\Services\FileManagerService;
@@ -11,18 +12,20 @@ use App\Services\FileManagerService;
 class AboutSlideController extends Controller
 {
     protected $fileManagerService;
+    protected $aboutSlideService;
 
-    public function __construct(FileManagerService $fileManagerService) {
+    public function __construct(FileManagerService $fileManagerService, AboutSlideService $aboutSlideService) {
       $this->fileManagerService = $fileManagerService;
+      $this->aboutSlideService = $aboutSlideService;
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $aboutSlides = AboutSlideModel::all();
+      $aboutSlides = $this->aboutSlideService->getAllAboutSlides();
 
-        return view('admin.about-slides.index', compact('aboutSlides'));
+      return view('admin.about-slides.index', compact('aboutSlides'));
     }
 
     /**
@@ -38,23 +41,19 @@ class AboutSlideController extends Controller
      */
     public function store(AboutSlideRequest $request)
     {
-        $aboutSlide = new AboutSlideModel;
+      $data = $request->all();
+    
+      if($request->file('image')) {
+        $image = $request->file('image');
+        $imagePath = $this->fileManagerService->saveFile($image, 730, 330, 'images');
+        $data['image'] = $imagePath;
+      }
 
-        $aboutSlide->title = $request->input('title');
-        $aboutSlide->content = $request->input('content');
-
-
-        if($request->file('image')) {
-          $image = $request->file('image');
-          $imagePath = $this->fileManagerService->saveFile($image, 730, 330, 'images');
-          $aboutSlide->image = $imagePath;
-        }
-
-        if($aboutSlide->save()) {
-          return redirect()->back()->with('success', 'Slide has been succsessfully saved');
-        } else {
-          return redirect()->back()->with('failure', 'Something went wrong');
-        }
+      if($this->aboutSlideService->saveAboutSlide($data, new AboutSlideModel)) {
+        return redirect()->back()->with('success', 'Slide has been succsessfully saved');
+      } else {
+        return redirect()->back()->with('failure', 'Something went wrong');
+      }
     }
 
     /**
@@ -70,58 +69,44 @@ class AboutSlideController extends Controller
      */
     public function edit(int $id)
     {
-      $aboutSlide = AboutSlideModel::findOrFail($id);
+      $aboutSlide = $this->aboutSlideService->getAboutSlide($id);
       return view('admin.about-slides.edit', compact('aboutSlide'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AboutSlideRequest $request, int $id)
+    public function update(AboutSlideRequest $request, AboutSlideModel $aboutSlide)
     {
-       $aboutSlide = AboutSlideModel::findOrFail($id);
-       if ($aboutSlide) {
-          $aboutSlide->title = $request->input('title');
-          $aboutSlide->content = $request->input('content');
+      $data = $request->all();
 
-          if($request->file('image')) {
-            $this->fileManagerService->deleteFile($aboutSlide->image);
-            $image = $request->file('image');
-            $imagePath = $this->fileManagerService->saveFile($image, 730, 330, 'images');
-            $aboutSlide->image = $imagePath;
-          }
+      if($request->file('image')) {
+        $this->fileManagerService->deleteFile($aboutSlide->image);
+        $image = $request->file('image');
+        $imagePath = $this->fileManagerService->saveFile($image, 730, 330, 'images');
+        $data['image'] = $imagePath;
+      }
 
-          if ($aboutSlide->update()) {
-            return redirect()->back()->with('success', 'Slide has been successfully updated.');
-          } else {
-            return redirect()->back()->with('failure', 'Failed to update slide.');
-          }
-       } else {
-          return redirect()->back()->with('failure', 'Slide not found.');
-       }
+      if ($this->aboutSlideService->saveAboutSlide($data, $aboutSlide)) {
+        return redirect()->back()->with('success', 'Slide has been successfully updated.');
+      } else {
+        return redirect()->back()->with('failure', 'Failed to update slide.');
+      } 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(AboutSlideModel $aboutSlide)
     {
-      $aboutSlide = AboutSlideModel::findOrFail($id);
+      if ($aboutSlide->image) {
+        $this->fileManagerService->deleteFile($aboutSlide->image);
+      } 
 
-      if($aboutSlide) {
-        if ($aboutSlide->image) {
-          $this->fileManagerService->deleteFile($aboutSlide->image);
-        } 
-
-        if($aboutSlide->delete()) {
-          return redirect()->back()->with('success', 'Slide has been successfully deleted.');
-        } else {
-
-          return redirect()->back()->with('success', 'Slide deletion failed.');
-        }
-
+      if($this->aboutSlideService->deleteAboutSlide($aboutSlide)) {
+        return redirect()->back()->with('success', 'Slide has been successfully deleted.');
       } else {
-        return redirect()->back()->with('failure', 'Slide does not exist.');
+        return redirect()->back()->with('success', 'Slide deletion failed.');
       }
     }
 }
