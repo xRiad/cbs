@@ -10,6 +10,7 @@ class ServiceLetterModel extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $table = 'services_letters';
     public function service () {
       return $this->belongsTo(ServiceModel::class);

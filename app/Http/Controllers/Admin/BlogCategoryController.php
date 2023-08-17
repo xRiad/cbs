@@ -4,23 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\BlogCategoryService;
 use App\Models\BlogCategoryModel;
 use App\Http\Requests\BlogCategoryRequest;
+use App\Repositories\BlogCategoryRepository;
 
 class BlogCategoryController extends Controller
 {
-    protected $blogCategoryService;
 
-    public function __construct(BlogCategoryService $blogCategoryService) {
-      $this->blogCategoryService = $blogCategoryService;
-    }
+    public function __construct(protected BlogCategoryRepository $blogCategoryRepository) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $blogCategories = $this->blogCategoryService->getAllBlogCategories();
+        $blogCategories = $this->blogCategoryRepository->all();
 
         return view('admin.blog-categories.index', compact('blogCategories'));
     }
@@ -38,12 +35,11 @@ class BlogCategoryController extends Controller
      */
     public function store(BlogCategoryRequest $request)
     {
-        $data = $request->all();
-
-        if($this->blogCategoryService->saveBlogCategory($data, new BlogCategoryModel)) {
+        try {
+          $this->blogCategoryRepository->save($request->validated(), new BlogCategoryModel);
           return redirect()->back()->with('success', 'Category has been succsessfully saved');
-        } else {
-          return redirect()->back()->with('failure', 'Something went wrong');
+        } catch (\Exception $e) {
+          return redirect()->back()->with('failure', $e->getMessage());
         }
     }
 
@@ -60,7 +56,7 @@ class BlogCategoryController extends Controller
      */
     public function edit(int $id)
     {
-      $blogCategory = $this->blogCategoryService->getBlogCategory($id);
+      $blogCategory = $this->blogCategoryRepository->get($id);
       return view('admin.blog-categories.edit', compact('blogCategory'));
     }
 
@@ -69,13 +65,12 @@ class BlogCategoryController extends Controller
      */
     public function update(BlogCategoryRequest $request, BlogCategoryModel $blogCategory)
     {
-      $data = $request->all();
-
-      if ($this->blogCategoryService->saveBlogCategory($data, $blogCategory)) {
-        return redirect()->back()->with('success', 'Category has been successfully updated.');
-      } else {
-        return redirect()->back()->with('failure', 'Failed to update category.');
-      }     
+        try {
+          $this->blogCategoryRepository->save($request->validated(), $blogCategory);
+          return redirect()->back()->with('success', 'Category has been successfully updated.');
+        } catch (\Exception $e) {
+          return redirect()->back()->with('failure', $e->getMessage());
+        }
     }
 
     /**
@@ -83,7 +78,7 @@ class BlogCategoryController extends Controller
      */
     public function destroy(BlogCategoryModel $blogCategory)
     {
-        if($this->blogCategoryService->deleteBlogCategory($blogCategory)) {
+        if($this->blogCategoryRepository->delete($blogCategory)) {
           return redirect()->back()->with('success', 'Category has been successfully deleted.');
         } else {
           return redirect()->back()->with('success', 'Category deletion failed.');

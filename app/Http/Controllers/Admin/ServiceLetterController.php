@@ -5,15 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ServiceLetterModel;
+use App\Repositories\ServiceLetterRepository;
 
 class ServiceLetterController extends Controller
 {
+    public function __construct (protected ServiceLetterRepository $serviceLetterRepository) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $letters = ServiceLetterModel::with('service')->get();
+        $letters = $this->serviceLetterRepository->all(['service']);
         return view('admin.services-letters.index', compact('letters')); 
     }
 
@@ -60,18 +62,13 @@ class ServiceLetterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-   public function destroy(int $id)
+   public function destroy(ServiceLetterModel $serviceLetter)
     {
-      $letter = ServiceLetterModel::findOrFail($id);
-
-      if($letter) {
-        if($letter->delete()) {
-          return redirect()->back()->with('success', 'Letter has been successfully deleted.');
-        } else {
-          return redirect()->back()->with('success', 'Letter deletion failed.');
-        }
-      } else {
-        return redirect()->back()->with('failure', 'Letter does not exist.');
+      try {
+        $this->serviceLetterRepository->delete($serviceLetter);
+        return redirect()->back()->with('success', 'Service letter has been succsessfully deleted');
+      } catch (\Exception $e) {
+        return redirect()->back()->with('failure', $e->getMessage());
       }
     }
 }

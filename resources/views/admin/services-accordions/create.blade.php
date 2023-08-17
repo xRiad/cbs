@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="card-body">
-                          <form enctype="multipart/form-data" action="{{ route('admin.services-accordions.store') }}" method="post">
+                          <form enctype="multipart/form-data" action="{{ route('admin.service-accordions.store') }}" method="post">
                             @csrf
                             <div class="form-group">
                               <label for="exampleinputemail1">Name</label>

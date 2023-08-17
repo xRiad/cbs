@@ -7,15 +7,19 @@ use Illuminate\Http\Request;
 use App\Models\SubserviceModel;
 use App\Models\ServiceModel;
 use App\Http\Requests\SubserviceRequest;
+use App\Repositories\SubserviceRepository;
+use App\Repositories\ServiceRepository;
 
 class SubserviceController extends Controller
 {
+    public function __construct (protected SubserviceRepository $subserviceRepository,
+    protected ServiceRepository $serviceRepository) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $subservices = SubserviceModel::with('service')->get();
+        $subservices = $this->subserviceRepository->all(['service']);
         return view('admin.subservices.index', compact('subservices'));
     }
 
@@ -24,7 +28,7 @@ class SubserviceController extends Controller
      */
     public function create()
     {
-        $services = ServiceModel::all();
+        $services = $this->serviceRepository->all();
         return view('admin.subservices.create', compact('services'));
     }
 
@@ -33,15 +37,12 @@ class SubserviceController extends Controller
      */
     public function store(SubserviceRequest $request)
     {
-        $subservice = new SubserviceModel;
-
-        $subservice->name = $request->input('name');
-        
-        if($subservice->save()) {
-          return redirect()->back()->with('success', 'Subservice has been succsessfully saved');
-        } else {
-          return redirect()->back()->with('failure', 'Something went wrong');
-        }
+      try {
+        $this->subserviceRepository->save($request->validated(), new SubserviceModel()); 
+        return redirect()->back()->with('success', 'Subservice has been succsessfully saved');
+      } catch(Exception $e) { 
+        return redirect()->back()->with('failure', $e->getMessage());
+      }
     }
 
     /**
@@ -57,47 +58,34 @@ class SubserviceController extends Controller
      */
     public function edit(int $id)
     {
-      $subservice = SubserviceModel::findOrFail($id);
-      $services = ServiceModel::all();
+      $subservice = $this->subserviceRepository->get($id);
+      $services =$this->serviceRepository->all();
       return view('admin.subservices.edit', compact('subservice', 'services'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(SubserviceRequest $request, int $id)
+    public function update(SubserviceRequest $request, SubserviceModel $subservice)
     {
-       $subservice = SubserviceModel::findOrFail($id);
-       if ($subservice) {
-          $subservice->name = $request->input('name');
-
-          if ($subservice->update()) {
-            return redirect()->back()->with('success', 'Subservice has been successfully updated.');
-          } else {
-            return redirect()->back()->with('failure', 'Failed to update subservice.');
-          }
-       } else {
-          return redirect()->back()->with('failure', 'Subservice not found.');
-       }
+      try {
+        $this->subserviceRepository->save($request->validated(), $subservice); 
+        return redirect()->back()->with('success', 'Subservice has been succsessfully updated');
+      } catch(Exception $e) { 
+        return redirect()->back()->with('failure', $e->getMessage());
+      }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(SubserviceModel $subservice)
     {
-      $subservice = SubserviceModel::findOrFail($id);
-
-      if($subservice) {
-        if($subservice->delete()) {
-          return redirect()->back()->with('success', 'Subservice has been successfully deleted.');
-        } else {
-
-          return redirect()->back()->with('success', 'Subservice deletion failed.');
-        }
-
-      } else {
-        return redirect()->back()->with('failure', 'Subservice does not exist.');
+      try {
+        $this->subserviceRepository->delete($subservice); 
+        return redirect()->back()->with('success', 'Subservice has been succsessfully deleted');
+      } catch(Exception $e) { 
+        return redirect()->back()->with('failure', $e->getMessage());
       }
     }
 }

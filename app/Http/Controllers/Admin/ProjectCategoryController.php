@@ -6,15 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProjectCategoryModel;
 use App\Http\Requests\ProjectCategoryRequest;
+use App\Repositories\ProjectCategoryRepository;
 
 class ProjectCategoryController extends Controller
 {
+    public function __construct(protected ProjectCategoryRepository $projectCategoryRepository) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $projectCategories = ProjectCategoryModel::all();
+        $projectCategories = $this->projectCategoryRepository->all();
 
         return view('admin.project-categories.index', compact('projectCategories'));
     }
@@ -32,14 +34,11 @@ class ProjectCategoryController extends Controller
      */
     public function store(ProjectCategoryRequest $request)
     {
-        $projectCategory = new ProjectCategoryModel;
-
-        $projectCategory->name = $request->input('name');
-        
-        if($projectCategory->save()) {
+        try {
+          $this->projectCategoryRepository->save($request->validated(), new ProjectCategoryModel);
           return redirect()->back()->with('success', 'Category has been succsessfully saved');
-        } else {
-          return redirect()->back()->with('failure', 'Something went wrong');
+        } catch (\Exception $e) {
+          return redirect()->back()->with('failure', $e->getMessage());
         }
     }
 
@@ -56,46 +55,32 @@ class ProjectCategoryController extends Controller
      */
     public function edit(int $id)
     {
-      $projectCategory = ProjectCategoryModel::findOrFail($id);
+      $projectCategory = $this->projectCategoryRepository->get($id);
       return view('admin.project-categories.edit', compact('projectCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProjectCategoryRequest $request, int $id)
+    public function update(ProjectCategoryRequest $request, ProjectCategoryModel $projectCategory)
     {
-       $projectCategory = ProjectCategoryModel::findOrFail($id);
-       if ($projectCategory) {
-          $projectCategory->name = $request->input('name');
-
-          if ($projectCategory->update()) {
-            return redirect()->back()->with('success', 'Category has been successfully updated.');
-          } else {
-            return redirect()->back()->with('failure', 'Failed to update category.');
-          }
-       } else {
-          return redirect()->back()->with('failure', 'Category not found.');
-       }
+        try { 
+          $this->projectCategoryRepository->save($request->validated(), $projectCategory);
+          return redirect()->back()->with('success', 'Category has been successfully updated.');
+        } catch (\Exception $e) {
+          return redirect()->back()->with('failure', $e->getMessage());
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(ProjectCategoryModel $projectCategory)
     {
-      $projectCategory = ProjectCategoryModel::findOrFail($id);
-
-      if($projectCategory) {
-        if($projectCategory->delete()) {
+        if($this->projectCategoryRepository->delete($projectCategory)) {
           return redirect()->back()->with('success', 'Category has been successfully deleted.');
         } else {
-
           return redirect()->back()->with('success', 'Category deletion failed.');
         }
-
-      } else {
-        return redirect()->back()->with('failure', 'Category does not exist.');
-      }
     }
 }

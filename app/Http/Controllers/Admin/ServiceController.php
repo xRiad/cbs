@@ -7,20 +7,20 @@ use Illuminate\Http\Request;
 use App\Models\ServiceModel;
 use App\Http\Requests\ServiceRequest;
 use App\Services\FileManagerService;
+use App\Services\ServiceService;
+use App\Repositories\ServiceRepository;
 
 class ServiceController extends Controller
 {
-    protected $fileManagerService;
-
-    public function __construct(FileManagerService $fileManagerService) {
-      $this->fileManagerService = $fileManagerService;
-    }
+    public function __construct(protected FileManagerService $fileManagerService,
+    protected ServiceService $serviceService,
+    protected ServiceRepository $serviceRepository) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $services = ServiceModel::all();
+        $services = $this->serviceRepository->all();
 
         return view('admin.services.index', compact('services'));
     }
@@ -38,28 +38,12 @@ class ServiceController extends Controller
      */
     public function store(ServiceRequest $request)
     {
-        $service = new ServiceModel;
-
-        $service->name = $request->input('name');
-        $service->title = $request->input('title');
-        $service->content = $request->input('content');
-        $service->question = $request->input('question');
-        $service->icon = $request->input('icon');
-        $service->has_letters = (bool) $request->has('has_letters');
-        $service->is_main = (bool) $request->has('is_main');
-
-
-        if($request->file('image')) {
-          $image = $request->file('image');
-          $imagePath = $this->fileManagerService->saveFile($image, 730, 330, 'images');
-          $service->image = $imagePath;
-        }
-
-        if($service->save()) {
-          return redirect()->back()->with('success', 'service has been succsessfully saved');
-        } else {
-          return redirect()->back()->with('failure', 'Something went wrong');
-        }
+      try {
+        $this->serviceService->create($request); 
+        return redirect()->back()->with('success', 'Service has been succsessfully saved');
+      } catch(Exception $e) { 
+        return redirect()->back()->with('failure', $e->getMessage());
+      }
     }
 
     /**
@@ -75,64 +59,33 @@ class ServiceController extends Controller
      */
     public function edit(int $id)
     {
-      $service = ServiceModel::findOrFail($id);
+      $service = $this->serviceRepository->get($id);
       return view('admin.services.edit', compact('service'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ServiceRequest $request, int $id)
+    public function update(ServiceRequest $request, ServiceModel $service)
     {
-       $service = ServiceModel::findOrFail($id);
-      // dd($request);
-       if ($service) {
-            $service->name = $request->input('name');
-            $service->title = $request->input('title');
-            $service->content = $request->input('content');
-            $service->question = $request->input('question');
-            $service->icon = $request->input('icon');
-            $service->has_letters = (bool) $request->has('has_letters');
-            $service->is_main = (bool) $request->has('is_main');
-
-          if($request->file('image')) {
-            $this->fileManagerService->deleteFile($service->image);
-            $image = $request->file('image');
-            $imagePath = $this->fileManagerService->saveFile($image, 730, 330, 'images');
-            $service->image = $imagePath;
-          }
-
-          if ($service->update()) {
-            return redirect()->back()->with('success', 'Service has been successfully updated.');
-          } else {
-            return redirect()->back()->with('failure', 'Failed to update service.');
-          }
-       } else {
-          return redirect()->back()->with('failure', 'Service not found.');
-       }
+      try {
+        $this->serviceService->update($request, $service); 
+        return redirect()->back()->with('success', 'Service has been succsessfully updated');
+      } catch(Exception $e) { 
+        return redirect()->back()->with('failure', $e->getMessage());
+      }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(ServiceModel $service)
     {
-      $service = ServiceModel::findOrFail($id);
-
-      if($service) {
-        if ($service->image) {
-          $this->fileManagerService->deleteFile($service->image);
-        } 
-
-        if($service->delete()) {
-          return redirect()->back()->with('success', 'Service has been successfully deleted.');
-        } else {
-
-          return redirect()->back()->with('success', 'Service deletion failed.');
-        }
-
-      } else {
-        return redirect()->back()->with('failure', 'Service does not exist.');
+      try {
+        $this->serviceService->delete($service);
+        return redirect()->back()->with('success', 'Service has been successfully deleted.');
+      } catch(Exception $e) {
+        return redirect()->back()->with('success', 'Service deletion failed.');
       }
     }
 }

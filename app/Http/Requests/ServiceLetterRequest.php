@@ -24,7 +24,8 @@ class ServiceLetterRequest extends FormRequest
         return [
           'name' => 'required|string',
           'phone_or_email' => 'required|string',
-          'website_url' => 'required|string' 
+          'website_url' => 'required|string',
+          'service_id' => 'required|int'
         ];
     }
 }

@@ -17,6 +17,7 @@ class ServiceModel extends Model
     public $timestamps = false;
     protected $table = 'services';
     public $translatable = ['name', 'title', 'question', 'content'];
+    protected $guarded = [];
 
     public function subservices () {
       return $this->hasMany(SubserviceModel::class, 'service_id');

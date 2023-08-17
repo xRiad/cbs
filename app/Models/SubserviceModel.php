@@ -13,7 +13,9 @@ class SubserviceModel extends Model
     use HasTranslations;
 
     public $translatable = ['name'];
+    public $timestamps = false;
     protected $table = 'subservices';
+    protected $guarded = [];
 
     public function service () {
       return $this->belongsTo(ServiceModel::class);

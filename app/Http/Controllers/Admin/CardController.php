@@ -5,22 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CardModel;
-use App\Services\CardService;
+use App\Repositories\CardRepository;
 use App\Http\Requests\CardRequest;
 
 class CardController extends Controller
 {
-    protected $cardService;
-
-    public function __construct(CardService $cardService) {
-      $this->cardService = $cardService;
-    }
+    public function __construct(protected CardRepository $cardRepository) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $cards = $this->cardService->getAllCards();
+        $cards = $this->cardRepository->all();
 
         return view('admin.cards.index', compact('cards'));
     }
@@ -38,12 +34,11 @@ class CardController extends Controller
      */
     public function store(CardRequest $request)
     {
-        $data = $request->all();
-
-        if($this->cardService->saveCard($data, new CardModel)) {
+        try {
+          $this->cardRepository->save($request->validated(), new CardModel);
           return redirect()->back()->with('success', 'Card has been succsessfully saved');
-        } else {
-          return redirect()->back()->with('failure', 'Something went wrong');
+        } catch (\Exception $e) {
+          return redirect()->back()->with('failure', $e->getMessage());
         }
     }
 
@@ -60,7 +55,7 @@ class CardController extends Controller
      */
     public function edit(int $id)
     {
-      $card = $this->cardService->getCard($id);
+      $card = $this->cardRepository->get($id);
       return view('admin.cards.edit', compact('card'));
     }
 
@@ -69,12 +64,12 @@ class CardController extends Controller
      */
     public function update(CardRequest $request, CardModel $card)
     {
-      $data = $request->all();
-      if ($this->cardService->saveCard($data, $card)) {
-        return redirect()->back()->with('success', 'Card has been successfully updated.');
-      } else {
-        return redirect()->back()->with('failure', 'Failed to update card.');
-      }
+        try {
+          $this->cardRepository->save($request->validated(), $card);
+          return redirect()->back()->with('success', 'Card has been succsessfully updated');
+        } catch (\Exception $e) {
+          return redirect()->back()->with('failure', $e->getMessage());
+        }
     }
 
     /**
@@ -82,10 +77,11 @@ class CardController extends Controller
      */
     public function destroy(CardModel $card)
     {
-      if($this->cardService->deleteCard($card)) {
-        return redirect()->back()->with('success', 'Card has been successfully deleted.');
-      } else {
-        return redirect()->back()->with('success', 'Card deletion failed.');
-      }
+        try {
+          $this->cardRepository->delete($card);
+          return redirect()->back()->with('success', 'Card has been succsessfully deleted');
+        } catch (\Exception $e) {
+          return redirect()->back()->with('failure', $e->getMessage());
+        }
     }
 }

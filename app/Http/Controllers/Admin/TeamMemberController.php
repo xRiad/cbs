@@ -7,20 +7,20 @@ use Illuminate\Http\Request;
 use App\Services\FileManagerService;
 use App\Models\TeamMemberModel;
 use App\Http\Requests\TeamMemberRequest;
+use App\Repositories\TeamMemberRepository;
+use App\Services\TeamMemberService;
 
 class TeamMemberController extends Controller
 {
-    protected $fileManagerService;
-
-    public function __construct(FileManagerService $fileManagerService) {
-      $this->fileManagerService = $fileManagerService;
-    }
+    public function __construct(protected FileManagerService $fileManagerService,
+    protected TeamMemberService $teamMemberService,
+    protected TeamMemberRepository $teamMemberRepository) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-      $teamMembers = TeamMemberModel::all();
+      $teamMembers = $this->teamMemberRepository->all();
       return view('admin.team-members.index', ['teamMembers' => $teamMembers]);
     }
 
@@ -37,21 +37,11 @@ class TeamMemberController extends Controller
      */
     public function store(TeamMemberRequest $request)
     {
-      $teamMember = new TeamMemberModel;
-      $teamMember->name = $request->input('name');
-      $teamMember->position = $request->input('position');
-
-      if($request->file('image')) {
-        $image = $request->file('image');
-        $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
-        $teamMember->image = $imagePath;
-      }
-
-
-      if($teamMember->save()) {
+      try{
+        $this->teamMemberService->create($request, new TeamMemberModel) ;
         return redirect()->back()->with('success', 'Member has been succsessfully saved');
-      } else {
-        return redirect()->back()->with('failure', 'Something went wrong');
+      } catch(Exception $e) {
+        return redirect()->back()->with('failure', $e->getMessage());
       }
     }
 
@@ -68,55 +58,33 @@ class TeamMemberController extends Controller
      */
     public function edit(int $id)
     {
-      $teamMember = TeamMemberModel::findOrFail($id);
-      return view('admin.team-members.edit', compact('blog'));
+      $teamMember = $this->teamMemberRepository->get($id);
+      return view('admin.team-members.edit', compact('teamMember'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(TeamMemberRequest $request, int $id)
+    public function update(TeamMemberRequest $request, TeamMemberModel $teamMember)
     {
-       $teamMember = TeamMemberModel::findOrFail($id);
-       if ($teamMember) {
-          $teamMember->name = $request->input('name');
-          $teamMember->position = $request->input('position');
-          if($request->file('image')) {
-            $this->fileManagerService->deleteFile($teamMember->image);
-            $image = $request->file('image');
-            $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
-            $teamMember->image = $imagePath;
-          }
-          if ($teamMember->update()) {
-            return redirect()->back()->with('success', 'Member has been successfully updated.');
-          } else {
-              return redirect()->back()->with('failure', 'Failed to update member.');
-          }
-       } else {
-          return redirect()->back()->with('failure', 'Member not found.');
-       }
+      try{
+        $this->teamMemberService->update($request, $teamMember) ;
+        return redirect()->back()->with('success', 'Member has been succsessfully updated');
+      } catch(Exception $e) {
+        return redirect()->back()->with('failure', $e->getMessage());
+      }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(TeamMemberModel $teamMember)
     {
-      $teamMember = TeamMemberModel::findOrFail($id);
-
-      if($teamMember) {
-        if ($teamMember->image) {
-          $this->fileManagerService->deleteFile($teamMember->image);
-        } 
-
-        if($teamMember->delete()) {
-          return redirect()->back()->with('success', 'Member has been successfully deleted.');
-        } else {
-
-          return redirect()->back()->with('success', 'Member deletion failed.');
-        }
-      } else {
-        return redirect()->back()->with('failure', 'Member does not exist.');
+      try{
+        $this->teamMemberService->delete($teamMember) ;
+        return redirect()->back()->with('success', 'Member has been succsessfully deleted');
+      } catch(Exception $e) {
+        return redirect()->back()->with('failure', $e->getMessage());
       }
     }
 }

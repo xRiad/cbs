@@ -14,6 +14,8 @@ class ServiceAccordionModel extends Model
 
     public $translatable = ['name', 'content'];
     protected $table = 'services_accordions';
+    protected $guarded = [];
+    public $timestamps = false; 
 
     public function service () {
       return $this->belongsTo(ServiceModel::class);

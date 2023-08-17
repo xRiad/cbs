@@ -7,29 +7,25 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\FileManagerService;
 use App\Services\ProjectService;
-use App\Services\ProjectCategoryService;
 use App\Models\ProjectModel;
 use App\Models\ProjectCategoryModel;
 use App\Http\Requests\ProjectRequest;
+use App\Repositories\ProjectRepository;
+use App\Repositories\ProjectCategoryRepository;
 
 class ProjectController extends Controller
 {
     
-    protected $fileManagerService;
-    protected $projectService;
-    protected $projectCategoryService;
-
-    public function __construct(FileManagerService $fileManagerService, ProjectService $projectService, ProjectCategoryService $projectCategoryService) {
-      $this->fileManagerService = $fileManagerService;
-      $this->projectCategoryService = $projectCategoryService;
-      $this->projectService = $projectService;
-    }
+    public function __construct(protected FileManagerService $fileManagerService,
+    protected ProjectService $projectService,
+    protected ProjectRepository $projectRepository,
+    protected ProjectCategoryRepository $projectCategoryRepository) {}
     /**
      * Display a listing of the resource.
     */   
     public function index()
     {
-      $projects = $this->projectService->getAllProjects();
+      $projects = $this->projectRepository->all();
       return view('admin.portfolio.index', ['projects' => $projects]);
     }
 
@@ -38,34 +34,20 @@ class ProjectController extends Controller
      */
     public function create()
     {
-      $categories = $this->projectCategoryService->getAllProjectCategories();
+      $categories = $this->projectCategoryRepository->all();
       return view('admin.portfolio.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProjectRequest $request, ProjectModel $project)
+    public function store(ProjectRequest $request)
     {
-      $data = $request->all();
-
-      if($request->file('image')) {
-        $image = $request->file('image');
-        $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
-        $data['image'] = $imagePath;
-      }
-
-
-      if($request->file('image_detail')) {
-        $imageDetail = $request->file('image_detail');
-        $imagePath = $this->fileManagerService->saveFile($image, 800, 290, 'images');
-        $data['image_detail'] = $imagePath;
-      }
-
-      if($this->projectService->saveProject($data, $project)) {
+      try {
+        $this->projectService->create($request); 
         return redirect()->back()->with('success', 'Project has been succsessfully saved');
-      } else {
-        return redirect()->back()->with('failure', 'Something went wrong');
+      } catch(Exception $e) { 
+        return redirect()->back()->with('failure', $e->getMessage());
       }
     }
 
@@ -82,8 +64,8 @@ class ProjectController extends Controller
      */
     public function edit(int $id)
     {
-      $categories = $this->projectCategoryService->getAllProjectCategories();
-      $project = $this->projectService->getProject($id);
+      $categories = $this->projectCategoryRepository->all();
+      $project = $this->projectRepository->get($id);
       return view('admin.portfolio.edit', compact('project', 'categories'));
     }
 
@@ -92,26 +74,11 @@ class ProjectController extends Controller
      */
     public function update(ProjectRequest $request, ProjectModel $project)
     {
-      $data = $request->all();
-
-      if($request->file('image')) {
-        $this->fileManagerService->deleteFile($project->image);
-        $image = $request->file('image');
-        $imagePath = $this->fileManagerService->saveFile($image, 268, 225, 'images');
-        $data['image'] = $imagePath;
-      }
-
-      if($request->file('image_detail')) {
-        $this->fileManagerService->deleteFile($project->image_detail);
-        $imageDetail = $request->file('image_detail');
-        $imagePath = $this->fileManagerService->saveFile($imageDetail, 800, 290, 'images');
-        $data['image_detail'] = $imagePath;
-      }
-
-      if ($this->projectService->saveProject($data, $project)) {
+      try {
+        $this->projectService->update($request, $project);
         return redirect()->back()->with('success', 'Project has been successfully updated.');
-      } else {
-        return redirect()->back()->with('failure', 'Failed to update project.');
+      } catch(Exception $e) {
+        return redirect()->back()->with('failure', $e->getMessage());
       }
     }
 
@@ -119,18 +86,12 @@ class ProjectController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(ProjectModel $project)
-    {
-        if ($project->image) {
-          $this->fileManagerService->deleteFile($project->image);
-        } 
-        if ($project->image_detail) {
-          $this->fileManagerService->deleteFile($project->image_detail);
-        }
-
-        if($this->projectService->deleteProject($project)) {
-          return redirect()->back()->with('success', 'Project has been successfully deleted.');
-        } else {
-          return redirect()->back()->with('success', 'Project deletion failed.');
-        }
+    {  
+      try {
+        $this->projectService->delete($project);
+        return redirect()->back()->with('success', 'Project has been successfully deleted.');
+      } catch(Exception $e) {
+        return redirect()->back()->with('success', 'Project deletion failed.');
+      }
     }
 }

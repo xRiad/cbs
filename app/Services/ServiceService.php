@@ -1,31 +1,37 @@
 <?php
 namespace App\Services;
 
-use App\Repositories\aboutSlideRepository;
-use App\Http\Requests\AboutSlideRequest;
-use App\Models\AboutSlideModel;
+use App\Repositories\serviceRepository;
+use App\Http\Requests\serviceRequest;
+use App\Models\serviceModel;
 use App\Services\FileManagerService;
 
-class AboutSlideService
+class serviceService
 {
 
-    public function __construct(protected AboutSlideRepository $aboutSlideRepository,
+    public function __construct(protected serviceRepository $serviceRepository,
     protected FileManagerService $fileManagerService) {}
 
-    public function create (AboutSlideRequest $request) {
+    public function create (serviceRequest $request) {
       $data = $request->validated();
+      
+      $data['has_letters'] = $request->has('has_letters');
+      $data['is_main'] = $request->has('is_main');
 
       if($request->file('image')) {
         $image = $request->file('image');
         $imagePath = $this->fileManagerService->saveFile($image, 730, 330, 'images');
-        $data['image'] = $imagePath;
+        $service->image = $imagePath;
       }
 
-      return $this->aboutSlideRepository->save($data, new AboutSlideModel());
+      return $this->serviceRepository->save($data, new serviceModel());
     }
 
-    public function update(AboutSlideRequest $request, AboutSlideModel $model) {
+    public function update(serviceRequest $request, serviceModel $model) {
       $data = $request->validated();
+
+      $data['has_letters'] = $request->has('has_letters');
+      $data['is_main'] = $request->has('is_main');
 
       if($request->file('image')) {
         $this->fileManagerService->deleteFile($model->image);
@@ -34,7 +40,7 @@ class AboutSlideService
         $data['image'] = $imagePath;
       }
 
-      return $this->aboutSlideRepository->save($data, $model);
+      return $this->serviceRepository->save($data, $model);
     }
 
     public function delete($model)
@@ -42,6 +48,6 @@ class AboutSlideService
         if ($model->image) {
           $this->fileManagerService->deleteFile($model->image);
         } 
-        return $this->aboutSlideRepository->delete($model);
+        return $this->serviceRepository->delete($model);
     }
 }

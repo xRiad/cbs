@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Header slides</h3>
+                            <h3 class="card-title">Cards</h3>
                         </div>
                         <div class="card-header">
                           @if(session('success'))

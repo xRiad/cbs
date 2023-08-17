@@ -4,19 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ProjectModel;
 use Spatie\Translatable\HasTranslations;
 
-class ProjectCategoryModel extends Model
+class LanguageLineModel extends Model
 {
     use HasFactory;
     use HasTranslations;
 
-    protected $table = 'project_categories';
-    public $translatable = ['name'];
     protected $guarded = [];
-
-    public function projects () {
-      return $this->hasMany(ProjectModel::class);
-    }
+    public $translatable = ['text'];
+    protected $table = 'language_lines';
 }

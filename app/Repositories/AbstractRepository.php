@@ -44,7 +44,7 @@ abstract class AbstractRepository
     ->get();
   }
 
-  public function paginate($count = 8, $with = [], $orderBy = 'asc', $order_column = 'id',)
+  public function paginate($count = 8, $with = [], $orderBy = 'asc', $order_column = 'id')
   {
     return $this->query()->with($with)->orderBy($order_column, $orderBy)->paginate($count);
   }
@@ -62,7 +62,6 @@ abstract class AbstractRepository
     }
     return $query->first();
   }
-
   public function findByOrFail($column, $value, $operator = '=', $with = [], $conditions = [])
   {
     if (!$data = $this->findBy($column, $value, $operator, $with, $conditions)) {

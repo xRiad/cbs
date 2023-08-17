@@ -11,22 +11,4 @@ class CardService
     {
       $this->cardRepository = $cardRepository;
     }
-    public function getAllCards()
-    {
-      return $this->cardRepository->all();
-    }
-
-    public function getCard(int $id) {
-      return $this->cardRepository->get($id);
-    }
-
-    public function saveCard(array $data, $model)
-    {
-      return $this->cardRepository->save($data, $model);
-    }
-
-    public function deleteCard($model)
-    {
-      return $this->cardRepository->delete($model);
-    }
 }

@@ -12,6 +12,7 @@ use App\Models\BlogCategoryModel;
 use App\Http\Requests\BlogRequest;
 use Carbon\Carbon;
 use App\Repositories\BlogRepository;
+use App\Repositories\BlogCategoryRepository;
 class BlogController extends Controller
 {
 
@@ -19,7 +20,8 @@ class BlogController extends Controller
     public function __construct(FileManagerService $fileManagerService, 
     protected BlogService $blogService,
     protected BlogCategoryService $blogCategoryService,
-     protected BlogRepository $blogRepository
+    protected BlogRepository $blogRepository,
+    protected BlogCategoryRepository $blogCategoryRepository
      ) {
 
     }
@@ -37,7 +39,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-      $categories = $this->blogCategoryService->getAllBlogCategories();
+      $categories = $this->blogCategoryRepository->all();
       return view('admin.blog.create', compact('categories'));
     }
 
@@ -67,7 +69,7 @@ class BlogController extends Controller
      */
     public function edit(int $id)
     { 
-      $categories = $this->blogCategoryService->getAllBlogCategories();
+      $categories = $this->blogCategoryRepository->all();
       $blog = $this->blogRepository->get($id);
       return view('admin.blog.edit', compact('blog', 'categories'));
     }
@@ -77,10 +79,11 @@ class BlogController extends Controller
      */
     public function update(BlogRequest $request, BlogModel $blog)
     {
-      if ($this->blogService->update($request, $blog)) {
+      try {
+        $this->blogService->update($request, $blog);
         return redirect()->back()->with('success', 'Blog has been successfully updated.');
-      } else {
-          return redirect()->back()->with('failure', 'Failed to update blog.');
+      } catch(Exception $e) {
+        return redirect()->back()->with('failure', $e->getMessage());
       }
     }
 
@@ -89,18 +92,11 @@ class BlogController extends Controller
      */
     public function destroy(BlogModel $blog)
     {
-      if ($blog->image) {
-        $this->fileManagerService->deleteFile($blog->image);
-      } 
-      if ($blog->image_detail) {
-        $this->fileManagerService->deleteFile($blog->image_detail);
-      }
-
-      if($this->blogService->deleteBlog($blog)) {
+      try {
+        $this->blogService->delete($blog);
         return redirect()->back()->with('success', 'Blog has been successfully deleted.');
-      } else {
-        return redirect()->back()->with('success', 'Blog deletion failed.');
+      } catch(Exception $e) {
+        return redirect()->back()->with('failure', $e->getMessage());
       }
-   
     }
 }

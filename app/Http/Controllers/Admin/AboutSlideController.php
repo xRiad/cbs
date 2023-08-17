@@ -7,23 +7,20 @@ use Illuminate\Http\Request;
 use App\Services\AboutSlideService;
 use App\Models\AboutSlideModel;
 use App\Http\Requests\AboutSlideRequest;
-use App\Services\FileManagerService;
+use App\Repositories\AboutSlideRepository;
 
 class AboutSlideController extends Controller
 {
-    protected $fileManagerService;
-    protected $aboutSlideService;
 
-    public function __construct(FileManagerService $fileManagerService, AboutSlideService $aboutSlideService) {
-      $this->fileManagerService = $fileManagerService;
-      $this->aboutSlideService = $aboutSlideService;
-    }
+    public function __construct(protected FileManagerService $fileManagerService,
+    protected AboutSlideService $aboutSlideService,
+    protected AboutSlideRepository $aboutSlideRepository) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-      $aboutSlides = $this->aboutSlideService->getAllAboutSlides();
+      $aboutSlides = $this->aboutSlideRepository->all();
 
       return view('admin.about-slides.index', compact('aboutSlides'));
     }
@@ -41,18 +38,11 @@ class AboutSlideController extends Controller
      */
     public function store(AboutSlideRequest $request)
     {
-      $data = $request->all();
-    
-      if($request->file('image')) {
-        $image = $request->file('image');
-        $imagePath = $this->fileManagerService->saveFile($image, 730, 330, 'images');
-        $data['image'] = $imagePath;
-      }
-
-      if($this->aboutSlideService->saveAboutSlide($data, new AboutSlideModel)) {
+      try {
+        $this->aboutSlideService->create($request); 
         return redirect()->back()->with('success', 'Slide has been succsessfully saved');
-      } else {
-        return redirect()->back()->with('failure', 'Something went wrong');
+      } catch(Exception $e) { 
+        return redirect()->back()->with('failure', $e->getMessage());
       }
     }
 
@@ -69,7 +59,7 @@ class AboutSlideController extends Controller
      */
     public function edit(int $id)
     {
-      $aboutSlide = $this->aboutSlideService->getAboutSlide($id);
+      $aboutSlide = $this->aboutSlideRepository->get($id);
       return view('admin.about-slides.edit', compact('aboutSlide'));
     }
 
@@ -78,20 +68,12 @@ class AboutSlideController extends Controller
      */
     public function update(AboutSlideRequest $request, AboutSlideModel $aboutSlide)
     {
-      $data = $request->all();
-
-      if($request->file('image')) {
-        $this->fileManagerService->deleteFile($aboutSlide->image);
-        $image = $request->file('image');
-        $imagePath = $this->fileManagerService->saveFile($image, 730, 330, 'images');
-        $data['image'] = $imagePath;
-      }
-
-      if ($this->aboutSlideService->saveAboutSlide($data, $aboutSlide)) {
+      try {
+        $this->aboutSlideService->update($request, $aboutSlide);
         return redirect()->back()->with('success', 'Slide has been successfully updated.');
-      } else {
-        return redirect()->back()->with('failure', 'Failed to update slide.');
-      } 
+      } catch(Exception $e) {
+        return redirect()->back()->with('failure', $e->getMessage());
+      }
     }
 
     /**
@@ -99,13 +81,10 @@ class AboutSlideController extends Controller
      */
     public function destroy(AboutSlideModel $aboutSlide)
     {
-      if ($aboutSlide->image) {
-        $this->fileManagerService->deleteFile($aboutSlide->image);
-      } 
-
-      if($this->aboutSlideService->deleteAboutSlide($aboutSlide)) {
+      try {
+        $this->aboutSlideService->delete($aboutSlide);
         return redirect()->back()->with('success', 'Slide has been successfully deleted.');
-      } else {
+      } catch(Exception $e) {
         return redirect()->back()->with('success', 'Slide deletion failed.');
       }
     }

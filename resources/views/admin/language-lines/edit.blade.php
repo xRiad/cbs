@@ -20,41 +20,44 @@
                         </div>
 
                         <div class="card-body">
-                          <form enctype="multipart/form-data" action="{{ route('admin.team-members.update', $teamMember->id) }}" method="post">
+                          <form enctype="multipart/form-data" action="{{ route('admin.language-lines.update', $card->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                              <label for="exampleinputemail1">Name</label>
-                              <input type="text" name="name" value="{{ old('name', $teamMember->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="name">
-                              @error('name')
+                              <label for="exampleinputemail1">Title</label>
+                              <input type="text" name="title[az]" value="{{ old('title[az]', $card->title) }}" class="form-control @error('title') is-invalid @enderror" placeholder="headerSlide">
+                              @error('title.*')
                               <div class="alert alert-danger">
                                  {{$message}}
                               </div>
                               @enderror
                             </div>
                             <div class="form-group">
-                              <label for="exampleinputemail1">Position</label>
-                              <input type="text" name="position[az]" value="{{ old('position[az]', $teamMember->position) }}" class="form-control @error('position') is-invalid @enderror" placeholder="position">
-                              @error('position.*')
+                              <label for="exampleinputemail1">Group</label>
+                              <input type="text" name="group" value="{{ old('group', $languageLine->group) }}" class="form-control @error('group') is-invalid @enderror" placeholder="group">
+                              @error('group')
                               <div class="alert alert-danger">
                                  {{$message}}
                               </div>
                               @enderror
                             </div>
+
                             <div class="form-group">
-                              <label for="exampleinputfile">File input</label>
-                              <div class="input-group">
-                                <div class="custom-file">
-                                  <input type="file" name="image" class="custom-file-input" id="exampleinputfile">
-                                  <label class="custom-file-label" for="exampleinputfile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                  <span class="input-group-text">Upload</span>
-                                </div>
-                              </div>
-                              @error('image')
+                              <label for="exampleinputemail1">Key</label>
+                              <input type="text" name="key" value="{{ old('key', $languageLine->key) }}" class="form-control @error('key') is-invalid @enderror" placeholder="key">
+                              @error('key')
                               <div class="alert alert-danger">
-                                {{$message}}
+                                 {{$message}}
+                              </div>
+                              @enderror
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleinputemail1">Text</label>
+                              <input type="text" name="text[az]" value="{{ old('text[az]', $languageLine->key) }}" class="form-control @error('text') is-invalid @enderror" placeholder="text">
+                              @error('text.*')
+                              <div class="alert alert-danger">
+                                 {{$message}}
                               </div>
                               @enderror
                             </div>

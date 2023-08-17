@@ -26,7 +26,7 @@ use App\Http\Controllers\Admin\LetterController as AdminLetterController;
 use App\Http\Controllers\Admin\ServiceLetterController as AdminServiceLetterController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
-
+use App\Http\Controllers\Admin\LanguageLineController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,12 +71,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin.auth
   Route::resource('roles', RoleController::class)->names('roles');
   Route::resource('project-categories', ProjectCategoryController::class)->names('project-categories');
   Route::resource('blog-categories', BlogCategoryController::class)->names('blog-categories');
-  Route::resource('companies-icons', CompanyIconController::class)->names('companies-icons');
+  Route::resource('company-icons', CompanyIconController::class)->names('company-icons');
   Route::resource('team-members', TeamMemberController::class)->names('team-members');
-  Route::resource('services-accordions', ServiceAccordionController::class)->names('services-accordions');
+  Route::resource('service-accordions', ServiceAccordionController::class)->names('service-accordions');
   Route::resource('letters', AdminLetterController::class)->names('letters');
-  Route::resource('services-letters', AdminServiceLetterController::class)->names('services-letters');
+  Route::resource('service-letters', AdminServiceLetterController::class)->names('service-letters');
   Route::resource('admins', AdminController::class)->names('admins');
+  Route::resource('language-lines', LanguageLineController::class)->names('language-lines');
   Route::get('contact/edit', [AdminContactController::class, 'edit'])->name('contact.edit');
   Route::put('contact/update', [AdminContactController::class, 'update'])->name('contact.update');
 });

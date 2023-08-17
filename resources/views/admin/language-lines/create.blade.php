@@ -19,14 +19,33 @@
                         <!-- /.card-header -->
                         <div class="row1 ">
                         </div>
-
                         <div class="card-body">
-                          <form enctype="multipart/form-data" action="{{ route('admin.company-icons.store') }}" method="post">
+                          <form enctype="multipart/form-data" action="{{ route('admin.language-lines.store') }}" method="post">
                             @csrf
                             <div class="form-group">
-                              <label for="exampleinputemail1">Companies' icons</label>
-                              <input type="text" name="icon" class="form-control @error('icon') is-invalid @enderror" placeholder="icon">
-                              @error('icon')
+                              <label for="exampleinputemail1">Group</label>
+                              <input type="text" name="group" class="form-control @error('group') is-invalid @enderror" placeholder="group">
+                              @error('group')
+                              <div class="alert alert-danger">
+                                 {{$message}}
+                              </div>
+                              @enderror
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleinputemail1">Key</label>
+                              <input type="text" name="key" class="form-control @error('key') is-invalid @enderror" placeholder="key">
+                              @error('key')
+                              <div class="alert alert-danger">
+                                 {{$message}}
+                              </div>
+                              @enderror
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleinputemail1">Text</label>
+                              <input type="text" name="text[az]" class="form-control @error('text') is-invalid @enderror" placeholder="text">
+                              @error('text.*')
                               <div class="alert alert-danger">
                                  {{$message}}
                               </div>

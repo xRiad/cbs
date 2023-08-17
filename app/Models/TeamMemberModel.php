@@ -12,6 +12,7 @@ class TeamMemberModel extends Model
     use HasTranslations;
 
     public $translatable = ['position'];
+    protected $guarded = [];
 
     protected $table = 'team_members';
 }

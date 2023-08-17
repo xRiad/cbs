@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Companies' icons</h3>
+                            <h3 class="card-title">Translations</h3>
                         </div>
                         <div class="card-header">
                           @if(session('success'))
@@ -18,7 +18,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="row1 ">
-                          <form action="{{ route('admin.company-icons.create') }}" method="GET">
+                          <form action="{{ route('admin.language-lines.create') }}" method="GET">
                             @csrf
                             <button  class="btn btn-success ml-3 mt-2">Create</button>
                           </form>
@@ -29,28 +29,33 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Icon</th>
+                                    <th>Group</th>
+                                    <th>Key</th>
+                                    <th>Text</th>
                                     <th>Delete</th>
                                     <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-
-                                @foreach($companiesIcons as $companyIcon)
+                                @foreach($languageLines as $languageLine)
                                     <tr>
-                                        <td>{{$companyIcon->id}}</td>
-                                        <td>{!! $companyIcon->icon !!}</td>
+                                        <td>{{$languageLine->id}}</td>
                                         <td>
-                                            <form action="{{ route('admin.company-icons.edit', $companyIcon->id) }}" method="GET">
-                                                @csrf
-                                                <button type="submit" class="btn btn-primary">Edit</button>
-                                            </form>
+                                          {{ $languageLine->group}}
                                         </td>
+                                        <td>{{$languageLine->key}}</td>
+                                        <td>{{ $languageLine->text }}</td>
                                         <td>
-                                            <form action="{{ route('admin.company-icons.destroy', $companyIcon->id) }}" method="POST">
+                                            <form action="{{ route('admin.language-lines.destroy', $languageLine->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('admin.language-lines.edit', $languageLine->id) }}" method="GET">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary">Edit</button>
                                             </form>
                                         </td>
                                     </tr>

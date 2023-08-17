@@ -43,4 +43,20 @@
     </form>
     @endif
   @endcomponent
-@endsection
+@endsection  
+
+@push('scripts')
+    <script>
+        @if(session('success'))
+        $(document).ready(function() {
+          Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: {!! json_encode(session('success')) !!},
+          showConfirmButton: false,
+          timer: 1500
+        })
+        });
+        @endif
+    </script>
+@endpush

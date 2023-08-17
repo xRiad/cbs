@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group">
                               <label for="exampleinputemail1">Password</label>
-                              <input type="text" name="password" value="{{ old('password', $admin->password) }}" class="form-control @error('password') is-invalid @enderror" placeholder="password">
+                              <input type="text" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="password">
                               @error('password')
                               <div class="alert alert-danger">
                                  {{$message}}

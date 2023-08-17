@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('services_letters', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('service_id');
-            $table->string('service_name');
             $table->string('name');
             $table->string('phone_or_email');
             $table->string('website_url');

@@ -18,7 +18,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="row1 ">
-                          <form action="{{ route('admin.services-accordions.create') }}" method="GET">
+                          <form action="{{ route('admin.service-accordions.create') }}" method="GET">
                             @csrf
                             <button  class="btn btn-success ml-3 mt-2">Create</button>
                           </form>
@@ -32,6 +32,8 @@
                                     <th>Name</th>
                                     <th>Service name</th>
                                     <th>Content</th>
+                                    <th>Delete</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -39,17 +41,17 @@
                                     <tr>
                                         <td>{{$serviceAccordion->id}}</td>
                                         <td>{{$serviceAccordion->name }}</td>
-                                        <td>{{$serviceAccordion->service->name }}</td>
-                                        <td>{{ substr($serviceAccordion->content, 0, 100) }}...</td>
+                                        <td>{{$serviceAccordion->service?->name }}</td>
+                                        <td>{!! substr($serviceAccordion->content, 0, 100) !!} @if(strlen($serviceAccordion->content) > 100)...@endif</td>
                                         <td>
-                                            <form action="{{ route('admin.services-accordions.destroy', $serviceAccordion->id) }}" method="POST">
+                                            <form action="{{ route('admin.service-accordions.destroy', $serviceAccordion->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('admin.services-accordions.edit', $serviceAccordion->id) }}" method="GET">
+                                            <form action="{{ route('admin.service-accordions.edit', $serviceAccordion->id) }}" method="GET">
                                                 @csrf
                                                 <button type="submit" class="btn btn-primary">Edit</button>
                                             </form>

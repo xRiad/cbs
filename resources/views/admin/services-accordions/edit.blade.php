@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="card-body">
-                          <form enctype="multipart/form-data" action="{{ route('admin.services-accordions.update', $serviceAccordion->id) }}" method="post">
+                          <form enctype="multipart/form-data" action="{{ route('admin.service-accordions.update', $serviceAccordion->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
@@ -48,7 +48,7 @@
                                 @foreach($services as $service)
                                 <option @if($serviceAccordion->service?->id === $service->id) selected @endif value="{{ $service->id }}">{{ $service->name }}</option>
                                 @endforeach
-                                <option @if(!in_array($serviceAccordion->service?->id, $categories->pluck('id')->toArray(), true)) selected @endif value="0">No service</option>
+                                <option @if(!in_array($serviceAccordion->service?->id, $services->pluck('id')->toArray(), true)) selected @endif value="">No service</option>
                               </select>
                               @error('service')
                               <div class="alert alert-danger">

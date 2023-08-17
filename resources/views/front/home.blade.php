@@ -299,15 +299,16 @@
                 }, 800); 
             }
         });
-
-        // $( "#send-letter" ).on( "click", function() {
-        //   Swal.fire({
-        //   position: 'top-end',
-        //   icon: 'success',
-        //   title: 'Your work has been saved',
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // })
-        // });
+        @if(session('success'))
+        $(document).ready(function() {
+          Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: {!! json_encode(session('success')) !!},
+          showConfirmButton: false,
+          timer: 1500
+        })
+        });
+        @endif
     </script>
 @endpush

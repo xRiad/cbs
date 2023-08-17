@@ -6,19 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ServiceLetterRequest;
 use App\Models\ServiceLetterModel;
+use App\Repositories\ServiceLetterRepository;
+
 
 class ServiceLetterController extends Controller
 {
+    public function __construct (protected ServiceLetterRepository $serviceLetterRepository) {}
     public function saveLetter (ServiceLetterRequest $request) {
-      $newLetter = new ServiceLetterModel;
-      
-      $newLetter->service_id = $request->input('service_id');
-      $newLetter->name = $request->input('name');
-      $newLetter->phone_or_email = $request->input('phone_or_email');
-      $newLetter->website_url = $request->input('website_url');
-      
-      $newLetter->save();
-
-      return redirect()->back();
+      try {
+        $this->serviceLetterRepository->save($request->validated(), new ServiceLetterModel);
+        return redirect()->back()->with('success', 'Letter has been succsessfully send');
+      } catch (\Exception $e) {
+        return redirect()->back()->with('failure', $e->getMessage());
+      }
     }
 }

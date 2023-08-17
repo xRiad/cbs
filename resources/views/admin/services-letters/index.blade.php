@@ -40,7 +40,7 @@
                                         <td>{{$letter->phone_or_email }}</td>
                                         <td>{{$letter->website_url }}</td>
                                         <td>
-                                            <form action="{{ route('admin.services-letters.destroy', $letter->id) }}" method="POST">
+                                            <form action="{{ route('admin.service-letters.destroy', $letter->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>

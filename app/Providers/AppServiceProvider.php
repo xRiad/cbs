@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Services\FileManagerService;
+// use App\Services\FileManagerService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,9 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-      $this->app->singleton(FileManagerService::class, function ($app) {
-        return new FileManagerService();
-      });    
+      // $this->app->singleton(FileManagerService::class, function ($app) {
+      //   return new FileManagerService();
+      // });    
     }
 
     /**

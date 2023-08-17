@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.services-accordions.index') }}" class="nav-link">
+                    <a  href="{{ route('admin.service-accordions.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Services' accordions
@@ -84,7 +84,7 @@
                     </a>
                 </li>
                 <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.services-letters.index') }}" class="nav-link">
+                    <a  href="{{ route('admin.service-letters.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                           Services' letters
@@ -100,7 +100,7 @@
                     </a>
                 </li>
                 <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.companies-icons.index') }}" class="nav-link">
+                    <a  href="{{ route('admin.company-icons.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Companies' icons
@@ -128,6 +128,14 @@
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                           Contacts
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.language-lines.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                          Translation
                         </p>
                     </a>
                 </li>
