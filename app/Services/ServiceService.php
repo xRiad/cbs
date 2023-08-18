@@ -21,7 +21,7 @@ class serviceService
       if($request->file('image')) {
         $image = $request->file('image');
         $imagePath = $this->fileManagerService->saveFile($image, 730, 330, 'images');
-        $service->image = $imagePath;
+        $data['image']->image = $imagePath;
       }
 
       return $this->serviceRepository->save($data, new serviceModel());

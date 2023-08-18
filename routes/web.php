@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\ServiceLetterController as AdminServiceLetterCont
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\LanguageLineController;
+use App\Http\Controllers\Admin\AboutUsContentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,6 +79,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin.auth
   Route::resource('service-letters', AdminServiceLetterController::class)->names('service-letters');
   Route::resource('admins', AdminController::class)->names('admins');
   Route::resource('language-lines', LanguageLineController::class)->names('language-lines');
+  Route::get('about-us-content/edit', [AboutUsContentController::class, 'edit'])->name('about-us-content.edit');
+  Route::put('about-us-content/update', [AboutUsContentController::class, 'update'])->name('about-us-content.update');
   Route::get('contact/edit', [AdminContactController::class, 'edit'])->name('contact.edit');
   Route::put('contact/update', [AdminContactController::class, 'update'])->name('contact.update');
 });

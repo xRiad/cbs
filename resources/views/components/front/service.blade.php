@@ -10,15 +10,8 @@
   <div class="service-name subtitle1">{{ $service->question }}</div>
   <h4 class="title">{{ $service->title }}</h4>
   <div class="content txt1">
-    @php
-      $mainContent = $service->content; 
-      $mainContentLength = strlen($mainContent);
-      $firstHalf = substr($mainContent, 0, $mainContentLength / 2);
-      $secondHalf = substr($mainContent, $mainContentLength / 2, $mainContentLength);
-    @endphp
-    <div>{{ $firstHalf }}</div>
+    <div>{!! $service->content !!}</div>
     <img src="{{ asset('storage/'.$service->image) }}" alt="">
-    <div>{{ $secondHalf }}</div>
   </div>
   <div class="accordions-letter">
     <div class="accordions-container">

@@ -20,7 +20,7 @@ class FileManagerService
 
         return $imgPath;
     }
-    
+
     public function deleteFile($filePath)
     {
       if($filePath) {

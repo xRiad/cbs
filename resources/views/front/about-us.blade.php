@@ -13,18 +13,14 @@
   </div>
   <div class="video-info">
     <div class="video-container">
-      <video src="{{ asset('assets/'.$aboutUsContent->video) }}"></video>
+
+      <img src="{{ asset('storage/'.$aboutUsContent->image) }}">
     </div>
     <div class="info">
       <div class="subtitle1 info-txt1">{{ __('about.know_us_close') }}</div>
       <h4 class="info-txt2">{{ __('about.always_close') }}</h4>
       <div class="info-txt3">
-        <p>
-        {{ __('about.development_partners1') }} 
-        </p>
-        <p>
-        {{ __('about.development_partners2') }} 
-        </p>
+        {{ $aboutUsContent->content }}
       </div>
       <div class="btn1">{{ __('about.meet_us') }}</div>
     </div>

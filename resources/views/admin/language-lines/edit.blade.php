@@ -20,12 +20,12 @@
                         </div>
 
                         <div class="card-body">
-                          <form enctype="multipart/form-data" action="{{ route('admin.language-lines.update', $card->id) }}" method="post">
+                          <form enctype="multipart/form-data" action="{{ route('admin.language-lines.update', $languageLine->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                               <label for="exampleinputemail1">Title</label>
-                              <input type="text" name="title[az]" value="{{ old('title[az]', $card->title) }}" class="form-control @error('title') is-invalid @enderror" placeholder="headerSlide">
+                              <input type="text" name="title[az]" value="{{ old('title[az]', $languageLine->title) }}" class="form-control @error('title') is-invalid @enderror" placeholder="headerSlide">
                               @error('title.*')
                               <div class="alert alert-danger">
                                  {{$message}}

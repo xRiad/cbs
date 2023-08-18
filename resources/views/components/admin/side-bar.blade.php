@@ -10,47 +10,72 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                      Portfolio
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item mb-3 mt-2">
+                        <a  href="{{ route('admin.projects.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                              Projects
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3 mt-2">
+                        <a  href="{{ route('admin.roles.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Project roles
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3 mt-2">
+                        <a  href="{{ route('admin.project-categories.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Project categories
+                            </p>
+                        </a>
+                    </li>
+                  </ul>
+                </li>
 
-                <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.projects.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
-                        <p>
-                            Portfolio
-                        </p>
-                    </a>
+
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                      Blogs
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item mb-3 mt-2">
+                      <a  href="{{ route('admin.blogs.index') }}" class="nav-link">
+                          <i class="nav-icon far fa-calendar-alt"></i>
+                          <p>
+                              Blog
+                          </p>
+                      </a>
+                    </li>
+                    <li class="nav-item mb-3 mt-2">
+                        <a  href="{{ route('admin.blog-categories.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Blog categories
+                            </p>
+                        </a>
+                    </li>
+                  </ul>
                 </li>
-                <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.roles.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
-                        <p>
-                            Project roles
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.project-categories.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
-                        <p>
-                            Project categories
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.blogs.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
-                        <p>
-                            Blog
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.blog-categories.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
-                        <p>
-                            Blog categories
-                        </p>
-                    </a>
-                </li>
+
+
                 <li class="nav-item mb-3 mt-2">
                     <a  href="{{ route('admin.about-slides.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
@@ -67,37 +92,49 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.services.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
-                        <p>
-                            Services
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.service-accordions.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
-                        <p>
-                            Services' accordions
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.service-letters.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
-                        <p>
-                          Services' letters
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item mb-3 mt-2">
-                    <a  href="{{ route('admin.subservices.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
-                        <p>
-                            Subservices
-                        </p>
-                    </a>
+
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-table"></i>
+                    <p>
+                      Services
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item mb-3 mt-2">
+                        <a  href="{{ route('admin.services.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Services
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3 mt-2">
+                        <a  href="{{ route('admin.service-accordions.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Services' accordions
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3 mt-2">
+                        <a  href="{{ route('admin.service-letters.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                              Services' letters
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3 mt-2">
+                        <a  href="{{ route('admin.subservices.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Subservices
+                            </p>
+                        </a>
+                    </li>
+                  </ul>
                 </li>
                 <li class="nav-item mb-3 mt-2">
                     <a  href="{{ route('admin.company-icons.index') }}" class="nav-link">
@@ -136,6 +173,14 @@
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                           Translation
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-3 mt-2">
+                    <a  href="{{ route('admin.about-us-content.edit') }}" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                          About us content
                         </p>
                     </a>
                 </li>

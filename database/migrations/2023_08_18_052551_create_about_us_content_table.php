@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('about_us_content', function (Blueprint $table) {
             $table->id();
-            $table->json('name');
-            $table->string('slug');
-            $table->text('icon');
-            $table->json('title');
-            $table->json('question');
-            $table->json('content');
-            $table->boolean('has_letters')->default(0);
             $table->string('image')->nullable();
-            $table->boolean('is_main');
+            $table->json('content');
         });
     }
 
@@ -30,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('about_us_content');
     }
 };

@@ -109,8 +109,8 @@
                             </div>
                             <div class="form-group">
                               <div class="custom-control custom-switch">
-                                <input type="checkbox" name="is_main" value="0" class="custom-control-input" id="customswitch1">
-                                <label class="custom-control-label" for="customswitch1">Is main</label>
+                                <input type="checkbox" name="is_main" value="0" class="custom-control-input" id="customswitch2">
+                                <label class="custom-control-label" for="customswitch2">Is main</label>
                               </div>
                               @error('has_letters')
                               <div class="alert alert-danger">

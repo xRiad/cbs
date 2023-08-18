@@ -42,12 +42,21 @@
     <div class="footer-nav-elems-container footer-block">
         <h6>{{ __('footer.pages') }}</h6>
         <ul class="footer-nav">
-            <li class="footer-nav-elem secondary-color-hover">{{ __('footer.home') }}</li>
-            <li class="footer-nav-elem secondary-color-hover">{{ __('footer.about') }}</li>
-            <li class="footer-nav-elem secondary-color-hover">{{ __('footer.services') }}</li>
-            <li class="footer-nav-elem secondary-color-hover">{{ __('footer.portfolio') }}</li>
-            <li class="footer-nav-elem secondary-color-hover">{{ __('footer.blog') }}</li>
-            <li class="footer-nav-elem secondary-color-hover">{{ __('footer.contact') }}</li>
+            <li class="footer-nav-elem secondary-color-hover">
+              <a href="{{ route('home') }}">{{ __('footer.home') }}</a>
+            </li>
+            <li class="footer-nav-elem secondary-color-hover">
+              <a href="{{ route('about-us') }}">{{ __('footer.about') }}</a>
+            </li>
+            <li class="footer-nav-elem secondary-color-hover">
+              <a href="{{ route('portfolio') }}">{{ __('footer.portfolio') }}</a>
+            </li>
+            <li class="footer-nav-elem secondary-color-hover">
+              <a href="{{ route('blog') }}">{{ __('footer.blog') }}</a>
+            </li>
+            <li class="footer-nav-elem secondary-color-hover">
+              <a href="{{ route('contact') }}">{{ __('footer.contact') }}</a>
+            </li>
         </ul>
     </div>
     @unless($services->contains(function ($service) {

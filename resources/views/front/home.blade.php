@@ -41,9 +41,6 @@
             @endforeach
             @endif
         </div>
-        <!-- If we need pagination -->
-        {{-- <div class="pagination "></div> --}}
-
     </div>
     @endif
 

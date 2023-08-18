@@ -85,6 +85,9 @@
   .header-bottom-menu-service {
     margin-bottom: 20px;
   }
+  .header-bottom-menu-service > a {
+    color: #fff;
+  }
   .header-bottom-menu-list {
     cursor: pointer;
     transition: all 0.3s ease; 
@@ -95,5 +98,12 @@
   }
   .header-bottom-menu-list[open] summary {
     margin-bottom: 20px;
+  }
+}
+
+
+@media only screen and (min-width: 851px) {
+  .header-bottom-menu {
+    display: none !important;
   }
 }

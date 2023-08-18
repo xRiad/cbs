@@ -89,7 +89,7 @@
             <div class="services-header">
               
               @unless($services->contains(function ($service) {
-                return $service->is_main === 1;
+                return $service->is_main !== 1;
               }))
                 @foreach($services as $service)
                   <div class="header-service-elem">
@@ -169,7 +169,9 @@
           @if($services)
             <ul class="header-bottom-menu-services navbar-text">
               @foreach($services as $service)
-                <li class="header-bottom-menu-service">{{ $service->name }}</li>
+                <li class="header-bottom-menu-service">
+                  <a href="{{ route('service', $service->slug) }}">{{ $service->name }}</a>
+                </li>
               @endforeach
               <li class="header-bottom-menu-service">Digər</li>
             </ul>

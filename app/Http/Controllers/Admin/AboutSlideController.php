@@ -8,6 +8,7 @@ use App\Services\AboutSlideService;
 use App\Models\AboutSlideModel;
 use App\Http\Requests\AboutSlideRequest;
 use App\Repositories\AboutSlideRepository;
+use App\Services\FileManagerService;
 
 class AboutSlideController extends Controller
 {
