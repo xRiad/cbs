@@ -8,7 +8,6 @@ use App\Services\FileManagerService;
 
 class BlogService
 {
-
     public function __construct(protected FileManagerService $fileManagerService,
     protected BlogRepository $blogRepository) {}
 
@@ -26,8 +25,6 @@ class BlogService
           $imagePath = $this->fileManagerService->saveFile($image, 800, 290, 'images');
           $data['image_detail'] = $imagePath;
         }
-        // $data['category_id'] = 1;
-
 
         return $this->blogRepository->save($data, new BlogModel());
     }
@@ -47,7 +44,6 @@ class BlogService
             $imagePath = $this->fileManagerService->saveFile($imageDetail, 800, 290, 'images');
             $data['image_detail'] = $imagePath;
         }
-        // $data['category_id'] = 1;
 
         return $this->blogRepository->save($data, $model);
     }
