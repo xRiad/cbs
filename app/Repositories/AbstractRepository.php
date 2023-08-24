@@ -44,9 +44,35 @@ abstract class AbstractRepository
     ->get();
   }
 
+
+  public function allWhere($with = [], $orderBy = 'asc', $order_column = 'id', $column, $value, $operator = '=')
+  {
+    return $this
+    ->query()
+    ->with($with)
+    ->orderBy($order_column, $orderBy)
+    ->where($column, $operator, $value)
+    ->get();
+  }
+
   public function paginate($count = 8, $with = [], $orderBy = 'asc', $order_column = 'id')
   {
     return $this->query()->with($with)->orderBy($order_column, $orderBy)->paginate($count);
+  }
+
+  public function randomLimitWhere($count = 8, $with = [], $column, $operator, $value)
+  {
+      return $this->query()->with($with)->where($column, $operator, $value)->limit($count)->get();
+  }
+
+  public function limit($count = 8, $with = [],$orderBy = 'asc', $order_column = 'id')
+  {
+    return $this->query()->with($with)->orderBy($order_column, $orderBy)->limit($count)->get();
+  }
+
+  public function limitWhere($count = 8, $with = [],$orderBy = 'asc', $order_column = 'id', $column, $operator, $value)
+  {
+      return $this->query()->with($with)->orderBy($order_column, $orderBy)->where($column, $operator, $value)->limit($count)->get();
   }
 
   public function query()

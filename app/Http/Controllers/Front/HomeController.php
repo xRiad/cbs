@@ -14,6 +14,7 @@ use App\Repositories\ContactRepository;
 use App\Repositories\AboutSlideRepository;
 use App\Repositories\CardRepository;
 use App\Repositories\CompanyIconRepository;
+use App\Repositories\ProjectRepository;
 
 
 class HomeController extends Controller
@@ -22,13 +23,14 @@ class HomeController extends Controller
   public function __construct(protected ContactRepository $contactRepository,
    protected AboutSlideRepository $aboutSlideRepository,
    protected CardRepository $cardRepository,
-   protected CompanyIconRepository $companyIconRepository) {}
+   protected CompanyIconRepository $companyIconRepository,
+   protected ProjectRepository $projectRepository) {}
     public function index () {
       $slides = $this->aboutSlideRepository->all();
       $cards = $this->cardRepository->all();
       $companiesIcons = $this->companyIconRepository->all();
       $contacts = $this->contactRepository->first(); 
-      $projects = ProjectModel::orderByDesc('id')->limit(10)->get();
+      $projects = $this->projectRepository->limit(10, [], 'desc', 'id');
       return view('front.home', compact('slides', 'cards', 'companiesIcons', 'contacts', 'projects'));
     }
 }

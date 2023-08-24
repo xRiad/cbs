@@ -23,7 +23,7 @@ class BlogController extends Controller
   public function detail (string $slug) {
     $blog = $this->blogRepository->findByOrFail('slug', $slug, '=', ['category']);
     $recentBlogs = $this->blogRepository->all(['category'], 'desc', 'id', 'id', '<>', $blog->id, 3);
-    $recentBlogs = BlogModel::orderByDesc('id')->with('category')->where('id','<>', $blog->id)->limit(3)->get();
+    $recentBlogs = $this->blogRepository->limitWhere(3, ['category'], 'desc', 'id', 'id', '<>', $blog->id);
     $contacts = $this->contactRepository->first();
     return view('front.blog.detail', compact('blog', 'recentBlogs', 'contacts'));
   }

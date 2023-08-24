@@ -22,7 +22,7 @@ class PortfolioController extends Controller
 
     public function detail (string $slug) {
       $project = $this->projectRepository->findBy('slug', $slug, '=', ['roles']);
-      $otherProjects = ProjectModel::inRandomOrder()->with('category')->where('slug', '<>', $slug)->limit(4)->get();
+      $otherProjects = $this->projectRepository->randomLimitWhere(4, ['category'], 'slug', '<>', $slug); 
 
       return view('front.portfolio.detail', compact('project', 'otherProjects'));
     }
@@ -31,9 +31,9 @@ class PortfolioController extends Controller
       $categoryId = request('categoryId');
     
       if($categoryId === 'all') {
-        $projects = ProjectModel::limit(4)->get();
+        $projects = $this->projectRepository->limit(4, [], 'asc', 'id');
       } else {
-        $projects = ProjectModel::where('category_id', $categoryId)->limit(4)->get();
+        $projects = $this->projectRepository->limitWhere(4, [], 'asc', 'id', 'category_id', '=', $categoryId);
       }
       $view = View::make('front.partials.project_cards', ['projects' => $projects])->render();
       
