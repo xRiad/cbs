@@ -20,7 +20,8 @@
     position: absolute;
     top: 50px;
     background: var(--blue-gray);
-    padding: 30px;
+    padding: 50px;
+    overflow-y: scroll;
     box-sizing: border-box;
   }
   .logo-cross {
@@ -98,6 +99,9 @@
   }
   .header-bottom-menu-list[open] summary {
     margin-bottom: 20px;
+  }
+  .header-bottom-menu-btn {
+    padding: 10px 0px !important;   
   }
 }
 

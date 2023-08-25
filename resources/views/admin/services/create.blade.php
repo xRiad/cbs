@@ -23,7 +23,7 @@
                           <form enctype="multipart/form-data" action="{{ route('admin.services.store') }}" method="post">
                             @csrf
                             <div class="form-group">
-                              <label for="exampleinputemail1">Name</label>
+                              <label  for="exampleinputemail1">Name</label>
                               <input type="text" name="name[az]" class="form-control @error('name') is-invalid @enderror" placeholder="Name">
                               @error('name.*')
                               <div class="alert alert-danger">
@@ -76,9 +76,6 @@
                               </div>
                               @enderror
                             </div>
-                            {{-- <div class="image-preview mb-3">
-                              <img src="{{ asset('storage/' . $service->image) }}" alt="">
-                            </div> --}}
                             <div class="form-group">
                               <label for="exampleinputfile">File input</label>
                               <div class="input-group">
@@ -118,7 +115,7 @@
                               </div>
                               @enderror
                             </div>
-                            <button type="submit">submit</button>
+                            <button  type="submit">submit</button>
                           </form>
                         </div>
                         <!-- /.card-body -->
@@ -127,6 +124,4 @@
             </div>
         </div>
     </section>
-
-
 @endsection

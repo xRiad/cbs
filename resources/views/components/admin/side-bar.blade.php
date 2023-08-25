@@ -19,7 +19,7 @@
                     </p>
                   </a>
                   <ul class="nav nav-treeview">
-                    <li class="nav-item mb-3 mt-2">
+                    <li class="nav-item">
                         <a  href="{{ route('admin.projects.index') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
@@ -27,7 +27,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item mb-3 mt-2">
+                    <li class="nav-item">
                         <a  href="{{ route('admin.roles.index') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
@@ -35,7 +35,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item mb-3 mt-2">
+                    <li class="nav-item">
                         <a  href="{{ route('admin.project-categories.index') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
@@ -56,7 +56,7 @@
                     </p>
                   </a>
                   <ul class="nav nav-treeview">
-                    <li class="nav-item mb-3 mt-2">
+                    <li class="nav-item ">
                       <a  href="{{ route('admin.blogs.index') }}" class="nav-link">
                           <i class="nav-icon far fa-calendar-alt"></i>
                           <p>
@@ -64,7 +64,7 @@
                           </p>
                       </a>
                     </li>
-                    <li class="nav-item mb-3 mt-2">
+                    <li class="nav-item ">
                         <a  href="{{ route('admin.blog-categories.index') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
@@ -76,7 +76,7 @@
                 </li>
 
 
-                <li class="nav-item mb-3 mt-2">
+                <li class="nav-item ">
                     <a  href="{{ route('admin.about-slides.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
@@ -84,7 +84,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item mb-3 mt-2">
+                <li class="nav-item ">
                     <a  href="{{ route('admin.cards.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
@@ -102,7 +102,7 @@
                     </p>
                   </a>
                   <ul class="nav nav-treeview">
-                    <li class="nav-item mb-3 mt-2">
+                    <li class="nav-item ">
                         <a  href="{{ route('admin.services.index') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
@@ -110,7 +110,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item mb-3 mt-2">
+                    <li class="nav-item ">
                         <a  href="{{ route('admin.service-accordions.index') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
@@ -118,7 +118,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item mb-3 mt-2">
+                    <li class="nav-item ">
                         <a  href="{{ route('admin.service-letters.index') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
@@ -126,7 +126,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item mb-3 mt-2">
+                    <li class="nav-item ">
                         <a  href="{{ route('admin.subservices.index') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
@@ -136,7 +136,7 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item mb-3 mt-2">
+                <li class="nav-item ">
                     <a  href="{{ route('admin.company-icons.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
@@ -144,7 +144,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item mb-3 mt-2">
+                <li class="nav-item ">
                     <a  href="{{ route('admin.letters.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
@@ -152,7 +152,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item mb-3 mt-2">
+                <li class="nav-item ">
                     <a  href="{{ route('admin.team-members.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
@@ -160,7 +160,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item mb-3 mt-2">
+                <li class="nav-item ">
                     <a  href="{{ route('admin.contact.edit') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
@@ -168,7 +168,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item mb-3 mt-2">
+                <li class="nav-item ">
                     <a  href="{{ route('admin.language-lines.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
@@ -176,7 +176,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item mb-3 mt-2">
+                <li class="nav-item ">
                     <a  href="{{ route('admin.about-us-content.edit') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
@@ -184,7 +184,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item mb-3 mt-2">
+                <li class="nav-item ">
                     <a  href="{{ route('admin.admins.index') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>

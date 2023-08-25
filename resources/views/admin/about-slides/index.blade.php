@@ -41,7 +41,7 @@
                                     <tr>
                                         <td>{{$aboutSlide->id}}</td>
                                         <td>{{$aboutSlide->title}}</td>
-                                        <td>{{$aboutSlide->content}}</td>
+                                        <td>{!! substr($aboutSlide->content, 0, 100) !!} @if(strlen($aboutSlide->content) > 100)...@endif</td>
                                         <td>
                                             <form action="{{ route('admin.about-slides.destroy', $aboutSlide->id) }}" method="POST">
                                                 @csrf

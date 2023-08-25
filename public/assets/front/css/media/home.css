@@ -14,7 +14,7 @@
   }
   .header-slider-buttons-mob {
     display: flex;
-    background: var(--black);
+    background: var(--static-black);
     height: 140px;
     align-items: center;
     justify-content: space-between;

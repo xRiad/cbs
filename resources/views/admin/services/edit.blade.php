@@ -7,19 +7,19 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="service">
-                        <div class="service-header">
+                    <div class="card">
+                        <div class="card-header">
                           @if(session('success'))
-                            <h3 class="service-title alert-success alert">{{ session('success') }}</h3>
+                            <h3 class="card-title alert-success alert">{{ session('success') }}</h3>
                           @elseif(session('failure'))
-                            <h3 class="service-title alert-danger alert">{{ session('failure') }}</h3>
+                            <h3 class="card-title alert-danger alert">{{ session('failure') }}</h3>
                           @endif
                         </div>
                         <!-- /.service-header -->
                         <div class="row1 ">
                         </div>
 
-                        <div class="service-body">
+                        <div class="card-body">
                           <form enctype="multipart/form-data" action="{{ route('admin.services.update', $service->id) }}" method="post">
                             @csrf
                             @method('PUT')

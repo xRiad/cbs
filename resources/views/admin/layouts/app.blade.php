@@ -29,5 +29,7 @@
 
 <!-- jQuery -->
 <x-admin.foot/>
+
+@stack('scripts')
 </body>
 </html>

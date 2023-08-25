@@ -53,7 +53,7 @@
             <div class="portfolio-image">
                 <img src="{{ asset('storage/'.$anotherProject->image)  }}" alt="">
             </div>
-            <div class="portfolio-card-category">{{ $anotherProject->category->name }}</div>
+            <div class="portfolio-card-category">{{ $anotherProject->category?->name }}</div>
             <div class="portfolio-title">{{ $anotherProject->name }}</div>
         </div>
       </a>
